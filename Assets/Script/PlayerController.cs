@@ -25,7 +25,6 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         horizontalInput = Input.GetAxisRaw("Horizontal");
-        // NEW: Update our last known direction only when we are actually pressing a key
         if (horizontalInput != 0)
         {
             lastMoveDir = Mathf.Sign(horizontalInput);
@@ -52,9 +51,6 @@ public class PlayerController : MonoBehaviour
 
         RaycastHit hit;
         bool isGrounded = false;
-
-        // CHECK 1: Inner Corners 
-        // Still requires input because we only want to climb walls we walk INTO
         if (horizontalInput != 0 && CheckMetallicRaycast(transform.right * lastMoveDir, playerHalfHeight + 0.1f, out hit))
         {
             isGrounded = true;
