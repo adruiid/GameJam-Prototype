@@ -5,6 +5,7 @@ public class BulletShooter : MonoBehaviour
     [SerializeField] float projectileSpeed = 10f;
     [SerializeField] float upperBound = 50f;
     [SerializeField] float lowerBound = -50;
+    [SerializeField] float damage = 10f;
     [SerializeField] Vector3 hitBoxSize = new Vector3(0.5f, 0.5f, 2f);
     [SerializeField] LayerMask enemyLayer;
     float upperBoundX;
@@ -46,7 +47,8 @@ public class BulletShooter : MonoBehaviour
 
         foreach (Collider hit in hitColliders)
         {
-            Destroy(hit.gameObject); 
+            EnemyStats enemyStats = hit.GetComponent<EnemyStats>();
+            enemyStats.recieveDamage(damage);
             Destroy(gameObject);     
             return true; 
         }
@@ -63,4 +65,6 @@ public class BulletShooter : MonoBehaviour
             transform.rotation = Quaternion.LookRotation(worldDirection);
         }
     }
+
+
 }

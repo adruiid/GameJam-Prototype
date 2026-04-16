@@ -16,6 +16,8 @@ public class HomingProjectiles : MonoBehaviour
     [Header("Hit Detection")]
     [SerializeField] Vector3 hitBoxSize = new Vector3(0.5f, 0.5f, 2f); 
     [SerializeField] LayerMask enemyLayer;
+
+    [SerializeField] float damage = 10f;
     void Start()
     {
         target = FindClosestEnemy();
@@ -95,7 +97,8 @@ public class HomingProjectiles : MonoBehaviour
 
         foreach (Collider hit in hitColliders)
         {
-            Destroy(hit.gameObject); 
+            EnemyStats enemyStats = hit.GetComponent<EnemyStats>();
+            enemyStats.recieveDamage(damage);
             Destroy(gameObject);     
             return true; 
         }
