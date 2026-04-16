@@ -4,7 +4,9 @@ using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 
 public class PlayerArmory : MonoBehaviour
-{   
+{
+    private float damage=10f;
+
     [SerializeField] GameObject homingMissiles;
     public bool hasHomingMissiles = true;
     [SerializeField] float homingMissileCooldown = 0.5f;
@@ -26,5 +28,15 @@ public class PlayerArmory : MonoBehaviour
     private void FireHomingMissiles()
     {
         Instantiate(homingMissiles, transform.position, homingMissiles.transform.rotation);
+    }
+
+    public float getDamage()
+    {
+        return damage;
+    }
+
+    public void setDamage(float newDamage)
+    {
+        damage = newDamage;
     }
 }

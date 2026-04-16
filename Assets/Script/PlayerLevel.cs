@@ -2,15 +2,25 @@ using UnityEngine;
 
 public class PlayerLevel : MonoBehaviour
 {
-    private PlayerArmory armory;
+    private float playerMaxHealth;
+    private float playerSpeed;
+
+
     private int currentLevel;
     private float experiencePoint;
     private float neededExp;
+
+    private PlayerArmory armory;
+    private ExperienceManager experienceManager;
+    private SwarmPlayerController playerController;
     void Start()
     {
+        playerController = GetComponent<SwarmPlayerController>();
         armory = GetComponent<PlayerArmory>();
+        experienceManager = GameObject.Find("Game Manager").GetComponent<ExperienceManager>();
         currentLevel = 1;
         neededExp = 10;
+        playerSpeed = playerController.getSpeed();
     }
 
     
@@ -24,6 +34,7 @@ public class PlayerLevel : MonoBehaviour
 
     private void levelUp()
     {
+        experienceManager.recieveLevelUpSignal();
         experiencePoint = 0;
         currentLevel += 1;
         neededExp += 5;
@@ -47,5 +58,15 @@ public class PlayerLevel : MonoBehaviour
     public int getLevel()
     {
         return currentLevel;
+    }
+
+    public float getSpeed()
+    {
+        return playerController.getSpeed();
+    }
+
+    public void setSpeed(float newSpeed)
+    {
+        playerController.setSpeed(newSpeed);
     }
 }
