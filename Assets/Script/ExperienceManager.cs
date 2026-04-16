@@ -4,6 +4,7 @@ using UnityEngine.UI;
 public class ExperienceManager : MonoBehaviour
 {
     [SerializeField] Image expBar;
+    [SerializeField] Text levelText;
     private PlayerLevel playerInfo;
     void Start()
     {
@@ -15,6 +16,7 @@ public class ExperienceManager : MonoBehaviour
     void Update()
     {
         expBar.fillAmount = (playerInfo.getExp()/ playerInfo.getNeededExp());
+        levelText.text = "Lv. " + playerInfo.getLevel();
     }
 
     public void recieveSignal(float exp)
