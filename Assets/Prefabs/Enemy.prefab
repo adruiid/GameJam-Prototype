@@ -126,3 +126,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyBehavior
   moveSpeed: 5
+  separationRadius: 5
+  separationWeight: 5
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 128
