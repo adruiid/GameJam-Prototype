@@ -10,6 +10,7 @@ public class EnemyBehavior : MonoBehaviour
     [SerializeField] float separationWeight = 1.5f;
     [SerializeField] LayerMask enemyLayer;
     [SerializeField] float stoppingDistance = 1.0f;
+    bool canMove = true;
     Vector3 targetDirection = Vector3.zero;
 
     GameObject player;
@@ -19,19 +20,28 @@ public class EnemyBehavior : MonoBehaviour
         player = GameObject.Find("Player");
     }
 
-    void Update()
+void Update()
     {
         if (player == null) return;
+        if (!canMove) return;
         Vector3 vectorToPlayer = player.transform.position - transform.position;
         float distanceToPlayer = vectorToPlayer.magnitude;
+
+        Vector3 targetDirection = Vector3.zero;
+        Vector3 playerAvoidance = Vector3.zero;
 
         if (distanceToPlayer > stoppingDistance)
         {
             targetDirection = vectorToPlayer.normalized;
         }
+        else
+        {
+            playerAvoidance = (transform.position - player.transform.position).normalized * 5f; 
+        }
 
         Vector3 separationDirection = GetSeparationVector();
-        Vector3 finalDirection = (targetDirection + separationDirection * separationWeight).normalized;
+        Vector3 finalDirection = (targetDirection + playerAvoidance + separationDirection * separationWeight).normalized;
+
 
         if (finalDirection != Vector3.zero)
         {
@@ -63,5 +73,14 @@ public class EnemyBehavior : MonoBehaviour
         separationForce.y = 0;
         
         return separationForce;
+    }
+
+    public void StopMovementWhenShooting()
+    {
+        canMove = false;
+    }
+    public void StartMoving()
+    {
+        canMove = true;
     }
 }

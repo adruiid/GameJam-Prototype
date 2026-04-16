@@ -29,7 +29,7 @@ public class EnemySpawner : MonoBehaviour
         float spawnX = playerTransform.position.x + Mathf.Cos(randomAngle) * spawnRadius; //rcos@
         float spawnZ = playerTransform.position.z + Mathf.Sin(randomAngle) * spawnRadius;
 
-        Vector3 spawnPosition = new Vector3(spawnX, 0f, spawnZ);
+        Vector3 spawnPosition = new Vector3(spawnX, 1f, spawnZ);
         Instantiate(enemyToSpawn, spawnPosition, Quaternion.identity);
     }
 }
