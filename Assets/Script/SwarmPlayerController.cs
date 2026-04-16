@@ -26,4 +26,14 @@ public class SwarmPlayerController : MonoBehaviour
             Instantiate(projectilePrefab, transform.position, projectilePrefab.transform.rotation);
         }
     }
+
+    public float getSpeed()
+    {
+        return speed;
+    }
+
+    public void setSpeed(float newSpeed)
+    {
+        speed = newSpeed;
+    }
 }

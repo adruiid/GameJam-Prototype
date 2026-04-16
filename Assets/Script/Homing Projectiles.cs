@@ -17,9 +17,11 @@ public class HomingProjectiles : MonoBehaviour
     [SerializeField] Vector3 hitBoxSize = new Vector3(0.5f, 0.5f, 2f); 
     [SerializeField] LayerMask enemyLayer;
 
-    [SerializeField] float damage = 10f;
+    PlayerArmory playerArmory;
     void Start()
     {
+        playerArmory = GameObject.Find("Player").GetComponent<PlayerArmory>();
+
         target = FindClosestEnemy();
         FindRelativeBounds();
         if (target == null)
@@ -98,7 +100,7 @@ public class HomingProjectiles : MonoBehaviour
         foreach (Collider hit in hitColliders)
         {
             EnemyStats enemyStats = hit.GetComponent<EnemyStats>();
-            enemyStats.recieveDamage(damage);
+            enemyStats.recieveDamage(playerArmory.getDamage());
             Destroy(gameObject);     
             return true; 
         }

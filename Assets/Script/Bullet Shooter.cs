@@ -5,7 +5,6 @@ public class BulletShooter : MonoBehaviour
     [SerializeField] float projectileSpeed = 10f;
     [SerializeField] float upperBound = 50f;
     [SerializeField] float lowerBound = -50;
-    [SerializeField] float damage = 10f;
     [SerializeField] Vector3 hitBoxSize = new Vector3(0.5f, 0.5f, 2f);
     [SerializeField] LayerMask enemyLayer;
     float upperBoundX;
@@ -13,9 +12,11 @@ public class BulletShooter : MonoBehaviour
     float upperBoundZ;
     float lowerBoundZ;
     Vector3 worldDirection;
+    PlayerArmory playerArmory;
 
     void Start()
     {
+        playerArmory = GameObject.Find("Player").GetComponent<PlayerArmory>();
         FindRelativeBounds();
         AimAtMouse();
     }
@@ -48,7 +49,7 @@ public class BulletShooter : MonoBehaviour
         foreach (Collider hit in hitColliders)
         {
             EnemyStats enemyStats = hit.GetComponent<EnemyStats>();
-            enemyStats.recieveDamage(damage);
+            enemyStats.recieveDamage(playerArmory.getDamage());
             Destroy(gameObject);     
             return true; 
         }
