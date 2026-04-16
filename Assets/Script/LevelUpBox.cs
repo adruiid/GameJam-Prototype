@@ -7,13 +7,23 @@ public class LevelUpBox : MonoBehaviour
 {
     PlayerArmory playerArmory;
     PlayerLevel playerLevel;
+
     ExperienceManager experienceManager;
     [SerializeField] Text button1Text;
     [SerializeField] Text button2Text;
+    [SerializeField] Text levelIndicator;
+    [SerializeField] Text damageIndicator;
+    [SerializeField] Text speedIndicator;
+    [SerializeField] Text homingIndicator;
+    [SerializeField] Text flameThrowerIndicator;
+
     string[] upgrades = { "Activate Homing Missile", "Increase Damage", "Activate Flame Thrower", "Increase Move Speed"};
     int idx1, idx2;
     string upgrade1;
     string upgrade2;
+
+    bool hasHoming;
+    bool hasFlameThrower;
     void Start()
     {
         playerArmory = GameObject.Find("Player").GetComponent<PlayerArmory>();
@@ -25,6 +35,9 @@ public class LevelUpBox : MonoBehaviour
     void Update()
     {
         if (playerArmory.hasHomingMissiles) upgrades[0] = "Upgrade Homing Missile";
+
+        if (hasHoming) homingIndicator.gameObject.SetActive(true);
+        if (hasFlameThrower) flameThrowerIndicator.gameObject.SetActive(true);
     }
 
     public void assignNew()
@@ -37,6 +50,10 @@ public class LevelUpBox : MonoBehaviour
         }
         button1Text.text = upgrades[idx1];
         button2Text.text = upgrades[idx2];
+
+        levelIndicator.text = "Level: "+ playerLevel.getLevel();
+        damageIndicator.text = "Damage: " + playerArmory.getDamage();
+        speedIndicator.text = "Speed: " + playerLevel.getSpeed();
 
     }
 
@@ -69,6 +86,7 @@ public class LevelUpBox : MonoBehaviour
         }
 
         playerArmory.hasHomingMissiles = true;
+        hasHoming = true;
     }
 
     public void upgradeHomingMissile()
@@ -83,7 +101,7 @@ public class LevelUpBox : MonoBehaviour
 
     public void activateFlameThrower()
     {
-
+        hasFlameThrower = true;
     }
 
     public void increaseSpeed()
