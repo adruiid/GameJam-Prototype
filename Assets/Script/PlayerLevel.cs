@@ -3,7 +3,7 @@ using UnityEngine;
 public class PlayerLevel : MonoBehaviour
 {
     private PlayerArmory armory;
-    private float currentLevel;
+    private int currentLevel;
     private float experiencePoint;
     private float neededExp;
     void Start()
@@ -42,5 +42,10 @@ public class PlayerLevel : MonoBehaviour
     public void updateExp(float exp)
     {
         experiencePoint += exp;
+    }
+
+    public int getLevel()
+    {
+        return currentLevel;
     }
 }
