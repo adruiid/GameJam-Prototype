@@ -128,10 +128,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyBehavior
   moveSpeed: 5
   separationRadius: 5
-  separationWeight: 5
+  separationWeight: 3
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128
+  stoppingDistance: 10
 --- !u!114 &5223608034818635638
 MonoBehaviour:
   m_ObjectHideFlags: 0

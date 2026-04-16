@@ -9,6 +9,8 @@ public class EnemyBehavior : MonoBehaviour
     [SerializeField] float separationRadius = 1.5f;
     [SerializeField] float separationWeight = 1.5f;
     [SerializeField] LayerMask enemyLayer;
+    [SerializeField] float stoppingDistance = 1.0f;
+    Vector3 targetDirection = Vector3.zero;
 
     GameObject player;
 
@@ -20,10 +22,21 @@ public class EnemyBehavior : MonoBehaviour
     void Update()
     {
         if (player == null) return;
-        Vector3 targetDirection = (player.transform.position - transform.position).normalized;
+        Vector3 vectorToPlayer = player.transform.position - transform.position;
+        float distanceToPlayer = vectorToPlayer.magnitude;
+
+        if (distanceToPlayer > stoppingDistance)
+        {
+            targetDirection = vectorToPlayer.normalized;
+        }
+
         Vector3 separationDirection = GetSeparationVector();
         Vector3 finalDirection = (targetDirection + separationDirection * separationWeight).normalized;
-        transform.Translate(finalDirection * moveSpeed * Time.deltaTime, Space.World);
+
+        if (finalDirection != Vector3.zero)
+        {
+            transform.Translate(finalDirection * moveSpeed * Time.deltaTime, Space.World);
+        }
     }
 
     Vector3 GetSeparationVector()

@@ -16,6 +16,7 @@ public class EnemyStats : MonoBehaviour
         if (currentHealth <= 0)
         {
             destroySelf();
+            return;
         }
     }
 
