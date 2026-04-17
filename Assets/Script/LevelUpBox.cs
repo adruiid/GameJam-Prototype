@@ -9,7 +9,8 @@ public class LevelUpBox : MonoBehaviour
     PlayerLevel playerLevel;
 
     ExperienceManager experienceManager;
-    
+
+    [SerializeField] Text maxHealthIndicator;
     [SerializeField] Text levelIndicator;
     [SerializeField] Text damageIndicator;
     [SerializeField] Text speedIndicator;
@@ -57,9 +58,10 @@ public class LevelUpBox : MonoBehaviour
         button1Image.sprite = upgradeList[idx1].icon;
         button2Image.sprite= upgradeList[idx2].icon;
 
+        maxHealthIndicator.text= "Max Health: " + playerLevel.getMaxHp();
         levelIndicator.text = "Level: "+ playerLevel.getLevel();
         damageIndicator.text = "Damage: " + playerArmory.getDamage();
-        speedIndicator.text = "Speed: " + playerLevel.getSpeed();
+        speedIndicator.text = "Speed: " + playerLevel.getSpeed()/100f;
 
     }
 
@@ -79,6 +81,7 @@ public class LevelUpBox : MonoBehaviour
         else if (idxFunc == 1) increaseDamage();
         else if (idxFunc == 2) activateFlameThrower();
         else if (idxFunc == 3) increaseSpeed();
+        else if (idxFunc == 4) increaseMaxHealth();
 
         experienceManager.recieveLeveledUpSignal();
     }
@@ -108,11 +111,17 @@ public class LevelUpBox : MonoBehaviour
     public void activateFlameThrower()
     {
         hasFlameThrower = true;
+        playerArmory.hasFlameThrower = true;
     }
 
     public void increaseSpeed()
     {
-        playerLevel.setSpeed(playerLevel.getSpeed() + 2f);
+        playerLevel.setSpeed(playerLevel.getSpeed() + 100f);
+    }
+
+    public void increaseMaxHealth()
+    {
+        playerLevel.setMaxHP(playerLevel.getMaxHp() + 10f);
     }
 
 

@@ -9,7 +9,8 @@ public class PlayerArmory : MonoBehaviour
     [SerializeField] GameObject projectilePrefab;
     [SerializeField] float projectileCooldown = 2;
     [SerializeField] GameObject homingMissiles;
-    public bool hasHomingMissiles = true;
+    public bool hasHomingMissiles;
+    public bool hasFlameThrower;
     [SerializeField] float homingMissileCooldown = 0.5f;
     private float nextSpawnTime;
     void Start()

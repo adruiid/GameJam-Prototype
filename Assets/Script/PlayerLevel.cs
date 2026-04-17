@@ -3,6 +3,7 @@ using UnityEngine;
 public class PlayerLevel : MonoBehaviour
 {
     private float playerMaxHealth;
+    private float currentHealth;
     private float playerSpeed;
 
 
@@ -20,10 +21,12 @@ public class PlayerLevel : MonoBehaviour
         experienceManager = GameObject.Find("Game Manager").GetComponent<ExperienceManager>();
         currentLevel = 1;
         neededExp = 100;
+        playerMaxHealth = 100;
         playerSpeed = playerController.getSpeed();
+        currentHealth = playerMaxHealth;
     }
 
-    
+
     void Update()
     {
         if (experiencePoint >= neededExp)
@@ -68,5 +71,25 @@ public class PlayerLevel : MonoBehaviour
     public void setSpeed(float newSpeed)
     {
         playerController.setSpeed(newSpeed);
+    }
+
+    public float getMaxHp()
+    {
+        return playerMaxHealth;
+    }
+
+    public void setMaxHP(float newMaxHP)
+    {
+        playerMaxHealth = newMaxHP;
+    }
+
+    public float getCurrnetHp()
+    {
+        return currentHealth;
+    }
+
+    public void setCurrentHp(float newCurrentHp)
+    {
+        currentHealth = newCurrentHp;
     }
 }
