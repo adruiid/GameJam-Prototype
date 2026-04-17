@@ -125,7 +125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cea808ea1700534b93e47421100dc8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BulletShooter
-  projectileSpeed: 10
+  projectileSpeed: 30
   upperBound: 50
   lowerBound: -50
   hitBoxSize: {x: 0.5, y: 0.5, z: 2}
