@@ -19,7 +19,7 @@ public class PlayerLevel : MonoBehaviour
         armory = GetComponent<PlayerArmory>();
         experienceManager = GameObject.Find("Game Manager").GetComponent<ExperienceManager>();
         currentLevel = 1;
-        neededExp = 10;
+        neededExp = 100;
         playerSpeed = playerController.getSpeed();
     }
 
@@ -37,7 +37,7 @@ public class PlayerLevel : MonoBehaviour
         experienceManager.recieveLevelUpSignal();
         experiencePoint = 0;
         currentLevel += 1;
-        neededExp += 5;
+        neededExp += 50;
     }
 
     public float getNeededExp()

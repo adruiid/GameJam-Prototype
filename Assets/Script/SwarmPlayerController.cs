@@ -6,18 +6,22 @@ public class SwarmPlayerController : MonoBehaviour
     float verticalInput;
     [SerializeField] float speed = 10f;
     [SerializeField] GameObject projectilePrefab;
+    Rigidbody rb;
     void Start()
     {
-        
+        rb = GetComponent<Rigidbody>();
     }
 
     void Update()
     {
+        OnClick();
+    }
+
+    private void FixedUpdate()
+    {
         horizontalInput = Input.GetAxis("Horizontal");
         verticalInput = Input.GetAxis("Vertical");
-        transform.Translate(Vector3.right * horizontalInput * Time.deltaTime * speed);
-        transform.Translate(Vector3.forward * verticalInput * Time.deltaTime * speed);
-        OnClick();
+        rb.linearVelocity= (Vector3.right * horizontalInput * Time.deltaTime * speed+ Vector3.forward * verticalInput * Time.deltaTime * speed);
     }
     void OnClick()
     {
