@@ -5,7 +5,7 @@ public class SwarmPlayerController : MonoBehaviour
     float horizontalInput;
     float verticalInput;
     [SerializeField] float speed = 10f;
-    [SerializeField] GameObject projectilePrefab;
+    //[SerializeField] GameObject projectilePrefab;
     Rigidbody rb;
     void Start()
     {
@@ -14,7 +14,7 @@ public class SwarmPlayerController : MonoBehaviour
 
     void Update()
     {
-        OnClick();
+        //OnClick();
     }
 
     private void FixedUpdate()
@@ -23,13 +23,13 @@ public class SwarmPlayerController : MonoBehaviour
         verticalInput = Input.GetAxis("Vertical");
         rb.linearVelocity= (Vector3.right * horizontalInput * Time.deltaTime * speed+ Vector3.forward * verticalInput * Time.deltaTime * speed);
     }
-    void OnClick()
-    {
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
-        {
-            Instantiate(projectilePrefab, transform.position, projectilePrefab.transform.rotation);
-        }
-    }
+    // void OnClick()
+    // {
+    //     if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
+    //     {
+    //         Instantiate(projectilePrefab, transform.position, projectilePrefab.transform.rotation);
+    //     }
+    // }
 
     public float getSpeed()
     {

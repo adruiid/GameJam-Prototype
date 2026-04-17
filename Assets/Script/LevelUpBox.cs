@@ -9,18 +9,23 @@ public class LevelUpBox : MonoBehaviour
     PlayerLevel playerLevel;
 
     ExperienceManager experienceManager;
-    [SerializeField] Text button1Text;
-    [SerializeField] Text button2Text;
+    
     [SerializeField] Text levelIndicator;
     [SerializeField] Text damageIndicator;
     [SerializeField] Text speedIndicator;
     [SerializeField] Text homingIndicator;
     [SerializeField] Text flameThrowerIndicator;
 
-    string[] upgrades = { "Activate Homing Missile", "Increase Damage", "Activate Flame Thrower", "Increase Move Speed"};
+    [SerializeField] Text button1Text;
+    [SerializeField] Text button2Text;
+    [SerializeField] Image button1Image;
+    [SerializeField] Image button2Image;
+
     int idx1, idx2;
     string upgrade1;
     string upgrade2;
+
+    [SerializeField]UpgradeContainers[] upgradeList;
 
     bool hasHoming;
     bool hasFlameThrower;
@@ -34,7 +39,6 @@ public class LevelUpBox : MonoBehaviour
     
     void Update()
     {
-        if (playerArmory.hasHomingMissiles) upgrades[0] = "Upgrade Homing Missile";
 
         if (hasHoming) homingIndicator.gameObject.SetActive(true);
         if (hasFlameThrower) flameThrowerIndicator.gameObject.SetActive(true);
@@ -42,14 +46,16 @@ public class LevelUpBox : MonoBehaviour
 
     public void assignNew()
     {
-        idx1 = Random.Range(0, upgrades.Length);
+        idx1 = Random.Range(0, upgradeList.Length);
         while (true)
         {
-            idx2 = Random.Range(0, upgrades.Length);
+            idx2 = Random.Range(0, upgradeList.Length);
             if (idx2 != idx1) break;
         }
-        button1Text.text = upgrades[idx1];
-        button2Text.text = upgrades[idx2];
+        button1Text.text = upgradeList[idx1].upgradeName;
+        button2Text.text = upgradeList[idx2].upgradeName;
+        button1Image.sprite = upgradeList[idx1].icon;
+        button2Image.sprite= upgradeList[idx2].icon;
 
         levelIndicator.text = "Level: "+ playerLevel.getLevel();
         damageIndicator.text = "Damage: " + playerArmory.getDamage();
