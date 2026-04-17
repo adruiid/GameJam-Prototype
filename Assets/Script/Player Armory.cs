@@ -6,14 +6,15 @@ using UnityEngine;
 public class PlayerArmory : MonoBehaviour
 {
     private float damage=10f;
-
+    [SerializeField] GameObject projectilePrefab;
+    [SerializeField] float projectileCooldown = 2;
     [SerializeField] GameObject homingMissiles;
     public bool hasHomingMissiles = true;
     [SerializeField] float homingMissileCooldown = 0.5f;
     private float nextSpawnTime;
     void Start()
     {
- 
+        StartCoroutine(SpawnProjectiles());
     }
 
     void Update()
@@ -25,6 +26,14 @@ public class PlayerArmory : MonoBehaviour
         }
     }
 
+    IEnumerator SpawnProjectiles()
+    {
+        while (true)
+        {
+            Instantiate(projectilePrefab, transform.position, projectilePrefab.transform.rotation);
+            yield return new WaitForSeconds(projectileCooldown);
+        }
+    }
     private void FireHomingMissiles()
     {
         Instantiate(homingMissiles, transform.position, homingMissiles.transform.rotation);

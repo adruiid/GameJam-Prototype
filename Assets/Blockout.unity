@@ -499,7 +499,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SwarmPlayerController
   speed: 500
-  projectilePrefab: {fileID: 3801658830963266909, guid: 731b131abcba0fc48a4973d1c2dc2d3d, type: 3}
 --- !u!114 &367194970
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -512,6 +511,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 493450001c55a78449eb45487f585891, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerArmory
+  projectilePrefab: {fileID: 3801658830963266909, guid: 731b131abcba0fc48a4973d1c2dc2d3d, type: 3}
+  projectileCooldown: 0.1
   homingMissiles: {fileID: 9221207842229611342, guid: 5b951ed7afcd2bb4c833969c5ccbe8ae, type: 3}
   hasHomingMissiles: 0
   homingMissileCooldown: 0.5
@@ -5750,6 +5751,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
+  m_UseReflectionProbes: 0
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
@@ -7804,7 +7806,7 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1936437675}
   m_Enabled: 1
-  serializedVersion: 12
+  serializedVersion: 13
   m_Type: 1
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
   m_Intensity: 1
@@ -7856,7 +7858,7 @@ Light:
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ForceVisible: 0
-  m_ShadowRadius: 0
+  m_ShapeRadius: 0
   m_ShadowAngle: 0
   m_LightUnit: 1
   m_LuxAtDistance: 1
