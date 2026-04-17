@@ -27,6 +27,8 @@ public class LevelUpBox : MonoBehaviour
     string upgrade2;
 
     [SerializeField]UpgradeContainers[] upgradeList;
+    [SerializeField] GameObject homingMissilePrefab;
+    HomingProjectiles homingSpeed;
 
     bool hasHoming;
     bool hasFlameThrower;
@@ -35,6 +37,7 @@ public class LevelUpBox : MonoBehaviour
         playerArmory = GameObject.Find("Player").GetComponent<PlayerArmory>();
         playerLevel = GameObject.Find("Player").GetComponent<PlayerLevel>();
         experienceManager = GameObject.Find("Game Manager").GetComponent<ExperienceManager>();
+        homingSpeed= homingMissilePrefab.GetComponent<HomingProjectiles>();
     }
 
     
@@ -100,7 +103,7 @@ public class LevelUpBox : MonoBehaviour
 
     public void upgradeHomingMissile()
     {
-
+        homingSpeed.speed += 5f;
     }
 
     public void increaseDamage()

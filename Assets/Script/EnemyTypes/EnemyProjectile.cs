@@ -7,7 +7,10 @@ public class EnemyProjectile : MonoBehaviour
     [SerializeField] float lowerBound = -50;
     [SerializeField] float damage = 10f;
     [SerializeField] Vector3 hitBoxSize = new Vector3(0.5f, 0.5f, 2f);
+    
     GameObject player;
+    PlayerLevel playerLevel;
+    
     float upperBoundX;
     float lowerBoundX;
     float upperBoundZ;
@@ -18,6 +21,9 @@ public class EnemyProjectile : MonoBehaviour
     void Start()
     {
         player = GameObject.Find("Player");
+        playerLevel = player.GetComponent<PlayerLevel>();
+
+
         playerLayer = LayerMask.GetMask("Player");
         FindRelativeBounds();
         AimAtPlayer();
@@ -34,29 +40,34 @@ public class EnemyProjectile : MonoBehaviour
     void Update()
     {
         transform.position += worldDirection * projectileSpeed * Time.deltaTime;
+        
         if (transform.position.x > upperBoundX || transform.position.x < lowerBoundX || transform.position.z > upperBoundZ || transform.position.z < lowerBoundZ)
         {
             Destroy(gameObject);
+            return;
         }
+        
         bool hitSomething = CheckForHit();
         if (hitSomething)
         {
             return; 
         }
     }
+
     bool CheckForHit()
     {
         Collider[] hitColliders = Physics.OverlapBox(transform.position, hitBoxSize / 2f, transform.rotation, playerLayer);
 
         foreach (Collider hit in hitColliders)
-        { 
-                //player damage logic here
-                Destroy(gameObject);     
-                return true; 
-            
+        {
+            float currentHp = playerLevel.getCurrentHp();
+            playerLevel.setCurrentHp(currentHp - damage);
+            Destroy(gameObject);     
+            return true; 
         }
         return false;
     }
+
     private void AimAtPlayer()
     {
         if (player == null) return;
@@ -68,6 +79,4 @@ public class EnemyProjectile : MonoBehaviour
             transform.rotation = Quaternion.LookRotation(worldDirection);
         }
     }
-
-
 }

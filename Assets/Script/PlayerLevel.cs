@@ -83,7 +83,7 @@ public class PlayerLevel : MonoBehaviour
         playerMaxHealth = newMaxHP;
     }
 
-    public float getCurrnetHp()
+    public float getCurrentHp()
     {
         return currentHealth;
     }
