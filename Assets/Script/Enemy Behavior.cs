@@ -24,6 +24,7 @@ void Update()
     {
         if (player == null) return;
         if (!canMove) return;
+
         Vector3 vectorToPlayer = player.transform.position - transform.position;
         float distanceToPlayer = vectorToPlayer.magnitude;
 
