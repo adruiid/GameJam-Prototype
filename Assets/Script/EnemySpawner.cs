@@ -9,6 +9,14 @@ public class EnemySpawner : MonoBehaviour
     
     [SerializeField] float spawnRadius = 20f;
     [SerializeField] float spawnRate = 2f; 
+    [SerializeField] int spawnIdxLimit = -1;
+    [SerializeField] float spawnRate = 2f;
+
+    [Header("Level Bounds & Collision")]
+    [SerializeField] Collider planeCollider;
+    [SerializeField] LayerMask obstacleLayer;
+    [SerializeField] float enemySpawnRadius = 1f; 
+    [SerializeField] int maxSpawnAttempts = 15;
 
     private float nextSpawnTime;
 
@@ -26,12 +34,29 @@ public class EnemySpawner : MonoBehaviour
         int randomIndex = Random.Range(0, spawnIdxLimit+1);
         GameObject enemyToSpawn = enemyPrefabs[randomIndex];
 
-        float randomAngle = Random.Range(0f, Mathf.PI * 2f); 
-        float spawnX = playerTransform.position.x + Mathf.Cos(randomAngle) * spawnRadius; //rcos@
-        float spawnZ = playerTransform.position.z + Mathf.Sin(randomAngle) * spawnRadius;
+        Vector3 validSpawnPosition = Vector3.zero;
+        bool foundValidPosition = false;
 
-        Vector3 spawnPosition = new Vector3(spawnX, 1f, spawnZ);
-        Instantiate(enemyToSpawn, spawnPosition, Quaternion.identity);
+        for (int i = 0; i < maxSpawnAttempts; i++)
+        {
+            Bounds bounds = planeCollider.bounds;
+            float randomX = Random.Range(bounds.min.x, bounds.max.x);
+            float randomZ = Random.Range(bounds.min.z, bounds.max.z);
+
+            Vector3 potentialPosition = new Vector3(randomX, 1f, randomZ);
+
+            if (!Physics.CheckSphere(potentialPosition, enemySpawnRadius, obstacleLayer))
+            {
+                validSpawnPosition = potentialPosition;
+                foundValidPosition = true;
+                break;
+            }
+        }
+        if (foundValidPosition)
+        {
+            Instantiate(enemyToSpawn, validSpawnPosition, Quaternion.identity);
+        }
+
     }
 
     public void changeSpawnRate(float newSpawnRate)
