@@ -5,11 +5,9 @@ public class EnemySpawner : MonoBehaviour
     [Header("Spawning Settings")]
     [SerializeField] GameObject[] enemyPrefabs;
     [SerializeField] Transform playerTransform;
-    [SerializeField] int spawnIdxLimit=-1;
     
     [SerializeField] float spawnRadius = 20f;
-    [SerializeField] float spawnRate = 2f; 
-    [SerializeField] int spawnIdxLimit = -1;
+    [SerializeField] int spawnIdxLimit = 0;
     [SerializeField] float spawnRate = 2f;
 
     [Header("Level Bounds & Collision")]

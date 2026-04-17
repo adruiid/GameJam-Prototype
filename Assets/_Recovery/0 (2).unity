@@ -8080,7 +8080,7 @@ MonoBehaviour:
   - {fileID: 3663263202004752483, guid: afaf692003a05024db1d4a449bfbf807, type: 3}
   playerTransform: {fileID: 367194965}
   spawnRadius: 20
-  spawnIdxLimit: 0
+  spawnIdxLimit: -1
   spawnRate: 1
   planeCollider: {fileID: 1766699053}
   obstacleLayer:

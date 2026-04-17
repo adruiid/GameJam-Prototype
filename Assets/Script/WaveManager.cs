@@ -37,7 +37,7 @@ public class WaveManager : MonoBehaviour
         }
         else if (waveNumber == 3)
         {
-            enemySpawner.changeSpawnIdxLimit(0);
+            enemySpawner.changeSpawnIdxLimit(1);
         }
         else if (waveNumber == 4)
         {
