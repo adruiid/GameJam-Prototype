@@ -5,7 +5,7 @@ public class EnemySpawner : MonoBehaviour
     [Header("Spawning Settings")]
     [SerializeField] GameObject[] enemyPrefabs;
     [SerializeField] Transform playerTransform;
-    [SerializeField] int spawnIdxLimit=0;
+    [SerializeField] int spawnIdxLimit=-1;
     
     [SerializeField] float spawnRadius = 20f;
     [SerializeField] float spawnRate = 2f; 
@@ -23,7 +23,7 @@ public class EnemySpawner : MonoBehaviour
 
     void SpawnEnemy()
     {
-        int randomIndex = Random.Range(0, spawnIdxLimit);
+        int randomIndex = Random.Range(0, spawnIdxLimit+1);
         GameObject enemyToSpawn = enemyPrefabs[randomIndex];
 
         float randomAngle = Random.Range(0f, Mathf.PI * 2f); 
