@@ -14,6 +14,8 @@ public class PlayerLevel : MonoBehaviour
     private PlayerArmory armory;
     private ExperienceManager experienceManager;
     private SwarmPlayerController playerController;
+
+    
     void Start()
     {
         playerController = GetComponent<SwarmPlayerController>();
@@ -83,13 +85,25 @@ public class PlayerLevel : MonoBehaviour
         playerMaxHealth = newMaxHP;
     }
 
-    public float getCurrnetHp()
+    public float getCurrentHp()
     {
         return currentHealth;
     }
 
-    public void setCurrentHp(float newCurrentHp)
+    public void setCurrentHp(float newHp)
     {
-        currentHealth = newCurrentHp;
+        currentHealth = newHp;
+    }
+
+    public void healSignal(float healingAmount)
+    {
+        if (currentHealth < playerMaxHealth)
+        {
+            currentHealth += healingAmount;
+            if (currentHealth > playerMaxHealth)
+            {
+                currentHealth = playerMaxHealth;
+            }
+        }
     }
 }

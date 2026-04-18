@@ -5,16 +5,21 @@ public class GameGeneralManager : MonoBehaviour
 {
     private float time;
     public Text timerText;
-    PlayerArmory playerArmory;
     float enemyKillCount;
 
     [SerializeField] Image missileIcon;
     [SerializeField] Image flameThrowerIcon;
     [SerializeField] Text killCount;
 
+    [SerializeField] Image hpBar;
+
+    PlayerArmory playerArmory;
+    PlayerLevel playerLevel;
+
     void Start()
     {
         playerArmory= GameObject.Find("Player").GetComponent<PlayerArmory>();
+        playerLevel = GameObject.Find("Player").GetComponent<PlayerLevel>();
     }
 
     void Update()
@@ -24,6 +29,8 @@ public class GameGeneralManager : MonoBehaviour
         int minutes = Mathf.FloorToInt(time / 60);
         int seconds = Mathf.FloorToInt(time % 60);
         timerText.text = string.Format("{0}:{1:00}", minutes, seconds);
+
+        hpBar.fillAmount= playerLevel.getCurrentHp() / playerLevel.getMaxHp();
 
         checkForIcon();
     }

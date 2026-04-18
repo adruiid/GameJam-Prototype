@@ -7,10 +7,12 @@ public class EnemyStats : MonoBehaviour
     [SerializeField] float exp;
     private ExperienceManager experienceManager;
     private GameGeneralManager gameGeneralManager;
+    private EnemyDrops enemyDrops;
     void Start()
     {
         experienceManager = GameObject.Find("Game Manager").GetComponent<ExperienceManager>();
         gameGeneralManager = GameObject.Find("Game Manager").GetComponent<GameGeneralManager>();
+        enemyDrops=GetComponent<EnemyDrops>();
         currentHealth = healthPoint;
     }
     void Update()
@@ -29,8 +31,8 @@ public class EnemyStats : MonoBehaviour
 
     public void destroySelf()
     {
+        enemyDrops.killSignal();
         gameGeneralManager.killSignal();
-        experienceManager.recieveSignal(exp);
         Destroy(gameObject);
     }
 }

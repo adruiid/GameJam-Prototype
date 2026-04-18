@@ -10,17 +10,24 @@ public class EnemyBehavior : MonoBehaviour
     [SerializeField] float separationWeight = 1.5f;
     [SerializeField] LayerMask enemyLayer;
     [SerializeField] float stoppingDistance = 1.0f;
+
+    [Header("Combat Settings")]
+    [SerializeField] float damageAmount = 10f;
+    [SerializeField] float attackCooldown = 1f;
+    private float nextAttackTime;
+
     bool canMove = true;
-    Vector3 targetDirection = Vector3.zero;
 
     GameObject player;
+    PlayerLevel playerLevel;
 
     void Start()
     {
         player = GameObject.Find("Player");
+        playerLevel = player.GetComponent<PlayerLevel>();
     }
 
-void Update()
+    void Update()
     {
         if (player == null) return;
         if (!canMove) return;
@@ -38,6 +45,12 @@ void Update()
         else
         {
             playerAvoidance = (transform.position - player.transform.position).normalized * 5f; 
+
+            if (Time.time >= nextAttackTime)
+            {
+                DealDamage();
+                nextAttackTime = Time.time + attackCooldown;
+            }
         }
 
         Vector3 separationDirection = GetSeparationVector();
@@ -47,6 +60,15 @@ void Update()
         if (finalDirection != Vector3.zero)
         {
             transform.Translate(finalDirection * moveSpeed * Time.deltaTime, Space.World);
+        }
+    }
+
+    void DealDamage()
+    {
+        if (playerLevel != null)
+        {
+            float currentHp = playerLevel.getCurrentHp();
+            playerLevel.setCurrentHp(currentHp - damageAmount);
         }
     }
 

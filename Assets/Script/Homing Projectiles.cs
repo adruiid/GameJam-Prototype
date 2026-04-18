@@ -5,7 +5,7 @@ public class HomingProjectiles : MonoBehaviour
     Transform target;
     Vector3 moveDirection; 
     [Header("Movement Settings")]
-    [SerializeField] float speed = 10f;
+    public float speed = 10f;
     [SerializeField] float maxTargetingRange = 15f;
     [SerializeField] float upperBound = 50f;
     [SerializeField] float lowerBound = -50f;

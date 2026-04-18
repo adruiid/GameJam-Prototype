@@ -1,0 +1,35 @@
+using UnityEngine;
+
+public class EnemyDrops : MonoBehaviour
+{
+    [SerializeField] GameObject hpOrb;
+    [SerializeField] GameObject expOrb;
+    void Start()
+    {
+        
+    }
+
+    
+    void Update()
+    {
+        
+    }
+
+    public void killSignal()
+    {
+        
+        Vector3 hpOrbDropPosition = transform.position;
+        Vector3 expOrbDropPosition = transform.position;
+        /*
+        hpOrbDropPosition.x -= 0.5f;
+        expOrbDropPosition.x += 0.5f;
+        */
+
+        if (Random.Range(0, 100) < 30)
+        {
+            Instantiate(hpOrb, hpOrbDropPosition, hpOrb.transform.rotation);
+        }
+
+        Instantiate(expOrb, expOrbDropPosition, hpOrb.transform.rotation);
+    }
+}
