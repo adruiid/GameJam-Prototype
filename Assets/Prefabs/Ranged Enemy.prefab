@@ -179,3 +179,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyDrops
   hpOrb: {fileID: 8893824674842300083, guid: fdda4531c1a59a049bc4d04260680699, type: 3}
+  expOrb: {fileID: 8893824674842300083, guid: fb7fa3de557fc2b46a25a8d23841f136, type: 3}

@@ -1,18 +1,16 @@
-using System;
-using System.Threading;
 using UnityEngine;
 
-public class hpOrb : MonoBehaviour
+public class expOrb : MonoBehaviour
 {
     GameObject player;
     [SerializeField] float moveSpeed = 10f;
-    [SerializeField] float healingAmount = 5f;
-    float timer = 3f;
+    [SerializeField] float expAmount=10f;
     void Start()
     {
         player = GameObject.Find("Player");
     }
 
+    // Update is called once per frame
     void Update()
     {
         Vector3 vectorToPlayer = player.transform.position - transform.position;
@@ -20,16 +18,6 @@ public class hpOrb : MonoBehaviour
         {
             transform.Translate(vectorToPlayer * moveSpeed * Time.deltaTime, Space.World);
         }
-
-        /*
-        timer -= Time.deltaTime;
-
-        if (player == null || timer>0f) return;
-
-        Vector3 vectorToPlayer = player.transform.position - transform.position;
-
-        transform.Translate(vectorToPlayer * moveSpeed * Time.deltaTime, Space.World);
-        */
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -37,7 +25,7 @@ public class hpOrb : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             PlayerLevel playerLevel = collision.gameObject.GetComponent<PlayerLevel>();
-            playerLevel.healSignal(healingAmount);
+            playerLevel.updateExp(expAmount);
             Destroy(gameObject);
         }
     }

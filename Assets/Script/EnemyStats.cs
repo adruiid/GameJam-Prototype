@@ -33,7 +33,6 @@ public class EnemyStats : MonoBehaviour
     {
         enemyDrops.killSignal();
         gameGeneralManager.killSignal();
-        experienceManager.recieveSignal(exp);
         Destroy(gameObject);
     }
 }
