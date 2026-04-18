@@ -36,7 +36,9 @@ public class BulletShooter : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
         bool hitSomething = CheckForHit();
+
         if (hitSomething)
         {
             return; 

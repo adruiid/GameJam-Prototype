@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 4948972199639364242}
   - component: {fileID: -3206373810225979109}
   - component: {fileID: 9136667824710389015}
+  - component: {fileID: 1105158089076948707}
   m_Layer: 7
   m_Name: Ranged Enemy
   m_TagString: Untagged
@@ -149,6 +150,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   stoppingDistance: 15
+  damageAmount: 10
+  attackCooldown: 1
 --- !u!114 &9136667824710389015
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163,3 +166,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyStats
   healthPoint: 10
   exp: 20
+--- !u!114 &1105158089076948707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3663263202004752483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd68e5a54aa20e54c927ccb60d234c63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyDrops
+  hpOrb: {fileID: 8893824674842300083, guid: fdda4531c1a59a049bc4d04260680699, type: 3}

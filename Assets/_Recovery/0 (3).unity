@@ -710,7 +710,7 @@ GameObject:
   - component: {fileID: 367194972}
   m_Layer: 8
   m_Name: Player
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -853,7 +853,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43484d3e98c568b428ce8b0914b1bf49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerLevel
-  healingAmount: 5
 --- !u!54 &367194972
 Rigidbody:
   m_ObjectHideFlags: 0

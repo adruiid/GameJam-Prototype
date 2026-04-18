@@ -50,6 +50,7 @@ public class LevelUpBox : MonoBehaviour
 
     public void assignNew()
     {
+
         idx1 = Random.Range(0, upgradeList.Length);
         while (true)
         {
