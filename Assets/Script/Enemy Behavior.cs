@@ -41,10 +41,12 @@ public class EnemyBehavior : MonoBehaviour
         if (distanceToPlayer > stoppingDistance)
         {
             targetDirection = vectorToPlayer.normalized;
+            targetDirection.y = 0;
         }
         else
         {
             playerAvoidance = (transform.position - player.transform.position).normalized * 5f; 
+            playerAvoidance.y = 0;
 
             if (Time.time >= nextAttackTime)
             {

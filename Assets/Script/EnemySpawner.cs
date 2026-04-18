@@ -39,7 +39,7 @@ public class EnemySpawner : MonoBehaviour
             float randomX = Random.Range(bounds.min.x, bounds.max.x);
             float randomZ = Random.Range(bounds.min.z, bounds.max.z);
 
-            Vector3 potentialPosition = new Vector3(randomX, 1f, randomZ);
+            Vector3 potentialPosition = new Vector3(randomX, 0f, randomZ);
 
             if (!Physics.CheckSphere(potentialPosition, enemySpawnRadius, obstacleLayer))
             {
