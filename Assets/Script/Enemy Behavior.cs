@@ -60,6 +60,8 @@ public class EnemyBehavior : MonoBehaviour
         if (finalDirection != Vector3.zero)
         {
             transform.Translate(finalDirection * moveSpeed * Time.deltaTime, Space.World);
+            Quaternion targetRotation = Quaternion.LookRotation(finalDirection);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 5f);
         }
     }
 

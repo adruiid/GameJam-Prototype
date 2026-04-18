@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2889467755571101418}
   - component: {fileID: 7998280544458181507}
   - component: {fileID: 7362312743493750024}
+  - component: {fileID: 2306860016603796871}
   m_Layer: 7
   m_Name: Wheels.003
   m_TagString: Untagged
@@ -26,13 +27,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 596340540119870143}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.15930966, y: -0, z: -0, w: -0.9872287}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.1647006, z: 0.0079741385}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6355320413285344072}
-  m_LocalEulerAnglesHint: {x: -378.33398, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &7998280544458181507
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -90,6 +91,18 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &2306860016603796871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 596340540119870143}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62f1a0455452ff4488f2732834324502, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WheelRotator
 --- !u!1 &1108337092392860309
 GameObject:
   m_ObjectHideFlags: 0
@@ -286,6 +299,7 @@ GameObject:
   - component: {fileID: 680648317052632501}
   - component: {fileID: 4113803416827259965}
   - component: {fileID: -1161404930105235186}
+  - component: {fileID: 8889966649765424895}
   m_Layer: 7
   m_Name: Melee_Enemy
   m_TagString: Untagged
@@ -401,13 +415,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9af642968f4a7643b40d41419d6021e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyBehavior
-  moveSpeed: 15
-  separationRadius: 1.5
-  separationWeight: 1.5
+  moveSpeed: 10
+  separationRadius: 30
+  separationWeight: 3
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128
-  stoppingDistance: 1
+  stoppingDistance: 1.7
+  damageAmount: 10
+  attackCooldown: 1
 --- !u!114 &-1161404930105235186
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -422,3 +438,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyStats
   healthPoint: 10
   exp: 10
+--- !u!114 &8889966649765424895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6014964752631544306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd68e5a54aa20e54c927ccb60d234c63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyDrops
+  hpOrb: {fileID: 8893824674842300083, guid: fdda4531c1a59a049bc4d04260680699, type: 3}
+  expOrb: {fileID: 8893824674842300083, guid: fb7fa3de557fc2b46a25a8d23841f136, type: 3}
