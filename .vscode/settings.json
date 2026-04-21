@@ -67,6 +67,6 @@
         "*.sln": "*.csproj",
         "*.slnx": "*.csproj"
     },
-    "dotnet.defaultSolution": "GameJam Prototype.slnx",
+    "dotnet.defaultSolution": "GameJam-Prototype.slnx",
     "dotnet.enableWorkspaceBasedDevelopment": false
 }
