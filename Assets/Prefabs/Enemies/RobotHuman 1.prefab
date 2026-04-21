@@ -30,15 +30,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d00c4b4d8a7af5d42bef68cac303baef, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1160.6
+      value: 1139.2445
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d00c4b4d8a7af5d42bef68cac303baef, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.005063534
+      value: 0.00009992983
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d00c4b4d8a7af5d42bef68cac303baef, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -836.63
+      value: -859.50836
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d00c4b4d8a7af5d42bef68cac303baef, type: 3}
       propertyPath: m_LocalRotation.w
@@ -351,7 +351,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RangedEnemy
   attackRange: 10
-  projectilePrefab: {fileID: 3801658830963266909, guid: 731b131abcba0fc48a4973d1c2dc2d3d, type: 3}
+  projectilePrefab: {fileID: 3539010592028322745, guid: af5360a6042772b429cb45fc009c220f, type: 3}
   attackCooldown: 0.2
 --- !u!114 &5242230544776214112
 MonoBehaviour:
@@ -386,7 +386,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58c08f44e3586164f90574183f484d15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyStats
-  healthPoint: 10
+  healthPoint: 30
   exp: 20
 --- !u!114 &-6667374928714565312
 MonoBehaviour:
@@ -400,5 +400,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd68e5a54aa20e54c927ccb60d234c63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyDrops
-  hpOrb: {fileID: 0}
-  expOrb: {fileID: 0}
+  hpOrb: {fileID: 8893824674842300083, guid: fdda4531c1a59a049bc4d04260680699, type: 3}
+  expOrb: {fileID: 8893824674842300083, guid: fb7fa3de557fc2b46a25a8d23841f136, type: 3}
