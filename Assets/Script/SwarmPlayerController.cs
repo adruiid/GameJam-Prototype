@@ -7,6 +7,8 @@ public class SwarmPlayerController : MonoBehaviour
     [SerializeField] float speed = 10f;
     //[SerializeField] GameObject projectilePrefab;
     Rigidbody rb;
+
+    private float vectorMovement;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -16,6 +18,7 @@ public class SwarmPlayerController : MonoBehaviour
     {
         horizontalInput = Input.GetAxis("Horizontal");
         verticalInput = Input.GetAxis("Vertical");
+        vectorMovement = Mathf.Sqrt(horizontalInput * horizontalInput + verticalInput * verticalInput);
     }
 
     private void FixedUpdate()
@@ -38,5 +41,10 @@ public class SwarmPlayerController : MonoBehaviour
     public void setSpeed(float newSpeed)
     {
         speed = newSpeed;
+    }
+
+    public float getVectorMovement()
+    {
+        return vectorMovement;
     }
 }

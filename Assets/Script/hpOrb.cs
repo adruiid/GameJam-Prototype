@@ -15,13 +15,15 @@ public class hpOrb : MonoBehaviour
 
     void Update()
     {
+        /*
         Vector3 vectorToPlayer = player.transform.position - transform.position;
-        if (vectorToPlayer.magnitude < 4f)
+        if (vectorToPlayer.magnitude < 15f)
         {
             transform.Translate(vectorToPlayer * moveSpeed * Time.deltaTime, Space.World);
         }
+        */
 
-        /*
+        
         timer -= Time.deltaTime;
 
         if (player == null || timer>0f) return;
@@ -29,7 +31,6 @@ public class hpOrb : MonoBehaviour
         Vector3 vectorToPlayer = player.transform.position - transform.position;
 
         transform.Translate(vectorToPlayer * moveSpeed * Time.deltaTime, Space.World);
-        */
     }
 
     private void OnCollisionEnter(Collision collision)

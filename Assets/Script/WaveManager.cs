@@ -33,7 +33,7 @@ public class WaveManager : MonoBehaviour
     {
         if (waveNumber == 2)
         {
-            enemySpawner.changeSpawnRate(2f);
+            enemySpawner.changeSpawnRate(1f);
         }
         else if (waveNumber == 3)
         {
@@ -41,7 +41,7 @@ public class WaveManager : MonoBehaviour
         }
         else if (waveNumber == 4)
         {
-            enemySpawner.changeSpawnRate(3f);
+            enemySpawner.changeSpawnRate(2f);
         }
         else if (waveNumber == 5)
         {
@@ -49,7 +49,7 @@ public class WaveManager : MonoBehaviour
         }
         else if (waveNumber == 6)
         {
-            enemySpawner.changeSpawnRate(4f);
+            enemySpawner.changeSpawnRate(3f);
         }
         else if (waveNumber == 7)
         {
@@ -61,7 +61,7 @@ public class WaveManager : MonoBehaviour
         }
         else if (waveNumber == 9)
         {
-            enemySpawner.changeSpawnRate(5f);
+            enemySpawner.changeSpawnRate(4f);
         }
         else if (waveNumber == 10)
         {
