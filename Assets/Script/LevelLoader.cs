@@ -15,8 +15,15 @@ public class LevelLoader : MonoBehaviour
         
     }
 
+    public void LoadLastLevel()
+    {
+        Time.timeScale = 1f;
+        StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex -1));
+    }
+
     public void LoadNextLevel()
     {
+        
         StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
     }
 
@@ -30,7 +37,7 @@ public class LevelLoader : MonoBehaviour
 
         yield return new WaitForSeconds(TransitionTime);
 
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene(levelIdx);
 
     }
 }
