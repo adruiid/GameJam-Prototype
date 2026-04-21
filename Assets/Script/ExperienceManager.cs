@@ -6,8 +6,10 @@ public class ExperienceManager : MonoBehaviour
     [SerializeField] Image expBar;
     [SerializeField] Text levelText;
     [SerializeField] Image levelUpBox;
+    [SerializeField] PauseMenu pauseMenu;
     LevelUpBox levelUpBoxScript;
     private PlayerLevel playerInfo;
+    private bool levelUpBoxActive;
     void Start()
     {
         expBar.fillAmount = 0;
@@ -20,6 +22,12 @@ public class ExperienceManager : MonoBehaviour
     {
         expBar.fillAmount = (playerInfo.getExp()/ playerInfo.getNeededExp());
         levelText.text = "Lv. " + playerInfo.getLevel();
+        if (pauseMenu.pauseStatus())
+        {
+            return;
+        }
+
+        Time.timeScale = levelUpBoxActive ? 0f : 1f;
     }
 
     public void recieveSignal(float exp)
@@ -30,13 +38,15 @@ public class ExperienceManager : MonoBehaviour
     public void recieveLevelUpSignal()
     {
         levelUpBox.gameObject.SetActive(true);
+        levelUpBoxActive = true;
         levelUpBoxScript.assignNew();
-        Time.timeScale = 0f;
+        
     }
 
     public void recieveLeveledUpSignal()
     {
         levelUpBox.gameObject.SetActive(false);
+        levelUpBoxActive = false;
         Time.timeScale = 1f;
     }
 }
