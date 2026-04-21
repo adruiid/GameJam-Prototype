@@ -126,7 +126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62c74a38e76842b4dab23bf81716e7cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HomingProjectiles
-  speed: 10
+  speed: 15
   maxTargetingRange: 15
   upperBound: 50
   lowerBound: -50
