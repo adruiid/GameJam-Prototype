@@ -1,31 +1,47 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class HomingProjectiles : MonoBehaviour
 {
     Transform target;
     Vector3 moveDirection; 
+    
     [Header("Movement Settings")]
     public float speed = 10f;
     [SerializeField] float maxTargetingRange = 15f;
     [SerializeField] float upperBound = 50f;
     [SerializeField] float lowerBound = -50f;
+    [SerializeField] Vector3 trackOffset = new Vector3(0f, 10f, 0f);
     float upperBoundX;
     float lowerBoundX;
     float upperBoundZ;
     float lowerBoundZ;
+    
     [Header("Hit Detection")]
     [SerializeField] Vector3 hitBoxSize = new Vector3(0.5f, 0.5f, 2f); 
     [SerializeField] LayerMask enemyLayer;
+    [SerializeField] LayerMask obstacleLayer;
 
     PlayerArmory playerArmory;
+    
     void Start()
     {
         playerArmory = GameObject.Find("Player").GetComponent<PlayerArmory>();
 
         target = FindClosestEnemy();
         FindRelativeBounds();
+        
+        if (target == null)
+        {
+            // Failsafe
+            float randomX = Random.Range(-1f, 1f);
+            float randomZ = Random.Range(-1f, 1f);
+            moveDirection = new Vector3(randomX, 0f, randomZ).normalized;
 
+            if (moveDirection == Vector3.zero) 
+            {
+                moveDirection = Vector3.forward;
+            }
+        }
     }
 
     private void FindRelativeBounds()
@@ -38,25 +54,29 @@ public class HomingProjectiles : MonoBehaviour
 
     void Update()
     {
+        // 1. Boundary Check
         if (transform.position.x > upperBoundX || transform.position.x < lowerBoundX || transform.position.z > upperBoundZ || transform.position.z < lowerBoundZ)
         {
             Destroy(gameObject);
             return;
         }
+        
+        // 2. Movement Logic
         if (target != null)
         {
             moveDirection = (target.position - transform.position).normalized;
             transform.position = Vector3.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
-            transform.LookAt(target);
+            transform.rotation = Quaternion.LookRotation(moveDirection) * Quaternion.Euler(0, -90, 0);
         }
         else
         {
             transform.Translate(moveDirection * speed * Time.deltaTime, Space.World);
             if (moveDirection != Vector3.zero)
             {
-                transform.rotation = Quaternion.LookRotation(moveDirection + (Vector3.right * 90));
+                transform.rotation = Quaternion.LookRotation(moveDirection) * Quaternion.Euler(0, -90, 0);
             }
         }
+        
         bool hitSomething = CheckForHit();
         if (hitSomething)
         {
@@ -66,32 +86,42 @@ public class HomingProjectiles : MonoBehaviour
 
     Transform FindClosestEnemy()
     {
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        Transform closest = null;
+        Collider[] enemiesInRange = Physics.OverlapSphere(transform.position, maxTargetingRange, enemyLayer);
         
-        float closestDistanceSqr = maxTargetingRange * maxTargetingRange;
+        Transform closest = null;
+        float closestDistanceSqr = Mathf.Infinity;
         Vector3 currentPosition = transform.position;
 
-        foreach (GameObject enemy in enemies)
+        foreach (Collider enemyCollider in enemiesInRange)
         {
-            float distanceToEnemy = (enemy.transform.position - currentPosition).sqrMagnitude;
+            float distanceToEnemy = (enemyCollider.transform.position - currentPosition).sqrMagnitude;
             if (distanceToEnemy < closestDistanceSqr)
             {
                 closestDistanceSqr = distanceToEnemy;
-                closest = enemy.transform;
+                closest = enemyCollider.transform;
             }
         }
 
         return closest;
     }
+    
     bool CheckForHit()
     {
+        Collider[] obstacleColliders = Physics.OverlapBox(transform.position, hitBoxSize / 2f, transform.rotation, obstacleLayer);
+        if (obstacleColliders.Length > 0)
+        {
+            Destroy(gameObject);
+            return true;
+        }
         Collider[] hitColliders = Physics.OverlapBox(transform.position, hitBoxSize / 2f, transform.rotation, enemyLayer);
 
         foreach (Collider hit in hitColliders)
         {
             EnemyStats enemyStats = hit.GetComponent<EnemyStats>();
-            enemyStats.recieveDamage(playerArmory.getDamage());
+            if (enemyStats != null)
+            {
+                enemyStats.recieveDamage(playerArmory.getDamage());
+            }
             Destroy(gameObject);     
             return true; 
         }

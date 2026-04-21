@@ -422,6 +422,11 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   stoppingDistance: 2.5
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  avoidanceRadius: 2
+  avoidanceWeight: 20
   damageAmount: 10
   attackCooldown: 1
 --- !u!114 &-1161404930105235186

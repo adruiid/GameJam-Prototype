@@ -350,9 +350,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25b224bf37b68014db1288236844702c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RangedEnemy
-  attackRange: 15
-  projectilePrefab: {fileID: 3539010592028322745, guid: af5360a6042772b429cb45fc009c220f, type: 3}
-  attackCooldown: 0.2
+  attackRange: 13
+  projectileSpawnOffset: {x: 0, y: 0.5, z: 0}
+  projectilePrefab: {fileID: 5369210963190522482, guid: 1abba1d6fd4f8f6489c5ca51c8ec5a6f, type: 3}
+  attackCooldown: 1
+  projectileSpeed: 15
 --- !u!114 &5242230544776214112
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -366,12 +368,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyBehavior
   moveSpeed: 8
-  separationRadius: 30
-  separationWeight: 2
+  separationRadius: 20
+  separationWeight: 10
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128
-  stoppingDistance: 15
+  stoppingDistance: 13
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  avoidanceRadius: 2
+  avoidanceWeight: 20
   damageAmount: 10
   attackCooldown: 1
 --- !u!114 &-6130926363771598999

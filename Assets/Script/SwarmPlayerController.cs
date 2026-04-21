@@ -16,8 +16,8 @@ public class SwarmPlayerController : MonoBehaviour
 
     void Update()
     {
-        horizontalInput = Input.GetAxis("Horizontal");
-        verticalInput = Input.GetAxis("Vertical");
+        horizontalInput = Input.GetAxisRaw("Horizontal");
+        verticalInput = Input.GetAxisRaw("Vertical");
         vectorMovement = Mathf.Sqrt(horizontalInput * horizontalInput + verticalInput * verticalInput);
     }
 
