@@ -1,7 +1,7 @@
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class HomingProjectiles : MonoBehaviour
+public class MinesHit : MonoBehaviour
 {
     Transform target;
     Vector3 moveDirection; 

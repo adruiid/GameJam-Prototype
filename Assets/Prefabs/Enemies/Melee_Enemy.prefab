@@ -421,7 +421,7 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128
-  stoppingDistance: 2
+  stoppingDistance: 2.5
   damageAmount: 10
   attackCooldown: 1
 --- !u!114 &-1161404930105235186

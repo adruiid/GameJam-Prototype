@@ -38,7 +38,7 @@ public class EnemyBehavior : MonoBehaviour
         Vector3 targetDirection = Vector3.zero;
         Vector3 playerAvoidance = Vector3.zero;
 
-        if (distanceToPlayer > stoppingDistance)
+        if (distanceToPlayer >= stoppingDistance)
         {
             targetDirection = vectorToPlayer.normalized;
             targetDirection.y = 0;
@@ -59,7 +59,7 @@ public class EnemyBehavior : MonoBehaviour
         Vector3 finalDirection = (targetDirection + playerAvoidance + separationDirection * separationWeight).normalized;
 
 
-        if (finalDirection != Vector3.zero)
+        if (distanceToPlayer >= stoppingDistance)
         {
             transform.Translate(finalDirection * moveSpeed * Time.deltaTime, Space.World);
             Quaternion targetRotation = Quaternion.LookRotation(finalDirection);

@@ -350,7 +350,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25b224bf37b68014db1288236844702c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RangedEnemy
-  attackRange: 10
+  attackRange: 15
   projectilePrefab: {fileID: 3801658830963266909, guid: 731b131abcba0fc48a4973d1c2dc2d3d, type: 3}
   attackCooldown: 0.2
 --- !u!114 &5242230544776214112
