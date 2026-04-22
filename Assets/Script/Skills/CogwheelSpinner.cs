@@ -14,9 +14,9 @@ public class CogwheelSpinner : MonoBehaviour
     private List<Cogwheel> cogwheels = new List<Cogwheel>();
     private float currentRotation = 0f;
 
+
     void Start()
     {
-        SpawnCogwheels();
     }
 
     void Update()
@@ -25,7 +25,7 @@ public class CogwheelSpinner : MonoBehaviour
         UpdateCogwheelPositions();
     }
 
-    private void SpawnCogwheels()
+    public void SpawnCogwheels()
     {
         int cogwheelCount = skillLevel switch
         {

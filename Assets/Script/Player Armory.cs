@@ -5,22 +5,32 @@ using UnityEngine;
 
 public class PlayerArmory : MonoBehaviour
 {
+    private CogwheelSpinner cogwheelScript;
+
     private float damage=10f;
     [SerializeField] GameObject projectilePrefab;
     [SerializeField] float projectileCooldown = 2;
     [SerializeField] Transform gunTransform;
     [SerializeField] GameObject homingMissiles;
-    public bool hasHomingMissiles;
+    
 
-    [SerializeField] float homingMissileCooldown = 0.5f;
-    public bool hasFlameThrower;
-    [SerializeField] bool hasMines = true;
+    [SerializeField] float homingMissileCooldown = 1f;
     [SerializeField] GameObject minePrefab;
     [SerializeField] float mineCooldown = 1.5f;
+
     private float nextMissileSpawnTime;
     private float nextMineSpawnTime;
+
+    public bool hasFlameThrower;
+    public bool hasHomingMissiles;
+    public bool hasCogWheel; private bool cogWheelSignal;
+    public bool hasMines;
+
+
+
     void Start()
     {
+        cogwheelScript= GetComponent<CogwheelSpinner>();
         StartCoroutine(SpawnProjectiles());
     }
 
@@ -36,6 +46,13 @@ public class PlayerArmory : MonoBehaviour
         {
             PlaceMine();
             nextMineSpawnTime = Time.time + mineCooldown;
+        }
+
+        if (hasCogWheel && !cogWheelSignal)
+        {
+            cogWheelSignal = true;
+            cogwheelScript.enabled = true;
+            cogwheelScript.SpawnCogwheels();
         }
     }
 
@@ -68,5 +85,15 @@ public class PlayerArmory : MonoBehaviour
     {
         Vector3 spawnPosition = transform.position + Vector3.down * 0f;
         Instantiate(minePrefab, spawnPosition, minePrefab.transform.rotation);
+    }
+
+    public void setHomingCooldown(float time)
+    {
+        homingMissileCooldown = time;
+    }
+
+    public void setCogWheelLevel(int level)
+    {
+        cogwheelScript.SetSkillLevel(level);
     }
 }
