@@ -5,7 +5,7 @@ public class expOrb : MonoBehaviour
     GameObject player;
     [SerializeField] float moveSpeed = 10f;
     [SerializeField] float expAmount=10f;
-    float timer = 3f;
+    float timer = 1f;
     void Start()
     {
         player = GameObject.Find("Player");
@@ -13,20 +13,17 @@ public class expOrb : MonoBehaviour
 
     
     void Update()
-    {
-        /*
-        Vector3 vectorToPlayer = player.transform.position - transform.position;
-        
-        if (vectorToPlayer.magnitude < 15f)
-        {
-            transform.Translate(vectorToPlayer * moveSpeed * Time.deltaTime, Space.World);
-        }
-        */
+    { 
         timer -= Time.deltaTime;
 
         if (player == null || timer > 0f) return;
 
         Vector3 vectorToPlayer = player.transform.position - transform.position;
+
+        if (vectorToPlayer.magnitude < 4f)
+        {
+            transform.Translate(vectorToPlayer * moveSpeed * Time.deltaTime, Space.World);
+        }
 
         transform.Translate(vectorToPlayer * moveSpeed * Time.deltaTime, Space.World);
     }

@@ -16,7 +16,7 @@ public class PlayerAnimatorAndRotate : MonoBehaviour
     void Update()
     {
         float vectorMovement = playerController.getVectorMovement();
-        anim.SetBool("isMoving", vectorMovement > 0f);
+        anim.SetBool("isMoving", vectorMovement > 0.1f);
 
         setDirection();
 

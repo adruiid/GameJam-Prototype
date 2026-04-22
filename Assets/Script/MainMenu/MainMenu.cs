@@ -1,8 +1,11 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class MainMenu : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    [SerializeField] GameObject mainMenuUI;
+    [SerializeField] GameObject settingsUI;
+    [SerializeField] GameObject creditsUI;
     void Start()
     {
         
@@ -12,5 +15,27 @@ public class MainMenu : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void openSettingsUI()
+    {
+        mainMenuUI.SetActive(false);
+        settingsUI.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(null);
+    }
+
+    public void openCreditsUI()
+    {
+        mainMenuUI.SetActive(false);
+        creditsUI.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(null);
+    }
+
+    public void returnToMainMenu()
+    {
+        mainMenuUI.SetActive(true);
+        creditsUI.SetActive(false);
+        settingsUI.SetActive(false);
+        EventSystem.current.SetSelectedGameObject(null);
     }
 }
