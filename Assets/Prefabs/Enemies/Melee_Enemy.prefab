@@ -421,7 +421,7 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128
-  stoppingDistance: 2.5
+  stoppingDistance: 3
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 64
