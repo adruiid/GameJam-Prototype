@@ -37,6 +37,13 @@ public class LevelUpBox : MonoBehaviour
     private int cogWheelLevel;
     [SerializeField] UpgradeContainers upgradeCogWheel;
 
+    private int mineLevel;
+    [SerializeField] UpgradeContainers upgradeMine;
+
+
+
+    [SerializeField] UpgradeContainers nullUpgrade;
+
     void Start()
     {
         playerArmory = GameObject.Find("Player").GetComponent<PlayerArmory>();
@@ -57,6 +64,11 @@ public class LevelUpBox : MonoBehaviour
         {
             upgradeList[5] = upgradeCogWheel;
         }
+
+        if (playerArmory.hasMines)
+        {
+            upgradeList[6] = upgradeMine;
+        }
     }
 
     public void assignNew()
@@ -64,20 +76,20 @@ public class LevelUpBox : MonoBehaviour
         while (true)
         {
             idx1 = Random.Range(0, upgradeList.Length);
-            if (upgradeList[idx1] == null) continue;
+            if (upgradeList[idx1] == nullUpgrade) continue;
             if (idx2 != idx1) break;
         }
         
         while (true)
         {
             idx2 = Random.Range(0, upgradeList.Length);
-            if (upgradeList[idx2] == null) continue;
+            if (upgradeList[idx2] == nullUpgrade) continue;
             if (idx2 != idx1) break;
         }
         while (true)
         {
             idx3 = Random.Range(0, upgradeList.Length);
-            if (upgradeList[idx3] == null) continue;
+            if (upgradeList[idx3] == nullUpgrade) continue;
             if (idx3 != idx1 && idx3 != idx2) break;
         }
 
@@ -144,7 +156,7 @@ public class LevelUpBox : MonoBehaviour
         else if (homingLevel == 4)
         {
             playerArmory.setHomingCooldown(0.3f);
-            upgradeList[0] = null;
+            upgradeList[0] = nullUpgrade;
         }
     }
 
@@ -170,11 +182,11 @@ public class LevelUpBox : MonoBehaviour
         playerArmory.hasCogWheel = true;
     }
 
-    public void UpgradeCogWheel()
+    private void UpgradeCogWheel()
     {
         if (cogWheelLevel == 3)
         {
-            upgradeList[5] = null;
+            upgradeList[5] = nullUpgrade;
         }
         playerArmory.setCogWheelLevel(cogWheelLevel);
     }
@@ -191,7 +203,24 @@ public class LevelUpBox : MonoBehaviour
 
     public void activateMine()
     {
+        if(playerArmory.hasMines)
+        {
+            mineLevel++;
+            UpgradeMine();
+            return;
+        }
+
+        mineLevel = 1;
         playerArmory.hasMines = true;
+    }
+
+    private void UpgradeMine()
+    {
+
+        if (mineLevel == 3)
+        {
+            upgradeList[6] = nullUpgrade;
+        }
     }
 
 }

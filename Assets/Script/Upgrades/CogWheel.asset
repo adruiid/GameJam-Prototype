@@ -15,4 +15,4 @@ MonoBehaviour:
   id: 5
   upgradeName: Activate Cogwheel
   description: 
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 103c30cd069d2c7428e8044256761c11, type: 3}

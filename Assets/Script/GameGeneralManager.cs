@@ -9,6 +9,8 @@ public class GameGeneralManager : MonoBehaviour
 
     [SerializeField] Image missileIcon;
     [SerializeField] Image flameThrowerIcon;
+    [SerializeField] Image mineIcon;
+    [SerializeField] Image cogwheelIcon;
     [SerializeField] Text killCount;
 
     [SerializeField] Image hpBar;
@@ -39,6 +41,8 @@ public class GameGeneralManager : MonoBehaviour
     {
         if (playerArmory.hasHomingMissiles) missileIcon.gameObject.SetActive(true);
         if (playerArmory.hasFlameThrower) flameThrowerIcon.gameObject.SetActive(true);
+        if(playerArmory.hasMines) mineicon.gameObject.SetActive(true);
+        if(playerArmory.hasCogWheel) cogwheelIcon.gameObject.SetActive(true);
     }
 
     public void killSignal()
