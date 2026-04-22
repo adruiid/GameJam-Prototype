@@ -297,9 +297,9 @@ GameObject:
   - component: {fileID: 8042718285800041709}
   - component: {fileID: 5222362347979839527}
   - component: {fileID: 680648317052632501}
-  - component: {fileID: 4113803416827259965}
   - component: {fileID: -1161404930105235186}
   - component: {fileID: 8889966649765424895}
+  - component: {fileID: -2137619419258446294}
   m_Layer: 7
   m_Name: Melee_Enemy
   m_TagString: Untagged
@@ -403,32 +403,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.56200016, y: 0.8700773, z: 0.73423624}
   m_Center: {x: -0.0000000805577, y: 0.49162936, z: 0.06961805}
---- !u!114 &4113803416827259965
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6014964752631544306}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9af642968f4a7643b40d41419d6021e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyBehavior
-  moveSpeed: 7.5
-  separationRadius: 20
-  separationWeight: 5
-  enemyLayer:
-    serializedVersion: 2
-    m_Bits: 128
-  stoppingDistance: 2.5
-  obstacleLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  avoidanceRadius: 2
-  avoidanceWeight: 20
-  damageAmount: 10
-  attackCooldown: 1
 --- !u!114 &-1161404930105235186
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -457,3 +431,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyDrops
   hpOrb: {fileID: 8893824674842300083, guid: fdda4531c1a59a049bc4d04260680699, type: 3}
   expOrb: {fileID: 8893824674842300083, guid: fb7fa3de557fc2b46a25a8d23841f136, type: 3}
+--- !u!114 &-2137619419258446294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6014964752631544306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bca8f149d1d48544c90bcd88a0436dd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MeleeEnemyBehavior
+  moveSpeed: 4.5
+  separationRadius: 1.5
+  separationWeight: 3
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  stoppingDistance: 3
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  avoidanceRadius: 5
+  avoidanceWeight: 10
+  meleeDamage: 10
+  attackCooldown: 1.5
+  velocitySmoothTime: 0.15

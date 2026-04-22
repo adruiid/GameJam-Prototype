@@ -12,11 +12,11 @@ public class RangedEnemy : MonoBehaviour
     [SerializeField] float attackCooldown = 2f;
     [SerializeField] float projectileSpeed = 15f;
     float nextShotTime;
-    EnemyBehavior enemyBehavior;
+    RangedEnemyBehavior enemyBehavior;
     void Start()
     {
         player= GameObject.Find("Player");
-        enemyBehavior = GetComponent<EnemyBehavior>();
+        enemyBehavior = GetComponent<RangedEnemyBehavior>();
     }
 
     void Update()
