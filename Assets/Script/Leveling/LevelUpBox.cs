@@ -14,24 +14,36 @@ public class LevelUpBox : MonoBehaviour
     [SerializeField] Text levelIndicator;
     [SerializeField] Text damageIndicator;
     [SerializeField] Text speedIndicator;
-    [SerializeField] Text homingIndicator;
-    [SerializeField] Text flameThrowerIndicator;
 
     [SerializeField] Text button1Text;
     [SerializeField] Text button2Text;
+    [SerializeField] Text button3Text;
     [SerializeField] Image button1Image;
     [SerializeField] Image button2Image;
+    [SerializeField] Image button3Image;
 
-    int idx1, idx2;
+    int idx1, idx2, idx3;
     string upgrade1;
     string upgrade2;
+    string upgrade3;
 
     [SerializeField]UpgradeContainers[] upgradeList;
     [SerializeField] GameObject homingMissilePrefab;
     HomingProjectiles homingSpeed;
 
-    bool hasHoming;
-    bool hasFlameThrower;
+    private int homingLevel;
+    [SerializeField] UpgradeContainers upgradeHoming;
+
+    private int cogWheelLevel;
+    [SerializeField] UpgradeContainers upgradeCogWheel;
+
+    private int mineLevel;
+    [SerializeField] UpgradeContainers upgradeMine;
+
+
+
+    [SerializeField] UpgradeContainers nullUpgrade;
+
     void Start()
     {
         playerArmory = GameObject.Find("Player").GetComponent<PlayerArmory>();
@@ -43,24 +55,51 @@ public class LevelUpBox : MonoBehaviour
     
     void Update()
     {
+        if (playerArmory.hasHomingMissiles)
+        {
+            upgradeList[0] = upgradeHoming;
+        }
 
-        if (hasHoming) homingIndicator.gameObject.SetActive(true);
-        if (hasFlameThrower) flameThrowerIndicator.gameObject.SetActive(true);
+        if (playerArmory.hasCogWheel)
+        {
+            upgradeList[5] = upgradeCogWheel;
+        }
+
+        if (playerArmory.hasMines)
+        {
+            upgradeList[6] = upgradeMine;
+        }
     }
 
     public void assignNew()
     {
-
-        idx1 = Random.Range(0, upgradeList.Length);
+        while (true)
+        {
+            idx1 = Random.Range(0, upgradeList.Length);
+            if (upgradeList[idx1] == nullUpgrade) continue;
+            if (idx2 != idx1) break;
+        }
+        
         while (true)
         {
             idx2 = Random.Range(0, upgradeList.Length);
+            if (upgradeList[idx2] == nullUpgrade) continue;
             if (idx2 != idx1) break;
         }
+        while (true)
+        {
+            idx3 = Random.Range(0, upgradeList.Length);
+            if (upgradeList[idx3] == nullUpgrade) continue;
+            if (idx3 != idx1 && idx3 != idx2) break;
+        }
+
+
         button1Text.text = upgradeList[idx1].upgradeName;
         button2Text.text = upgradeList[idx2].upgradeName;
+        button3Text.text = upgradeList[idx3].upgradeName;
         button1Image.sprite = upgradeList[idx1].icon;
         button2Image.sprite= upgradeList[idx2].icon;
+        button3Image.sprite = upgradeList[idx3].icon;
 
         maxHealthIndicator.text= "Max Health: " + playerLevel.getMaxHp();
         levelIndicator.text = "Level: "+ playerLevel.getLevel();
@@ -79,6 +118,11 @@ public class LevelUpBox : MonoBehaviour
         callFunction(idx2);
     }
 
+    public void callButtonThree()
+    {
+        callFunction(idx3);
+    }
+
     public void callFunction(int idxFunc)
     {
         if (idxFunc == 0) activateHomingMissile();
@@ -86,6 +130,8 @@ public class LevelUpBox : MonoBehaviour
         else if (idxFunc == 2) activateFlameThrower();
         else if (idxFunc == 3) increaseSpeed();
         else if (idxFunc == 4) increaseMaxHealth();
+        else if (idxFunc == 5) activateCogWheel();
+        else if (idxFunc == 6) activateMine();
 
         experienceManager.recieveLeveledUpSignal();
     }
@@ -94,17 +140,24 @@ public class LevelUpBox : MonoBehaviour
     {
         if (playerArmory.hasHomingMissiles)
         {
+            homingLevel++;
             upgradeHomingMissile();
             return;
         }
 
         playerArmory.hasHomingMissiles = true;
-        hasHoming = true;
+        homingLevel = 1;
     }
 
-    public void upgradeHomingMissile()
+    private void upgradeHomingMissile()
     {
-        homingSpeed.speed += 5f;
+        if (homingLevel == 2) playerArmory.setHomingCooldown(0.7f);
+        else if (homingLevel == 3) playerArmory.setHomingCooldown(0.5f);
+        else if (homingLevel == 4)
+        {
+            playerArmory.setHomingCooldown(0.3f);
+            upgradeList[0] = nullUpgrade;
+        }
     }
 
     public void increaseDamage()
@@ -114,8 +167,28 @@ public class LevelUpBox : MonoBehaviour
 
     public void activateFlameThrower()
     {
-        hasFlameThrower = true;
         playerArmory.hasFlameThrower = true;
+    }
+
+    public void activateCogWheel()
+    {
+        if (playerArmory.hasCogWheel)
+        {
+            cogWheelLevel++;
+            UpgradeCogWheel();
+            return;
+        }
+        cogWheelLevel = 1;
+        playerArmory.hasCogWheel = true;
+    }
+
+    private void UpgradeCogWheel()
+    {
+        if (cogWheelLevel == 3)
+        {
+            upgradeList[5] = nullUpgrade;
+        }
+        playerArmory.setCogWheelLevel(cogWheelLevel);
     }
 
     public void increaseSpeed()
@@ -128,5 +201,26 @@ public class LevelUpBox : MonoBehaviour
         playerLevel.setMaxHP(playerLevel.getMaxHp() + 10f);
     }
 
+    public void activateMine()
+    {
+        if(playerArmory.hasMines)
+        {
+            mineLevel++;
+            UpgradeMine();
+            return;
+        }
+
+        mineLevel = 1;
+        playerArmory.hasMines = true;
+    }
+
+    private void UpgradeMine()
+    {
+
+        if (mineLevel == 3)
+        {
+            upgradeList[6] = nullUpgrade;
+        }
+    }
 
 }
