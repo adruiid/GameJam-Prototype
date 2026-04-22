@@ -20,7 +20,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3788163547390028165
 Transform:
   m_ObjectHideFlags: 0
@@ -153,4 +153,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae6608375f5974e4484836755ef6f351, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::expOrb
+  moveSpeed: 10
   expAmount: 10
