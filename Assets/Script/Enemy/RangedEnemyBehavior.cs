@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class EnemyBehavior : MonoBehaviour
+public class RangedEnemyBehavior : MonoBehaviour
 {   
     [Header("Movement Settings")]
     [SerializeField] float moveSpeed = 5f;
