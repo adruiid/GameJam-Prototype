@@ -6897,7 +6897,7 @@ MonoBehaviour:
   timerText: {fileID: 935424974}
   missileIcon: {fileID: 43280719}
   flameThrowerIcon: {fileID: 1735093461}
-  mineicon: {fileID: 1055024492}
+  mineIcon: {fileID: 1055024492}
   cogwheelIcon: {fileID: 189138918}
   killCount: {fileID: 424220881}
   hpBar: {fileID: 752212005}

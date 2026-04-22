@@ -41,7 +41,7 @@ public class GameGeneralManager : MonoBehaviour
     {
         if (playerArmory.hasHomingMissiles) missileIcon.gameObject.SetActive(true);
         if (playerArmory.hasFlameThrower) flameThrowerIcon.gameObject.SetActive(true);
-        if(playerArmory.hasMines) mineicon.gameObject.SetActive(true);
+        if(playerArmory.hasMines) mineIcon.gameObject.SetActive(true);
         if(playerArmory.hasCogWheel) cogwheelIcon.gameObject.SetActive(true);
     }
 
