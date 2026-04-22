@@ -11,12 +11,18 @@ public class EnemyBehavior : MonoBehaviour
     [SerializeField] LayerMask enemyLayer;
     [SerializeField] float stoppingDistance = 1.0f;
 
+    [Header("Obstacle Avoidance")]
+    [SerializeField] LayerMask obstacleLayer;
+    [SerializeField] float avoidanceRadius = 2f;
+    [SerializeField] float avoidanceWeight = 2f;
+
     [Header("Combat Settings")]
     [SerializeField] float damageAmount = 10f;
     [SerializeField] float attackCooldown = 1f;
     private float nextAttackTime;
 
     bool canMove = true;
+    bool canShoot = false;
 
     GameObject player;
     PlayerLevel playerLevel;
@@ -35,36 +41,30 @@ public class EnemyBehavior : MonoBehaviour
         Vector3 vectorToPlayer = player.transform.position - transform.position;
         float distanceToPlayer = vectorToPlayer.magnitude;
 
-        Vector3 targetDirection = Vector3.zero;
-        Vector3 playerAvoidance = Vector3.zero;
-
-        if (distanceToPlayer > stoppingDistance)
+        // If shooting, only move if player is out of range
+        if (canShoot)
         {
-            targetDirection = vectorToPlayer.normalized;
-            targetDirection.y = 0;
-        }
-        else
-        {
-            playerAvoidance = (transform.position - player.transform.position).normalized * 5f; 
-            playerAvoidance.y = 0;
-
-            if (Time.time >= nextAttackTime)
+            if (distanceToPlayer <= stoppingDistance) // Match RangedEnemy's attackRange
             {
-                DealDamage();
-                nextAttackTime = Time.time + attackCooldown;
+                return; // Stop moving, just shoot
+            }
+            else
+            {
+                canShoot = false; // Player moved out of range, resume normal behavior
             }
         }
 
+        Vector3 targetDirection = vectorToPlayer.normalized;
+        targetDirection.y = 0;
+
         Vector3 separationDirection = GetSeparationVector();
-        Vector3 finalDirection = (targetDirection + playerAvoidance + separationDirection * separationWeight).normalized;
+        Vector3 obstacleAvoidance = GetObstacleAvoidanceVector();
+        Vector3 finalDirection = (targetDirection + separationDirection * separationWeight + obstacleAvoidance * avoidanceWeight).normalized;
 
-
-        if (finalDirection != Vector3.zero)
-        {
-            transform.Translate(finalDirection * moveSpeed * Time.deltaTime, Space.World);
-            Quaternion targetRotation = Quaternion.LookRotation(finalDirection);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 5f);
-        }
+        // Move towards player
+        transform.Translate(finalDirection * moveSpeed * Time.deltaTime, Space.World);
+        Quaternion targetRotation = Quaternion.LookRotation(finalDirection);
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 5f);
     }
 
     void DealDamage()
@@ -102,12 +102,27 @@ public class EnemyBehavior : MonoBehaviour
         return separationForce;
     }
 
-    public void StopMovementWhenShooting()
+    Vector3 GetObstacleAvoidanceVector()
     {
-        canMove = false;
+        Vector3 avoidanceForce = Vector3.zero;
+        Collider[] obstacles = Physics.OverlapSphere(transform.position, avoidanceRadius, obstacleLayer);
+
+        foreach (Collider obstacle in obstacles)
+        {
+            Vector3 pushAway = transform.position - obstacle.transform.position;
+            float distance = pushAway.magnitude;
+            if (distance > 0)
+            {
+                avoidanceForce += (pushAway.normalized / distance);
+            }
+        }
+        avoidanceForce.y = 0;
+        
+        return avoidanceForce.normalized;
     }
-    public void StartMoving()
+
+    public void SetCanShoot(bool shooting)
     {
-        canMove = true;
+        canShoot = shooting;
     }
 }

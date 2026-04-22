@@ -1,6 +1,7 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class HomingProjectiles : MonoBehaviour
+public class MinesHit : MonoBehaviour
 {
     Transform target;
     Vector3 moveDirection; 
@@ -24,17 +25,7 @@ public class HomingProjectiles : MonoBehaviour
 
         target = FindClosestEnemy();
         FindRelativeBounds();
-        if (target == null)
-        {
-            float randomX = Random.Range(-1f, 1f);
-            float randomZ = Random.Range(-1f, 1f);
-            moveDirection = new Vector3(randomX, 0f, randomZ).normalized;
 
-            if (moveDirection == Vector3.zero) // Justt a failsafe
-            {
-                moveDirection = Vector3.forward;
-            }
-        }
     }
 
     private void FindRelativeBounds()
@@ -63,7 +54,7 @@ public class HomingProjectiles : MonoBehaviour
             transform.Translate(moveDirection * speed * Time.deltaTime, Space.World);
             if (moveDirection != Vector3.zero)
             {
-                transform.rotation = Quaternion.LookRotation(moveDirection);
+                transform.rotation = Quaternion.LookRotation(moveDirection + (Vector3.right * 90));
             }
         }
         bool hitSomething = CheckForHit();

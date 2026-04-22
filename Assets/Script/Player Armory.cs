@@ -8,11 +8,17 @@ public class PlayerArmory : MonoBehaviour
     private float damage=10f;
     [SerializeField] GameObject projectilePrefab;
     [SerializeField] float projectileCooldown = 2;
+    [SerializeField] Transform gunTransform;
     [SerializeField] GameObject homingMissiles;
     public bool hasHomingMissiles;
-    public bool hasFlameThrower;
+
     [SerializeField] float homingMissileCooldown = 0.5f;
-    private float nextSpawnTime;
+    public bool hasFlameThrower;
+    [SerializeField] bool hasMines = true;
+    [SerializeField] GameObject minePrefab;
+    [SerializeField] float mineCooldown = 1.5f;
+    private float nextMissileSpawnTime;
+    private float nextMineSpawnTime;
     void Start()
     {
         StartCoroutine(SpawnProjectiles());
@@ -20,10 +26,16 @@ public class PlayerArmory : MonoBehaviour
 
     void Update()
     {
-        if (hasHomingMissiles && Time.time >= nextSpawnTime)
+        if (hasHomingMissiles && Time.time >= nextMissileSpawnTime)
         {
             FireHomingMissiles();
-            nextSpawnTime = Time.time + homingMissileCooldown;
+            nextMissileSpawnTime = Time.time + homingMissileCooldown;
+        }
+
+        if (hasMines && Time.time >= nextMineSpawnTime)
+        {
+            PlaceMine();
+            nextMineSpawnTime = Time.time + mineCooldown;
         }
     }
 
@@ -31,13 +43,15 @@ public class PlayerArmory : MonoBehaviour
     {
         while (true)
         {
-            Instantiate(projectilePrefab, transform.position, projectilePrefab.transform.rotation);
+            Vector3 spawnPos= gunTransform.position+gunTransform.forward*2f;
+            Instantiate(projectilePrefab, spawnPos, projectilePrefab.transform.rotation);
             yield return new WaitForSeconds(projectileCooldown);
         }
     }
     private void FireHomingMissiles()
     {
-        Instantiate(homingMissiles, transform.position, homingMissiles.transform.rotation);
+        Vector3 spawnPosition = gunTransform.position;
+        Instantiate(homingMissiles, spawnPosition, homingMissiles.transform.rotation);
     }
 
     public float getDamage()
@@ -48,5 +62,11 @@ public class PlayerArmory : MonoBehaviour
     public void setDamage(float newDamage)
     {
         damage = newDamage;
+    }
+
+    private void PlaceMine()
+    {
+        Vector3 spawnPosition = transform.position + Vector3.down * 0f;
+        Instantiate(minePrefab, spawnPosition, minePrefab.transform.rotation);
     }
 }

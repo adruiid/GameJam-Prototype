@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Animations;
 
 public class BulletShooter : MonoBehaviour
 {
@@ -13,10 +14,12 @@ public class BulletShooter : MonoBehaviour
     float lowerBoundZ;
     Vector3 worldDirection;
     PlayerArmory playerArmory;
+    GameObject player;
 
     void Start()
     {
-        playerArmory = GameObject.Find("Player").GetComponent<PlayerArmory>();
+        player = GameObject.Find("Player");
+        playerArmory = player.GetComponent<PlayerArmory>();
         FindRelativeBounds();
         AimAtMouse();
     }
@@ -30,7 +33,7 @@ public class BulletShooter : MonoBehaviour
     }
 
     void Update()
-    {
+    {   
         transform.position += worldDirection * projectileSpeed * Time.deltaTime;
         if (transform.position.x > upperBoundX || transform.position.x < lowerBoundX || transform.position.z > upperBoundZ || transform.position.z < lowerBoundZ)
         {

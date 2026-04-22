@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class EnemyProjectile : MonoBehaviour
 {
-    [SerializeField] float projectileSpeed = 10f;
     [SerializeField] float upperBound = 50f;
     [SerializeField] float lowerBound = -50;
     [SerializeField] float damage = 10f;
@@ -16,17 +15,15 @@ public class EnemyProjectile : MonoBehaviour
     float upperBoundZ;
     float lowerBoundZ;
     Vector3 worldDirection;
+    float projectileSpeed;
     [SerializeField] LayerMask playerLayer;
 
     void Start()
     {
         player = GameObject.Find("Player");
         playerLevel = player.GetComponent<PlayerLevel>();
-
-
         playerLayer = LayerMask.GetMask("Player");
         FindRelativeBounds();
-        AimAtPlayer();
     }
 
     private void FindRelativeBounds()
@@ -68,12 +65,10 @@ public class EnemyProjectile : MonoBehaviour
         return false;
     }
 
-    private void AimAtPlayer()
+    public void SetDirection(Vector3 direction, float speed)
     {
-        if (player == null) return;
-        worldDirection = player.transform.position - transform.position;
-        worldDirection.y = 0;
-        worldDirection.Normalize();
+        worldDirection = direction;
+        projectileSpeed = speed;
         if (worldDirection != Vector3.zero)
         {
             transform.rotation = Quaternion.LookRotation(worldDirection);

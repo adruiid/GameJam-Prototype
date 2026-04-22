@@ -128,7 +128,7 @@ MonoBehaviour:
   projectileSpeed: 30
   upperBound: 50
   lowerBound: -50
-  hitBoxSize: {x: 0.5, y: 0.5, z: 2}
+  hitBoxSize: {x: 1, y: 5, z: 2}
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128

@@ -24,52 +24,13 @@ public class PlayerAnimatorAndRotate : MonoBehaviour
 
     void setDirection()
     {
-        /*
-        if(rb.linearVelocity.x>0f)
+        Vector3 mousePos = Input.mousePosition;
+        Vector3 mouseWorld = Camera.main.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, 10f));
+        Vector3 direction = mouseWorld - transform.position;
+        direction.y = 0;
+        if (direction != Vector3.zero)
         {
-            playerMesh.transform.rotation = Quaternion.Euler(-90f, 90f, 0f);
-        }
-        else if(rb.linearVelocity.x<0f)
-        {
-            playerMesh.transform.rotation = Quaternion.Euler(-90f, -90f, 0f);
-        }
-
-
-        if(rb.linearVelocity.z> 0f)
-        {
-            playerMesh.transform.rotation = Quaternion.Euler(-90f, 0f, 0f);
-        }
-        else if (rb.linearVelocity.z < 0f)
-        {
-            playerMesh.transform.rotation = Quaternion.Euler(-90f, 180f, 0f);
-        }
-
-        if(rb.linearVelocity.z>0f && rb.linearVelocity.x>0f)
-        {
-            playerMesh.transform.rotation = Quaternion.Euler(-90f, 45f, 0f);
-        }
-        else if (rb.linearVelocity.z > 0f && rb.linearVelocity.x < 0f)
-        {
-            playerMesh.transform.rotation = Quaternion.Euler(-90f, -45f, 0f);
-        }
-        else if (rb.linearVelocity.z < 0f && rb.linearVelocity.x > 0f)
-        {
-            playerMesh.transform.rotation = Quaternion.Euler(-90f, 135f, 0f);
-        }
-        else if (rb.linearVelocity.z < 0f && rb.linearVelocity.x < 0f)
-        {
-            playerMesh.transform.rotation = Quaternion.Euler(-90f, -135f, 0f);
-        }*/
-
-        float h = Input.GetAxisRaw("Horizontal");
-        float v = Input.GetAxisRaw("Vertical");
-
-        Vector3 dir = new Vector3(h, 0, v);
-        if (dir != Vector3.zero)
-        {
-            float angle = Mathf.Atan2(dir.x, dir.z) * Mathf.Rad2Deg;
-            angle=Mathf.Round(angle/45f) * 45f;
-
+            float angle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
             playerMesh.transform.rotation = Quaternion.Euler(-90f, angle, 0f);
         }
     }
