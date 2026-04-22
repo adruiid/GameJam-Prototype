@@ -27,9 +27,12 @@ public class RangedEnemyBehavior : MonoBehaviour
     GameObject player;
     PlayerLevel playerLevel;
 
+    Animator anim;
+
     void Start()
     {
         player = GameObject.Find("Player");
+        anim=GetComponent<Animator>();
         playerLevel = player.GetComponent<PlayerLevel>();
     }
 
@@ -44,12 +47,15 @@ public class RangedEnemyBehavior : MonoBehaviour
         // If shooting, only move if player is out of range
         if (canShoot)
         {
+
             if (distanceToPlayer <= stoppingDistance) // Match RangedEnemy's attackRange
             {
+                anim.SetBool("shooting", true);
                 return; // Stop moving, just shoot
             }
             else
             {
+                anim.SetBool("shooting", false);
                 canShoot = false; // Player moved out of range, resume normal behavior
             }
         }

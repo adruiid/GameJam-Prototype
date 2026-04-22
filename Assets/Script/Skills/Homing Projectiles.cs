@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class HomingProjectiles : MonoBehaviour
 {
@@ -22,6 +23,8 @@ public class HomingProjectiles : MonoBehaviour
     [SerializeField] LayerMask obstacleLayer;
 
     PlayerArmory playerArmory;
+
+    [SerializeField] GameObject missileParticle;
     
     void Start()
     {
@@ -57,6 +60,7 @@ public class HomingProjectiles : MonoBehaviour
         // 1. Boundary Check
         if (transform.position.x > upperBoundX || transform.position.x < lowerBoundX || transform.position.z > upperBoundZ || transform.position.z < lowerBoundZ)
         {
+            StartCoroutine(particleEffect());
             Destroy(gameObject);
             return;
         }
@@ -122,9 +126,22 @@ public class HomingProjectiles : MonoBehaviour
             {
                 enemyStats.recieveDamage(playerArmory.getDamage());
             }
+            StartCoroutine(particleEffect());
             Destroy(gameObject);     
             return true; 
         }
         return false;
+    }
+
+    IEnumerator particleEffect()
+    {
+        GameObject particle = Instantiate(missileParticle, transform.position+Vector3.up*1.1f, Quaternion.identity);
+        ParticleSystem[] allParticles;
+        allParticles = particle.GetComponentsInChildren<ParticleSystem>();
+        foreach (var ps in allParticles)
+        {
+            ps.Play();
+        }
+        yield return new WaitForSeconds(0.5f);
     }
 }

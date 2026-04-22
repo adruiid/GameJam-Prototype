@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class EnemyStats : MonoBehaviour
 {
@@ -8,6 +9,9 @@ public class EnemyStats : MonoBehaviour
     private ExperienceManager experienceManager;
     private GameGeneralManager gameGeneralManager;
     private EnemyDrops enemyDrops;
+
+    [SerializeField] GameObject explosionParticle;
+
     void Start()
     {
         experienceManager = GameObject.Find("Game Manager").GetComponent<ExperienceManager>();
@@ -31,8 +35,21 @@ public class EnemyStats : MonoBehaviour
 
     public void destroySelf()
     {
+        StartCoroutine(particleEffect());
         enemyDrops.killSignal();
         gameGeneralManager.killSignal();
         Destroy(gameObject);
+    }
+
+    IEnumerator particleEffect()
+    {
+        GameObject particle = Instantiate(explosionParticle, transform.position+Vector3.up*1.8f, Quaternion.identity);
+        ParticleSystem[] allParticles;
+        allParticles = particle.GetComponentsInChildren<ParticleSystem>();
+        foreach (var ps in allParticles)
+        {
+            ps.Play();
+        }
+        yield return new WaitForSeconds(0.5f);
     }
 }

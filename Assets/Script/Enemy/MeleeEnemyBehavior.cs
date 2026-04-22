@@ -29,6 +29,7 @@ public class MeleeEnemyBehavior : MonoBehaviour
     private float stuckTimer = 0f;
 
     bool canMove = true;
+    private bool isAttacking;
 
     GameObject player;
     PlayerLevel playerLevel;
@@ -53,6 +54,7 @@ public class MeleeEnemyBehavior : MonoBehaviour
 
         if (distanceToPlayer <= stoppingDistance)
         {
+            isAttacking = true;
             if (Time.time >= nextAttackTime)
             {
                 DealDamage();
@@ -61,6 +63,7 @@ public class MeleeEnemyBehavior : MonoBehaviour
         }
         else
         {
+            isAttacking = false;
             Vector3 targetDirection = vectorToPlayer.normalized;
             targetDirection.y = 0;
 
@@ -153,5 +156,10 @@ public class MeleeEnemyBehavior : MonoBehaviour
             float currentHp = playerLevel.getCurrentHp();
             playerLevel.setCurrentHp(currentHp - meleeDamage);
         }
+    }
+
+    public bool IsAttacking()
+    {
+        return isAttacking;
     }
 }

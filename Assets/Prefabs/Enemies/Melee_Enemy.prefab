@@ -417,6 +417,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyStats
   healthPoint: 10
   exp: 10
+  explosionParticle: {fileID: 7843023976585449540, guid: 76d292a0c9ce2fc48b0917bf72c6086b, type: 3}
 --- !u!114 &8889966649765424895
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -429,8 +430,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd68e5a54aa20e54c927ccb60d234c63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyDrops
-  hpOrb: {fileID: 8893824674842300083, guid: fdda4531c1a59a049bc4d04260680699, type: 3}
-  expOrb: {fileID: 8893824674842300083, guid: fb7fa3de557fc2b46a25a8d23841f136, type: 3}
+  hpOrb: {fileID: 1255199619217298908, guid: 286bc201931f1f3418136f89f0043fd3, type: 3}
+  expOrb: {fileID: 1429321509600261865, guid: c0f0a96f46bce68488f84bfddc6a0baf, type: 3}
 --- !u!114 &-2137619419258446294
 MonoBehaviour:
   m_ObjectHideFlags: 0

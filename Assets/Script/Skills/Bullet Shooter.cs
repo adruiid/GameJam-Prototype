@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Animations;
 
@@ -8,6 +9,7 @@ public class BulletShooter : MonoBehaviour
     [SerializeField] float lowerBound = -50;
     [SerializeField] Vector3 hitBoxSize = new Vector3(0.5f, 0.5f, 2f);
     [SerializeField] LayerMask enemyLayer;
+    [SerializeField] GameObject bulletParticle;
     float upperBoundX;
     float lowerBoundX;
     float upperBoundZ;
@@ -37,6 +39,7 @@ public class BulletShooter : MonoBehaviour
         transform.position += worldDirection * projectileSpeed * Time.deltaTime;
         if (transform.position.x > upperBoundX || transform.position.x < lowerBoundX || transform.position.z > upperBoundZ || transform.position.z < lowerBoundZ)
         {
+            StartCoroutine(particleEffect());
             Destroy(gameObject);
         }
 
@@ -55,6 +58,7 @@ public class BulletShooter : MonoBehaviour
         {
             EnemyStats enemyStats = hit.GetComponent<EnemyStats>();
             enemyStats.recieveDamage(playerArmory.getDamage());
+            StartCoroutine(particleEffect());
             Destroy(gameObject);     
             return true; 
         }
@@ -70,6 +74,18 @@ public class BulletShooter : MonoBehaviour
         {
             transform.rotation = Quaternion.LookRotation(worldDirection);
         }
+    }
+
+    IEnumerator particleEffect()
+    {
+        GameObject particle= Instantiate(bulletParticle, transform.position, Quaternion.identity);
+        ParticleSystem[] allParticles;
+        allParticles = particle.GetComponentsInChildren<ParticleSystem>();
+        foreach (var ps in allParticles)
+        {
+            ps.Play();
+        }
+        yield return new WaitForSeconds(0.5f);
     }
 
 

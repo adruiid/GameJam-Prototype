@@ -135,3 +135,7 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  missileParticle: {fileID: 6612793712096402918, guid: cec3a729fc563ef4f9c6710743a9f4b4, type: 3}

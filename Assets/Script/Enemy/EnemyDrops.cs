@@ -21,8 +21,8 @@ public class EnemyDrops : MonoBehaviour
         Vector3 hpOrbDropPosition = transform.position;
         Vector3 expOrbDropPosition = transform.position;
         hpOrbDropPosition.y += 1f;
-        hpOrbDropPosition.x += 1f;
-        expOrbDropPosition.y += 1f;
+        hpOrbDropPosition.x += 2f;
+        expOrbDropPosition.y += 2f;
 
 
         if (Random.Range(0, 100) < 30)

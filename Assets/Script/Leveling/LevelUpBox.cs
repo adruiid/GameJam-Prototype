@@ -76,8 +76,7 @@ public class LevelUpBox : MonoBehaviour
         while (true)
         {
             idx1 = Random.Range(0, upgradeList.Length);
-            if (upgradeList[idx1] == nullUpgrade) continue;
-            if (idx2 != idx1) break;
+            if (!(upgradeList[idx1] == nullUpgrade)) break;
         }
         
         while (true)
