@@ -15,10 +15,14 @@ public class PlayerLevel : MonoBehaviour
     private ExperienceManager experienceManager;
     private SwarmPlayerController playerController;
 
+    private AudioSource audioSource;
+    [SerializeField] AudioClip expPickUpClip;
+
     
     void Start()
     {
         playerController = GetComponent<SwarmPlayerController>();
+        audioSource = GetComponent<AudioSource>();
         armory = GetComponent<PlayerArmory>();
         experienceManager = GameObject.Find("Game Manager").GetComponent<ExperienceManager>();
         currentLevel = 1;
@@ -57,6 +61,7 @@ public class PlayerLevel : MonoBehaviour
 
     public void updateExp(float exp)
     {
+        audioSource.PlayOneShot(expPickUpClip);
         experiencePoint += exp;
     }
 

@@ -40,6 +40,9 @@ public class LevelUpBox : MonoBehaviour
     private int mineLevel;
     [SerializeField] UpgradeContainers upgradeMine;
 
+    private int flameThrowerLevel;
+    [SerializeField] UpgradeContainers upgradeFlameThrower;
+
 
 
     [SerializeField] UpgradeContainers nullUpgrade;
@@ -68,6 +71,11 @@ public class LevelUpBox : MonoBehaviour
         if (playerArmory.hasMines)
         {
             upgradeList[6] = upgradeMine;
+        }
+
+        if(playerArmory.hasFlameThrower)
+        {
+            upgradeList[2] = upgradeFlameThrower;
         }
     }
 
@@ -166,7 +174,26 @@ public class LevelUpBox : MonoBehaviour
 
     public void activateFlameThrower()
     {
+        if (playerArmory.hasFlameThrower)
+        {
+            flameThrowerLevel++;
+            UpgradeFlameThrower();
+            return;
+        }
+
+        flameThrowerLevel = 1;
         playerArmory.hasFlameThrower = true;
+    }
+
+    private void UpgradeFlameThrower()
+    {
+        if (flameThrowerLevel == 2)
+        {
+
+        } else if(flameThrowerLevel == 3)
+        {
+            upgradeList[2] = nullUpgrade;
+        }
     }
 
     public void activateCogWheel()

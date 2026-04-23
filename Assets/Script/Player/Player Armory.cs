@@ -11,13 +11,22 @@ public class PlayerArmory : MonoBehaviour
     [SerializeField] GameObject projectilePrefab;
     [SerializeField] float projectileCooldown = 2;
     [SerializeField] Transform gunTransform;
+
+
     [SerializeField] GameObject homingMissiles;
     [SerializeField] float homingMissileCooldown = 1f;
+
     [SerializeField] GameObject minePrefab;
     [SerializeField] float mineCooldown = 4f;
     [SerializeField] Vector3 trackOffset = new Vector3(1.5f, 0f, 0.5f);
+
+    [SerializeField] float flameThrowerCoolDown = 4f;
+    [SerializeField] GameObject flameThrowerPrefab;
+    [SerializeField] GameObject flameThrowerMuzzle;
+
     private float nextMissileSpawnTime;
     private float nextMineSpawnTime;
+    private float nextFlameThrowerTime;
 
     public bool hasFlameThrower;
     public bool hasHomingMissiles;
@@ -46,6 +55,12 @@ public class PlayerArmory : MonoBehaviour
             nextMineSpawnTime = Time.time + mineCooldown;
         }
 
+        if(hasFlameThrower && Time.time>=nextFlameThrowerTime)
+        {
+            StartCoroutine(FireFlameThrower());
+            nextFlameThrowerTime = Time.time + flameThrowerCoolDown;
+        }
+
         if (hasCogWheel && !cogWheelSignal)
         {
             cogWheelSignal = true;
@@ -72,6 +87,18 @@ public class PlayerArmory : MonoBehaviour
         Vector3 spawnPosition = gunTransform.position + rotatedOffset;
         
         Instantiate(homingMissiles, spawnPosition, homingMissiles.transform.rotation);
+    }
+
+    IEnumerator FireFlameThrower() 
+    {
+        GameObject particle = Instantiate(flameThrowerPrefab, flameThrowerMuzzle.transform.position, flameThrowerMuzzle.transform.rotation, flameThrowerMuzzle.transform);
+        ParticleSystem[] allParticles;
+        allParticles = particle.GetComponentsInChildren<ParticleSystem>();
+        foreach (var ps in allParticles)
+        {
+            ps.Play();
+        }
+        yield return new WaitForSeconds(0.5f);
     }
 
     public float getDamage()
