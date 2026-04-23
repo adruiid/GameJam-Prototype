@@ -127,10 +127,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HomingProjectiles
   speed: 15
+  turnSpeed: 5
   maxTargetingRange: 40
   upperBound: 100
   lowerBound: -100
-  trackOffset: {x: 0, y: 3, z: 0}
+  homingDelay: 0.25
   hitBoxSize: {x: 0.5, y: 5, z: 1}
   enemyLayer:
     serializedVersion: 2

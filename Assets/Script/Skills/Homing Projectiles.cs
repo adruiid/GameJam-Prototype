@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Collections;
 
 public class HomingProjectiles : MonoBehaviour
 {
@@ -8,10 +7,15 @@ public class HomingProjectiles : MonoBehaviour
     
     [Header("Movement Settings")]
     public float speed = 10f;
+    public float turnSpeed = 5f; // NEW: Controls how tight the missile can turn (radians per second)
     [SerializeField] float maxTargetingRange = 15f;
     [SerializeField] float upperBound = 50f;
     [SerializeField] float lowerBound = -50f;
-    [SerializeField] Vector3 trackOffset = new Vector3(0f, 10f, 0f);
+    
+    [Header("Homing Settings")]
+    [SerializeField] float homingDelay = 0.5f; 
+    private float timeAlive = 0f;              
+    
     float upperBoundX;
     float lowerBoundX;
     float upperBoundZ;
@@ -33,16 +37,19 @@ public class HomingProjectiles : MonoBehaviour
         target = FindClosestEnemy();
         FindRelativeBounds();
         
+        // FIX: Because your 3D model requires a -90 degree Y offset, 
+        // transform.forward is sideways. transform.right is your true forward!
+        moveDirection = transform.right; 
+        
         if (target == null)
         {
-            // Failsafe
             float randomX = Random.Range(-1f, 1f);
             float randomZ = Random.Range(-1f, 1f);
-            moveDirection = new Vector3(randomX, 0f, randomZ).normalized;
+            Vector3 randomDir = new Vector3(randomX, 0f, randomZ).normalized;
 
-            if (moveDirection == Vector3.zero) 
+            if (randomDir != Vector3.zero) 
             {
-                moveDirection = Vector3.forward;
+                moveDirection = randomDir;
             }
         }
     }
@@ -57,30 +64,40 @@ public class HomingProjectiles : MonoBehaviour
 
     void Update()
     {
+        timeAlive += Time.deltaTime;
+
         // 1. Boundary Check
         if (transform.position.x > upperBoundX || transform.position.x < lowerBoundX || transform.position.z > upperBoundZ || transform.position.z < lowerBoundZ)
         {
-            StartCoroutine(particleEffect());
+            SpawnParticleEffect();
             Destroy(gameObject);
             return;
         }
         
-        // 2. Movement Logic
-        if (target != null)
+        // 2. Smooth Steering Logic
+        if (target != null && timeAlive >= homingDelay)
         {
-            moveDirection = (target.position - transform.position).normalized;
-            transform.position = Vector3.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
+            // Flatten the target's position so the missile only steers left/right (ignores up/down)
+            Vector3 flatTargetPosition = new Vector3(target.position.x, transform.position.y, target.position.z);
+            
+            // Find the direction we WANT to go using the flattened position
+            Vector3 desiredDirection = (flatTargetPosition - transform.position).normalized;
+            
+            // Smoothly rotate our current trajectory towards the desired direction
+            moveDirection = Vector3.RotateTowards(moveDirection, desiredDirection, turnSpeed * Time.deltaTime, 0f).normalized;
+        }
+
+        // 3. Apply Movement & Rotation
+        // The missile always moves along its moveDirection, whether it is homing or flying dumb
+        transform.Translate(moveDirection * speed * Time.deltaTime, Space.World);
+        
+        if (moveDirection != Vector3.zero)
+        {
+            // Point the model in the moveDirection, applying your -90 degree visual offset
             transform.rotation = Quaternion.LookRotation(moveDirection) * Quaternion.Euler(0, -90, 0);
         }
-        else
-        {
-            transform.Translate(moveDirection * speed * Time.deltaTime, Space.World);
-            if (moveDirection != Vector3.zero)
-            {
-                transform.rotation = Quaternion.LookRotation(moveDirection) * Quaternion.Euler(0, -90, 0);
-            }
-        }
         
+        // 4. Hit Detection
         bool hitSomething = CheckForHit();
         if (hitSomething)
         {
@@ -114,9 +131,11 @@ public class HomingProjectiles : MonoBehaviour
         Collider[] obstacleColliders = Physics.OverlapBox(transform.position, hitBoxSize / 2f, transform.rotation, obstacleLayer);
         if (obstacleColliders.Length > 0)
         {
+            SpawnParticleEffect();
             Destroy(gameObject);
             return true;
         }
+        
         Collider[] hitColliders = Physics.OverlapBox(transform.position, hitBoxSize / 2f, transform.rotation, enemyLayer);
 
         foreach (Collider hit in hitColliders)
@@ -126,22 +145,24 @@ public class HomingProjectiles : MonoBehaviour
             {
                 enemyStats.recieveDamage(playerArmory.getDamage());
             }
-            StartCoroutine(particleEffect());
+            SpawnParticleEffect();
             Destroy(gameObject);     
             return true; 
         }
         return false;
     }
 
-    IEnumerator particleEffect()
+    void SpawnParticleEffect()
     {
-        GameObject particle = Instantiate(missileParticle, transform.position+Vector3.up*1.1f, Quaternion.identity);
-        ParticleSystem[] allParticles;
-        allParticles = particle.GetComponentsInChildren<ParticleSystem>();
-        foreach (var ps in allParticles)
+        if (missileParticle != null)
         {
-            ps.Play();
+            GameObject particle = Instantiate(missileParticle, transform.position + Vector3.up * 1.1f, Quaternion.identity);
+            ParticleSystem[] allParticles = particle.GetComponentsInChildren<ParticleSystem>();
+            
+            foreach (var ps in allParticles)
+            {
+                ps.Play();
+            }
         }
-        yield return new WaitForSeconds(0.5f);
     }
 }

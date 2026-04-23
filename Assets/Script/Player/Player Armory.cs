@@ -15,7 +15,7 @@ public class PlayerArmory : MonoBehaviour
     [SerializeField] float homingMissileCooldown = 1f;
     [SerializeField] GameObject minePrefab;
     [SerializeField] float mineCooldown = 4f;
-
+    [SerializeField] Vector3 trackOffset = new Vector3(0f, 10f, 0f);
     private float nextMissileSpawnTime;
     private float nextMineSpawnTime;
 
@@ -66,7 +66,7 @@ public class PlayerArmory : MonoBehaviour
     private void FireHomingMissiles()
     {
         Vector3 spawnPosition = gunTransform.position;
-        Instantiate(homingMissiles, spawnPosition, homingMissiles.transform.rotation);
+        Instantiate(homingMissiles, spawnPosition + trackOffset, homingMissiles.transform.rotation);
     }
 
     public float getDamage()
