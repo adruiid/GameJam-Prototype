@@ -37,20 +37,16 @@ public class HomingProjectiles : MonoBehaviour
         target = FindClosestEnemy();
         FindRelativeBounds();
         
-        // FIX: Because your 3D model requires a -90 degree Y offset, 
-        // transform.forward is sideways. transform.right is your true forward!
-        moveDirection = transform.right; 
-        
-        if (target == null)
+        // Get direction from player's mesh facing direction
+        GameObject player = GameObject.Find("Player");
+        if (player != null)
         {
-            float randomX = Random.Range(-1f, 1f);
-            float randomZ = Random.Range(-1f, 1f);
-            Vector3 randomDir = new Vector3(randomX, 0f, randomZ).normalized;
-
-            if (randomDir != Vector3.zero) 
-            {
-                moveDirection = randomDir;
-            }
+            Vector3 playerRight = player.GetComponent<PlayerAnimatorAndRotate>().playerMesh.transform.right;
+            moveDirection = new Vector3(-playerRight.z, 0f, playerRight.x).normalized;
+        }
+        else
+        {
+            moveDirection = transform.right;
         }
     }
 
