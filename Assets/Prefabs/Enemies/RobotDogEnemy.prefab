@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4320652603570756961}
   - component: {fileID: 7066509502061698153}
   - component: {fileID: 5433555551559752036}
-  - component: {fileID: 1021353417969904189}
+  - component: {fileID: -8370604442122128045}
   m_Layer: 7
   m_Name: RobotDogEnemy
   m_TagString: Untagged
@@ -86,7 +86,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyDrops
   hpOrb: {fileID: 1255199619217298908, guid: 286bc201931f1f3418136f89f0043fd3, type: 3}
   expOrb: {fileID: 1429321509600261865, guid: c0f0a96f46bce68488f84bfddc6a0baf, type: 3}
---- !u!114 &1021353417969904189
+--- !u!114 &-8370604442122128045
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -95,23 +95,28 @@ MonoBehaviour:
   m_GameObject: {fileID: 5553956127700447206}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bca8f149d1d48544c90bcd88a0436dd2, type: 3}
+  m_Script: {fileID: 11500000, guid: da6aabaea6ffd5a4e9670aaa988092cd, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MeleeEnemyBehavior
-  moveSpeed: 10
-  separationRadius: 3
-  separationWeight: 1
+  m_EditorClassIdentifier: Assembly-CSharp::DogEnemyAI
+  moveSpeed: 8
+  groundOffset: 1
+  separationRadius: 2
+  separationWeight: 3
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128
-  stoppingDistance: 3
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 64
   avoidanceRadius: 5
   avoidanceWeight: 10
-  meleeDamage: 10
-  attackCooldown: 1.5
+  pounceRange: 10
+  chargeTime: 0.3
+  pounceDamage: 15
+  pounceForce: 35
+  pounceRadius: 2
+  attackTime: 0
+  runningTime: 0
   velocitySmoothTime: 0.15
 --- !u!1001 &8367497818553042678
 PrefabInstance:
