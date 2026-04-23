@@ -546,6 +546,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 124689865823330240, guid: 22b93da4ffe97924fa1410ee5153d71c, type: 3}
   m_PrefabInstance: {fileID: 5961705116962965162}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &219319259 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8277423368127772430, guid: 22b93da4ffe97924fa1410ee5153d71c, type: 3}
+  m_PrefabInstance: {fileID: 5961705116962965162}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &237216893 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2693050137669361050, guid: 22b93da4ffe97924fa1410ee5153d71c, type: 3}
@@ -2179,6 +2184,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1055024490}
   m_CullTransparentMesh: 1
+--- !u!1 &1067717781
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1067717782}
+  m_Layer: 8
+  m_Name: FlameThrowerMuzzle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1067717782
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1067717781}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 0.03279722, y: -0.036307763, z: 0.106834106}
+  m_LocalScale: {x: 0.08366023, y: 0.08366022, z: 0.08366022}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 219319259}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!43 &1091498868
 Mesh:
   m_ObjectHideFlags: 0
@@ -5917,12 +5953,24 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1626219247358521874, guid: 7eb693a67717386438ea2e26e1fc5f1b, type: 3}
     - target: {fileID: 6483113008536088094, guid: 22b93da4ffe97924fa1410ee5153d71c, type: 3}
+      propertyPath: hasFlameThrower
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6483113008536088094, guid: 22b93da4ffe97924fa1410ee5153d71c, type: 3}
       propertyPath: hasHomingMissiles
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6483113008536088094, guid: 22b93da4ffe97924fa1410ee5153d71c, type: 3}
+      propertyPath: flameThrowerMuzzle
+      value: 
+      objectReference: {fileID: 1067717781}
+    - target: {fileID: 6483113008536088094, guid: 22b93da4ffe97924fa1410ee5153d71c, type: 3}
+      propertyPath: flameThrowerPrefab
+      value: 
+      objectReference: {fileID: 7536454557696180000, guid: 5a00d419ee9f10347b3145c603308769, type: 3}
+    - target: {fileID: 6483113008536088094, guid: 22b93da4ffe97924fa1410ee5153d71c, type: 3}
       propertyPath: projectileCooldown
-      value: 0.25
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 6483113008536088094, guid: 22b93da4ffe97924fa1410ee5153d71c, type: 3}
       propertyPath: homingMissileCooldown
@@ -6002,7 +6050,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 8277423368127772430, guid: 22b93da4ffe97924fa1410ee5153d71c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1067717782}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 4821103923821056034, guid: 22b93da4ffe97924fa1410ee5153d71c, type: 3}
       insertIndex: -1
