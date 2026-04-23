@@ -3365,6 +3365,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAnimatorAndRotate
   playerMesh: {fileID: 219319258}
+  deadzoneRadius: 100
 --- !u!114 &1623176519
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3870,9 +3871,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemySpawner
   enemyPrefabs:
-  - {fileID: 5553956127700447206, guid: f50c3d02eeb8b5449a3f634c70f483c2, type: 3}
   - {fileID: 6014964752631544306, guid: b0cfef96be827f146ba29673f534f2e5, type: 3}
   - {fileID: 4582944380946691162, guid: d109fe5f09618e449bacfaff45be7926, type: 3}
+  - {fileID: 5553956127700447206, guid: f50c3d02eeb8b5449a3f634c70f483c2, type: 3}
   - {fileID: 8363723564404441359, guid: 3606a6ccdfd1f994e93256887c75bf97, type: 3}
   playerTransform: {fileID: 1623176501}
   spawnIdxLimit: 0
@@ -5298,7 +5299,7 @@ PrefabInstance:
       objectReference: {fileID: 1626219247358521874, guid: 7eb693a67717386438ea2e26e1fc5f1b, type: 3}
     - target: {fileID: 6483113008536088094, guid: 22b93da4ffe97924fa1410ee5153d71c, type: 3}
       propertyPath: hasHomingMissiles
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6483113008536088094, guid: 22b93da4ffe97924fa1410ee5153d71c, type: 3}
       propertyPath: projectileCooldown

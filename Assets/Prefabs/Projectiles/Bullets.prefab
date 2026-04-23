@@ -133,3 +133,4 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   bulletParticle: {fileID: 10490511759856143, guid: 48376a3fee083774db591940f9bf8376, type: 3}
+  deadzoneRadius: 500

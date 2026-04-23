@@ -131,7 +131,7 @@ MonoBehaviour:
   upperBound: 100
   lowerBound: -100
   trackOffset: {x: 0, y: 3, z: 0}
-  hitBoxSize: {x: 0.5, y: 0.5, z: 2}
+  hitBoxSize: {x: 0.5, y: 5, z: 1}
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128

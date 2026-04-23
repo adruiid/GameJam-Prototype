@@ -12,8 +12,6 @@ public class PlayerArmory : MonoBehaviour
     [SerializeField] float projectileCooldown = 2;
     [SerializeField] Transform gunTransform;
     [SerializeField] GameObject homingMissiles;
-    
-
     [SerializeField] float homingMissileCooldown = 1f;
     [SerializeField] GameObject minePrefab;
     [SerializeField] float mineCooldown = 4f;

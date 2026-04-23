@@ -10,11 +10,12 @@ public class BulletShooter : MonoBehaviour
     [SerializeField] Vector3 hitBoxSize = new Vector3(0.5f, 0.5f, 2f);
     [SerializeField] LayerMask enemyLayer;
     [SerializeField] GameObject bulletParticle;
+    
     float upperBoundX;
     float lowerBoundX;
     float upperBoundZ;
     float lowerBoundZ;
-    Vector3 worldDirection;
+    Vector3 worldDirection = Vector3.forward;
     PlayerArmory playerArmory;
     GameObject player;
 
@@ -23,7 +24,7 @@ public class BulletShooter : MonoBehaviour
         player = GameObject.Find("Player");
         playerArmory = player.GetComponent<PlayerArmory>();
         FindRelativeBounds();
-        AimAtMouse();
+        SetDirectionFromPlayer();
     }
 
     private void FindRelativeBounds()
@@ -64,14 +65,16 @@ public class BulletShooter : MonoBehaviour
         }
         return false;
     }
-    private void AimAtMouse()
+    
+    private void SetDirectionFromPlayer()
     {
-        Vector2 mouseScreenPos = Input.mousePosition;
-        Vector2 bulletScreenPos = Camera.main.WorldToScreenPoint(transform.position);
-        Vector2 screenDirection = mouseScreenPos - bulletScreenPos;
-        worldDirection = new Vector3(screenDirection.x, 0f, screenDirection.y).normalized;
-        if (worldDirection != Vector3.zero)
+        // Get the direction the player mesh is looking (negate right due to rotation offset)
+        Vector3 playerRight = player.GetComponent<PlayerAnimatorAndRotate>().playerMesh.transform.right;
+        Vector3 directionOnPlane = new Vector3(-playerRight.z, 0f, playerRight.x).normalized;
+        
+        if (directionOnPlane != Vector3.zero)
         {
+            worldDirection = directionOnPlane;
             transform.rotation = Quaternion.LookRotation(worldDirection);
         }
     }
