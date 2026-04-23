@@ -3,17 +3,20 @@ using UnityEngine;
 public class AudioMuffler : MonoBehaviour
 {
     private ExperienceManager expManager;
+    private PauseMenu pauseMenu;
     [SerializeField]private AudioLowPassFilter lowPass;
     void Start()
     {
-        expManager= GameObject.Find("Game Manager").GetComponent<ExperienceManager>();
+        pauseMenu = GameObject.Find("Game Manager").GetComponent<PauseMenu>();
+        expManager = GameObject.Find("Game Manager").GetComponent<ExperienceManager>();
         lowPass.cutoffFrequency = 22000f;
     }
 
     
     void Update()
     {
-        SetPaused(expManager.levelUpBoxStatus());
+        bool pauseStatus = expManager.levelUpBoxStatus() || pauseMenu.pauseStatus();
+        SetPaused(pauseStatus);
     }
 
     private void SetPaused(bool paused)
