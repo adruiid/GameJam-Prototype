@@ -209,7 +209,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae6608375f5974e4484836755ef6f351, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::expOrb
-  moveSpeed: 15
+  moveSpeed: 20
   expAmount: 10
 --- !u!1 &7186685408689750991
 GameObject:

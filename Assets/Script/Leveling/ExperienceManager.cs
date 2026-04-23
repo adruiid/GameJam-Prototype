@@ -10,6 +10,7 @@ public class ExperienceManager : MonoBehaviour
     LevelUpBox levelUpBoxScript;
     private PlayerLevel playerInfo;
     private bool levelUpBoxActive;
+
     void Start()
     {
         expBar.fillAmount = 0;
@@ -40,7 +41,6 @@ public class ExperienceManager : MonoBehaviour
         levelUpBox.gameObject.SetActive(true);
         levelUpBoxActive = true;
         levelUpBoxScript.assignNew();
-        
     }
 
     public void recieveLeveledUpSignal()
@@ -48,5 +48,10 @@ public class ExperienceManager : MonoBehaviour
         levelUpBox.gameObject.SetActive(false);
         levelUpBoxActive = false;
         Time.timeScale = 1f;
+    }
+
+    public bool levelUpBoxStatus()
+    {
+        return levelUpBoxActive;
     }
 }

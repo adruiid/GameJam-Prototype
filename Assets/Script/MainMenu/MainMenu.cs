@@ -6,6 +6,8 @@ public class MainMenu : MonoBehaviour
     [SerializeField] GameObject mainMenuUI;
     [SerializeField] GameObject settingsUI;
     [SerializeField] GameObject creditsUI;
+
+    [SerializeField] AudioSource audioSource;
     void Start()
     {
         
