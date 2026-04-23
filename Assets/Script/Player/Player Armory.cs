@@ -16,7 +16,7 @@ public class PlayerArmory : MonoBehaviour
 
     [SerializeField] float homingMissileCooldown = 1f;
     [SerializeField] GameObject minePrefab;
-    [SerializeField] float mineCooldown = 1.5f;
+    [SerializeField] float mineCooldown = 4f;
 
     private float nextMissileSpawnTime;
     private float nextMineSpawnTime;
@@ -95,5 +95,16 @@ public class PlayerArmory : MonoBehaviour
     public void setCogWheelLevel(int level)
     {
         cogwheelScript.SetSkillLevel(level);
+    }
+
+    public void setMineLevel(int level)
+    {
+        if (level == 2)
+        {
+            mineCooldown = 2f;
+        } else if (level == 3)
+        {
+            mineCooldown = 1f;
+        }
     }
 }

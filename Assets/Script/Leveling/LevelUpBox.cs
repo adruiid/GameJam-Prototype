@@ -215,9 +215,14 @@ public class LevelUpBox : MonoBehaviour
 
     private void UpgradeMine()
     {
+        if (mineLevel == 2)
+        {
+            playerArmory.setMineLevel(2);
+        }
 
         if (mineLevel == 3)
         {
+            playerArmory.setMineLevel(3);
             upgradeList[6] = nullUpgrade;
         }
     }

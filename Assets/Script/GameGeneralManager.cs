@@ -14,6 +14,7 @@ public class GameGeneralManager : MonoBehaviour
     [SerializeField] Text killCount;
 
     [SerializeField] Image hpBar;
+    [SerializeField] Image skullRenderer;
 
     PlayerArmory playerArmory;
     PlayerLevel playerLevel;
@@ -47,6 +48,7 @@ public class GameGeneralManager : MonoBehaviour
 
     public void killSignal()
     {
+        skullRenderer.color = new Color(Random.value, Random.value, Random.value);
         enemyKillCount++;
         killCount.text = "" + enemyKillCount;
     }

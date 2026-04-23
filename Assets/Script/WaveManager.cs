@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,6 +8,7 @@ public class WaveManager : MonoBehaviour
     private EnemySpawner enemySpawner;
 
     [SerializeField] Text waveText;
+    [SerializeField] Animator waveTextAnimator;
 
     float timer;
     void Start()
@@ -20,7 +22,7 @@ public class WaveManager : MonoBehaviour
         timer += Time.deltaTime;
         if (timer >= 30f)
         {
-            waveNumber++;
+            StartCoroutine(WaveNumberIncrease());
             timer = 0f;
         }
 
@@ -68,5 +70,19 @@ public class WaveManager : MonoBehaviour
 
         }
 
+    }
+
+    [ContextMenu("Kaj kor")]
+    private void testFunction()
+    {
+        StartCoroutine(WaveNumberIncrease());
+    }
+
+    
+    IEnumerator WaveNumberIncrease()
+    {
+        waveTextAnimator.SetTrigger("increase");
+        yield return new WaitForSeconds(0.7f);
+        waveNumber++;
     }
 }
