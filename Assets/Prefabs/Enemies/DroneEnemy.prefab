@@ -53,7 +53,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RangedEnemy
   attackRange: 13
   projectileSpawnOffset: {x: 0, y: 0.5, z: 0}
-  projectilePrefab: {fileID: 5369210963190522482, guid: b6d346c939d5eb34f8e831d819fdc1a9, type: 3}
+  projectilePrefab: {fileID: 9197753352528933276, guid: 87b0cc5cfa3a15540bc70c1933c51709, type: 3}
   attackCooldown: 1
   projectileSpeed: 15
 --- !u!114 &921839162092066151
@@ -118,7 +118,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyStats
   healthPoint: 20
   exp: 20
-  explosionParticle: {fileID: 7843023976585449540, guid: 76d292a0c9ce2fc48b0917bf72c6086b, type: 3}
+  explosionParticle: {fileID: 100006, guid: 28ccd38a41e256a4e8fea96f5a8d039d, type: 3}
 --- !u!114 &5440038072164554886
 MonoBehaviour:
   m_ObjectHideFlags: 0

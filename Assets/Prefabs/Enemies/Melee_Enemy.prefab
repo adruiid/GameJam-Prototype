@@ -417,7 +417,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyStats
   healthPoint: 10
   exp: 10
-  explosionParticle: {fileID: 7843023976585449540, guid: 76d292a0c9ce2fc48b0917bf72c6086b, type: 3}
+  explosionParticle: {fileID: 100014, guid: a57a6829db3568c4d9bdc37e9e63c017, type: 3}
 --- !u!114 &8889966649765424895
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -444,7 +444,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bca8f149d1d48544c90bcd88a0436dd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MeleeEnemyBehavior
-  moveSpeed: 4.5
+  moveSpeed: 10
   separationRadius: 1.5
   separationWeight: 3
   enemyLayer:

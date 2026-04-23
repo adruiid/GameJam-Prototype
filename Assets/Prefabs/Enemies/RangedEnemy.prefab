@@ -30,15 +30,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d00c4b4d8a7af5d42bef68cac303baef, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1139.2445
+      value: 1142.0333
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d00c4b4d8a7af5d42bef68cac303baef, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.00009992983
+      value: 0.00010024115
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d00c4b4d8a7af5d42bef68cac303baef, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -859.50836
+      value: -828.1202
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d00c4b4d8a7af5d42bef68cac303baef, type: 3}
       propertyPath: m_LocalRotation.w
@@ -336,8 +336,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.8564453, y: 2.069895, z: 1.495758}
-  m_Center: {x: 0.01303625, y: 1.004658, z: 0.2152838}
+  m_Size: {x: 0.8564453, y: 2.0698953, z: 0.78236914}
+  m_Center: {x: 0.013036251, y: 1.004658, z: -0.14141065}
 --- !u!114 &7024460408689982115
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -352,7 +352,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RangedEnemy
   attackRange: 13
   projectileSpawnOffset: {x: 0, y: 0.5, z: 0}
-  projectilePrefab: {fileID: 5369210963190522482, guid: 1abba1d6fd4f8f6489c5ca51c8ec5a6f, type: 3}
+  projectilePrefab: {fileID: 9197753352528933276, guid: 453af3b7fccd7cb4f843a87b2267d37c, type: 3}
   attackCooldown: 1
   projectileSpeed: 15
 --- !u!114 &5242230544776214112
@@ -395,7 +395,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyStats
   healthPoint: 30
   exp: 20
-  explosionParticle: {fileID: 7843023976585449540, guid: 76d292a0c9ce2fc48b0917bf72c6086b, type: 3}
+  explosionParticle: {fileID: 100004, guid: 084c6a87873fd6e4da7978a01aa18b34, type: 3}
 --- !u!114 &-6667374928714565312
 MonoBehaviour:
   m_ObjectHideFlags: 0

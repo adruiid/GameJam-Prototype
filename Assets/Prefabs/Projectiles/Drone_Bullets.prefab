@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1626219247358521874
+--- !u!1 &9197753352528933276
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,48 +8,48 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2151222428020598952}
-  - component: {fileID: 3059482311290152717}
-  - component: {fileID: 977705230568952775}
-  - component: {fileID: 4403553823822228616}
-  - component: {fileID: 844969750495909524}
+  - component: {fileID: 1885905927533775161}
+  - component: {fileID: 2474550929692177138}
+  - component: {fileID: 5482893782992192482}
+  - component: {fileID: 921768355106392486}
+  - component: {fileID: -491768588951813428}
   m_Layer: 0
-  m_Name: Player_Missile
+  m_Name: Drone_Bullets
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2151222428020598952
+--- !u!4 &1885905927533775161
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1626219247358521874}
+  m_GameObject: {fileID: 9197753352528933276}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 1150.7, y: 0.0501, z: -836.3961}
-  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1151.9114, y: 0.026639992, z: -834.4254}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
---- !u!33 &3059482311290152717
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &2474550929692177138
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1626219247358521874}
-  m_Mesh: {fileID: 4493585093827132993, guid: d1bf361759959114f8fd9c8f3d864cdb, type: 3}
---- !u!23 &977705230568952775
+  m_GameObject: {fileID: 9197753352528933276}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &5482893782992192482
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1626219247358521874}
+  m_GameObject: {fileID: 9197753352528933276}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -68,8 +68,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e8fcfbc1567984547b6002c61dc6c2ac, type: 2}
-  - {fileID: 2100000, guid: d525559f67f25bc439435c5d96cde9ac, type: 2}
+  - {fileID: 2100000, guid: af89a854cce363b4ea47c5c342e7b069, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -93,13 +92,13 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &4403553823822228616
-BoxCollider:
+--- !u!135 &921768355106392486
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1626219247358521874}
+  m_GameObject: {fileID: 9197753352528933276}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -112,31 +111,24 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.6466186, y: 0.099999994, z: 0.099999994}
-  m_Center: {x: 0.32669067, y: 0, z: 0}
---- !u!114 &844969750495909524
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-491768588951813428
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1626219247358521874}
+  m_GameObject: {fileID: 9197753352528933276}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62c74a38e76842b4dab23bf81716e7cd, type: 3}
+  m_Script: {fileID: 11500000, guid: b01a492404e4bfc49b5f9638fd639f23, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HomingProjectiles
-  speed: 15
-  turnSpeed: 5
-  maxTargetingRange: 40
-  upperBound: 100
-  lowerBound: -100
-  homingDelay: 0.25
-  hitBoxSize: {x: 0.5, y: 5, z: 1}
-  enemyLayer:
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyProjectile
+  upperBound: 50
+  lowerBound: -50
+  damage: 1
+  hitBoxSize: {x: 2, y: 2, z: 2}
+  playerLayer:
     serializedVersion: 2
-    m_Bits: 128
-  obstacleLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  missileParticle: {fileID: 8080623749372170093, guid: 706fe5f811c3b0047b3e16e3bb8d7bba, type: 3}
+    m_Bits: 256

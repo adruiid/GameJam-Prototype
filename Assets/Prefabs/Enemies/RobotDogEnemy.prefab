@@ -71,7 +71,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyStats
   healthPoint: 10
   exp: 10
-  explosionParticle: {fileID: 7843023976585449540, guid: 76d292a0c9ce2fc48b0917bf72c6086b, type: 3}
+  explosionParticle: {fileID: 100006, guid: a2b9ce854d0a5004cba27ab45cbfe205, type: 3}
 --- !u!114 &5433555551559752036
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da6aabaea6ffd5a4e9670aaa988092cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DogEnemyAI
-  moveSpeed: 8
+  moveSpeed: 15
   groundOffset: 1
   separationRadius: 2
   separationWeight: 3
