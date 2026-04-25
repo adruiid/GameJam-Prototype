@@ -6,7 +6,11 @@ public class TremorPlayer : MonoBehaviour
     [SerializeField] float tremorDamage = 20f;
     [SerializeField] float stunDuration = 0.5f;
     [SerializeField] float stunSpeedMultiplier = 0.3f;
+    
+    [Header("Trigger Settings")]
+    [SerializeField] float requiredDelay = 1.0f; // How long player must stand inside to get hit
 
+    private float timeInside = 0f;
     private bool hasHitPlayer = false;
 
     void Start()
@@ -21,28 +25,53 @@ public class TremorPlayer : MonoBehaviour
         }
     }
 
+    // 1. Triggered exactly when the player steps in
     void OnTriggerEnter(Collider collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            timeInside = 0f; // Start the clock at 0
+        }
+    }
+
+    void OnTriggerStay(Collider collision)
     {
         if (collision.gameObject.CompareTag("Player") && !hasHitPlayer)
         {
-            hasHitPlayer = true;
-
-            // Get player components
-            PlayerLevel playerLevel = collision.gameObject.GetComponent<PlayerLevel>();
-            SwarmPlayerController playerController = collision.gameObject.GetComponent<SwarmPlayerController>();
-
-            // Deal damage
-            if (playerLevel != null)
+            timeInside += Time.deltaTime;
+            if (timeInside >= requiredDelay)
             {
-                float currentHp = playerLevel.getCurrentHp();
-                playerLevel.setCurrentHp(currentHp - tremorDamage);
+                hasHitPlayer = true;
+                ApplyEffects(collision.gameObject);
             }
+        }
+    }
 
-            // Apply stun
-            if (playerController != null)
-            {
-                playerController.ApplyStun(stunDuration, stunSpeedMultiplier);
-            }
+    void OnTriggerExit(Collider collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            timeInside = 0f;
+        }
+    }
+
+    private void ApplyEffects(GameObject playerObject)
+    {
+        // Get player components
+        PlayerLevel playerLevel = playerObject.GetComponent<PlayerLevel>();
+        SwarmPlayerController playerController = playerObject.GetComponent<SwarmPlayerController>();
+
+        // Deal damage
+        if (playerLevel != null)
+        {
+            float currentHp = playerLevel.getCurrentHp();
+            playerLevel.setCurrentHp(currentHp - tremorDamage);
+        }
+
+        // Apply stun
+        if (playerController != null)
+        {
+            playerController.ApplyStun(stunDuration, stunSpeedMultiplier);
         }
     }
 }
