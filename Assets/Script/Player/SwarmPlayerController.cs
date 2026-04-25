@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class SwarmPlayerController : MonoBehaviour
 {
@@ -9,6 +10,9 @@ public class SwarmPlayerController : MonoBehaviour
     Rigidbody rb;
 
     private float vectorMovement;
+    private float originalSpeed;
+    private bool isStunned = false;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -46,5 +50,23 @@ public class SwarmPlayerController : MonoBehaviour
     public float getVectorMovement()
     {
         return vectorMovement;
+    }
+
+    public void ApplyStun(float stunDuration, float speedMultiplier)
+    {
+        if (!isStunned)
+        {
+            originalSpeed = speed;
+            isStunned = true;
+            speed *= speedMultiplier;
+            StartCoroutine(RemoveStun(stunDuration));
+        }
+    }
+
+    IEnumerator RemoveStun(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        speed = originalSpeed;
+        isStunned = false;
     }
 }

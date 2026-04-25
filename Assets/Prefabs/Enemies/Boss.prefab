@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb3ed999b9a6a8e499cf46006c07f1d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BossAI
-  moveSpeed: 5
+  moveSpeed: 10
   stoppingDistance: 8
   obstacleLayer:
     serializedVersion: 2
@@ -58,9 +58,11 @@ MonoBehaviour:
   pokeDamage: 15
   pokeRange: 8
   pokeCooldown: 1
-  slamRange: 10
-  slamCooldown: 2
-  tremorPrefab: {fileID: 9197753352528933276, guid: 87b0cc5cfa3a15540bc70c1933c51709, type: 3}
+  maxTimeBetweenPokes: 5
+  slamRange: 25
+  slamCooldown: 3
+  tremorPrefab: {fileID: 6595445592634480780, guid: f97456ed2a54a5441925bdab47dfeea2, type: 3}
+  tremorSpawnDistance: 15
   velocitySmoothTime: 0.15
 --- !u!65 &4182146262199623233
 BoxCollider:

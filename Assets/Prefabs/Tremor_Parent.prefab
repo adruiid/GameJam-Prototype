@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3627362077487597150}
   - component: {fileID: 2479360433155893588}
+  - component: {fileID: -4804575697099340533}
   m_Layer: 0
   m_Name: Tremor_Parent
   m_TagString: Untagged
@@ -27,7 +28,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1146.9174, y: 0.0001, z: -829.4197}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.15, y: 1, z: 0.63}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7011339198685290724}
@@ -48,12 +49,27 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 5.09, y: 1, z: 41.17}
-  m_Center: {x: 0, y: 0, z: -2.3}
+  m_Size: {x: 5.09, y: 5.8064847, z: 41.17}
+  m_Center: {x: 0, y: 2.4032423, z: -2.3000007}
+--- !u!114 &-4804575697099340533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6595445592634480780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8067265bc8b41f4d9a59660b43a77c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TremorPlayer
+  tremorDamage: 100
+  stunDuration: 5
+  stunSpeedMultiplier: 0.1
 --- !u!1001 &7406168109739263759
 PrefabInstance:
   m_ObjectHideFlags: 0
