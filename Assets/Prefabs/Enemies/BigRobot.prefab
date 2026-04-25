@@ -104,6 +104,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BigRobot
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1f9c077fd5b19e74eb97b8aa35d13c80, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 1399296927934453595, guid: 1f9c077fd5b19e74eb97b8aa35d13c80, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 

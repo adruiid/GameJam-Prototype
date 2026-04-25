@@ -36,4 +36,10 @@ public class PauseMenu : MonoBehaviour
     {
         return isPaused;
     }
+
+    public void setPauseStatus(bool status)
+    {
+        isPaused = status;
+    }
+
 }

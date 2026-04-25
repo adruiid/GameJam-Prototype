@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 9066189786557094590}
   m_Layer: 7
   m_Name: Boss
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -157,6 +157,10 @@ PrefabInstance:
     - target: {fileID: 3486981053791749534, guid: 8930aee72f7861e4ea133da33d38aed3, type: 3}
       propertyPath: m_Layer
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3486981053791749534, guid: 8930aee72f7861e4ea133da33d38aed3, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 3495328990590472851, guid: 8930aee72f7861e4ea133da33d38aed3, type: 3}
       propertyPath: m_Layer

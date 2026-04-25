@@ -1,4 +1,6 @@
 using UnityEngine;
+using System.Collections;
+using Mono.Cecil.Cil;
 
 public class PlayerLevel : MonoBehaviour
 {
@@ -17,6 +19,8 @@ public class PlayerLevel : MonoBehaviour
 
     private AudioSource audioSource;
     [SerializeField] AudioClip expPickUpClip;
+
+    private bool canTakeDamage = true;
 
     
     void Start()
@@ -97,6 +101,7 @@ public class PlayerLevel : MonoBehaviour
 
     public void setCurrentHp(float newHp)
     {
+        if (!canTakeDamage) return;
         currentHealth = newHp;
     }
 
@@ -110,5 +115,42 @@ public class PlayerLevel : MonoBehaviour
                 currentHealth = playerMaxHealth;
             }
         }
+    }
+
+    public void temporarySpeedUpgrade()
+    {
+        StartCoroutine(SpeedBoost(playerSpeed * 2f));
+    }
+
+    IEnumerator SpeedBoost(float newSpeed)
+    {
+        float originalSpeed = playerSpeed;
+        playerSpeed = newSpeed;
+        yield return new WaitForSeconds(10f);
+        playerSpeed = originalSpeed;
+    }
+    public void temporaryDamageUpgrade()
+    {
+        StartCoroutine(damageBoost(armory.getDamage() * 2f));
+    }
+
+    IEnumerator damageBoost(float newDamage)
+    {
+        float originalDamage = armory.getDamage();
+        armory.setDamage(newDamage);
+        yield return new WaitForSeconds(10f);
+        armory.setDamage(originalDamage);
+    }
+
+    public void temporaryImmunity()
+    {
+        StartCoroutine(Immunity());
+    }
+
+    IEnumerator Immunity()
+    {
+        canTakeDamage = false;
+        yield return new WaitForSeconds(10f);
+        canTakeDamage = true;
     }
 }

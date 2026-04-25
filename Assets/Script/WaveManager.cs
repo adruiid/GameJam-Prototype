@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class WaveManager : MonoBehaviour
 {
-    private int waveNumber = 1;
+    [SerializeField]private int waveNumber = 1;
     private EnemySpawner enemySpawner;
 
     [SerializeField] Text waveText;
@@ -33,8 +33,13 @@ public class WaveManager : MonoBehaviour
 
     void manageWave()
     {
+        if (waveNumber == 1)
+        {
+            enemySpawner.changeSpawnMaxLimit(30);
+        }
         if (waveNumber == 2)
         {
+            enemySpawner.changeSpawnMaxLimit(45);
             enemySpawner.changeSpawnRate(1f);
         }
         else if (waveNumber == 3)
@@ -43,6 +48,7 @@ public class WaveManager : MonoBehaviour
         }
         else if (waveNumber == 4)
         {
+            enemySpawner.changeSpawnMaxLimit(60);
             enemySpawner.changeSpawnRate(2f);
         }
         else if (waveNumber == 5)
@@ -51,10 +57,12 @@ public class WaveManager : MonoBehaviour
         }
         else if (waveNumber == 6)
         {
+            enemySpawner.changeSpawnMaxLimit(60);
             enemySpawner.changeSpawnRate(3f);
         }
         else if (waveNumber == 7)
         {
+            enemySpawner.changeSpawnMaxLimit(80);
             enemySpawner.changeSpawnIdxLimit(3);
         }
         else if (waveNumber == 8)
@@ -63,6 +71,7 @@ public class WaveManager : MonoBehaviour
         }
         else if (waveNumber == 9)
         {
+            enemySpawner.changeSpawnMaxLimit(100);
             enemySpawner.changeSpawnRate(4f);
         }
         else if (waveNumber == 10)
