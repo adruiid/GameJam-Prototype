@@ -15,12 +15,6 @@ public class RangedEnemyBehavior : MonoBehaviour
     [SerializeField] LayerMask obstacleLayer;
     [SerializeField] float avoidanceRadius = 2f;
     [SerializeField] float avoidanceWeight = 2f;
-
-    [Header("Combat Settings")]
-    [SerializeField] float damageAmount = 10f;
-    [SerializeField] float attackCooldown = 1f;
-    private float nextAttackTime;
-
     bool canMove = true;
     bool canShoot = false;
 
@@ -72,16 +66,6 @@ public class RangedEnemyBehavior : MonoBehaviour
         Quaternion targetRotation = Quaternion.LookRotation(finalDirection);
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 5f);
     }
-
-    void DealDamage()
-    {
-        if (playerLevel != null)
-        {
-            float currentHp = playerLevel.getCurrentHp();
-            playerLevel.setCurrentHp(currentHp - damageAmount);
-        }
-    }
-
     Vector3 GetSeparationVector()
     {
         Vector3 separationForce = Vector3.zero;

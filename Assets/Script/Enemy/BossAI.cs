@@ -24,12 +24,14 @@ public class BossAI : MonoBehaviour
     [Header("Smoothing")]
     [SerializeField] float velocitySmoothTime = 0.15f;
 
+    private enum State { Idle, Walking, PokeAttack, SlamAttack, Cooldown }
+    private State currentState = State.Idle;
+
     private int pokeCount = 0;
-    private float nextAttackTime;
+    private float stateTimer = 0f;
     private Vector3 currentVelocity = Vector3.zero;
     private Vector3 lastPosition;
     private float stuckTimer = 0f;
-    private bool attackTriggered = false;
 
     private Animator animator;
     private bool isAttacking;
@@ -43,7 +45,6 @@ public class BossAI : MonoBehaviour
         if (player != null)
             playerLevel = player.GetComponent<PlayerLevel>();
         animator = GetComponentInChildren<Animator>();
-        nextAttackTime = 0f;
         lastPosition = transform.position;
     }
 
@@ -54,32 +55,66 @@ public class BossAI : MonoBehaviour
         Vector3 vectorToPlayer = player.transform.position - transform.position;
         float distanceToPlayer = vectorToPlayer.magnitude;
 
-        Vector3 desiredVelocity = Vector3.zero;
-
-        if (distanceToPlayer <= stoppingDistance)
+        // State machine for boss behavior
+        switch (currentState)
         {
-            isAttacking = true;
-            if (Time.time >= nextAttackTime)
-            {
-                attackTriggered = true;
-                ExecuteAttack();
-            }
+            case State.Walking:
+                HandleWalkingState(vectorToPlayer, distanceToPlayer);
+                break;
+            case State.PokeAttack:
+                HandlePokeAttackState(vectorToPlayer, distanceToPlayer);
+                break;
+            case State.SlamAttack:
+                HandleSlamAttackState(vectorToPlayer, distanceToPlayer);
+                break;
+            case State.Cooldown:
+                HandleCooldownState(vectorToPlayer, distanceToPlayer);
+                break;
+            case State.Idle:
+                HandleIdleState(vectorToPlayer, distanceToPlayer);
+                break;
+        }
+
+        ApplyMovement();
+    }
+
+    void HandleIdleState(Vector3 vectorToPlayer, float distanceToPlayer)
+    {
+        animator.SetBool("isPoking", false);
+        animator.SetBool("isSlaming", false);
+        
+        if (distanceToPlayer < stoppingDistance)
+        {
+            currentState = State.PokeAttack;
+            stateTimer = 0f;
         }
         else
         {
-            isAttacking = false;
-            attackTriggered = false;
-            animator.SetBool("isPoking", false);
-            animator.SetBool("isSlaming", false);
-            
-            Vector3 targetDirection = vectorToPlayer.normalized;
-            targetDirection.y = 0;
-
-            Vector3 obstacleAvoidance = GetObstacleAvoidanceVector();
-            Vector3 finalDirection = (targetDirection + obstacleAvoidance * avoidanceWeight).normalized;
-
-            desiredVelocity = finalDirection * moveSpeed;
+            currentState = State.Walking;
         }
+    }
+
+    void HandleWalkingState(Vector3 vectorToPlayer, float distanceToPlayer)
+    {
+        animator.SetBool("isPoking", false);
+        animator.SetBool("isSlaming", false);
+
+        if (distanceToPlayer <= stoppingDistance)
+        {
+            // Reached player, start attack
+            currentState = State.PokeAttack;
+            stateTimer = 0f;
+            currentVelocity = Vector3.zero;
+            return;
+        }
+
+        // Move toward player
+        Vector3 targetDirection = vectorToPlayer.normalized;
+        targetDirection.y = 0;
+
+        Vector3 obstacleAvoidance = GetObstacleAvoidanceVector();
+        Vector3 finalDirection = (targetDirection + obstacleAvoidance * avoidanceWeight).normalized;
+        Vector3 desiredVelocity = finalDirection * moveSpeed;
 
         float movedDistance = Vector3.Distance(transform.position, lastPosition);
         bool isStuck = desiredVelocity.magnitude > 0.1f && movedDistance < 0.01f;
@@ -95,9 +130,100 @@ public class BossAI : MonoBehaviour
 
         float smoothTime = isStuck && stuckTimer > 0.1f ? velocitySmoothTime * 5f : velocitySmoothTime;
         currentVelocity = Vector3.Lerp(currentVelocity, desiredVelocity, smoothTime);
-        
+    }
+
+    void HandlePokeAttackState(Vector3 vectorToPlayer, float distanceToPlayer)
+    {
+        animator.SetBool("isSlaming", false);
+        animator.SetBool("isPoking", true);
+        currentVelocity = Vector3.zero;
+        isAttacking = true;
+
+        // Deal damage once when attack triggers
+        if (stateTimer == 0f)
+        {
+            DealPokeDamage();
+        }
+
+        stateTimer += Time.deltaTime;
+
+        // Wait for attack animation to finish (adjust based on your animation length)
+        if (stateTimer >= pokeCooldown)
+        {
+            pokeCount++;
+            
+            // Check if we should do a slam next
+            if (pokeCount >= 2)
+            {
+                currentState = State.SlamAttack;
+                stateTimer = 0f;
+            }
+            else
+            {
+                currentState = State.Cooldown;
+                stateTimer = 0f;
+            }
+        }
+    }
+
+    void HandleSlamAttackState(Vector3 vectorToPlayer, float distanceToPlayer)
+    {
+        animator.SetBool("isPoking", false);
+        animator.SetBool("isSlaming", true);
+        currentVelocity = Vector3.zero;
+        isAttacking = true;
+
+        // Spawn tremor once when slam triggers
+        if (stateTimer == 0f)
+        {
+            if (player != null && tremorPrefab != null)
+            {
+                if (distanceToPlayer <= slamRange)
+                {
+                    Instantiate(tremorPrefab, player.transform.position, Quaternion.identity);
+                }
+            }
+        }
+
+        stateTimer += Time.deltaTime;
+
+        // Wait for slam animation to finish
+        if (stateTimer >= slamCooldown)
+        {
+            pokeCount = 0;
+            currentState = State.Cooldown;
+            stateTimer = 0f;
+        }
+    }
+
+    void HandleCooldownState(Vector3 vectorToPlayer, float distanceToPlayer)
+    {
+        animator.SetBool("isPoking", false);
+        animator.SetBool("isSlaming", false);
+        isAttacking = false;
+        currentVelocity = Vector3.zero;
+
+        stateTimer += Time.deltaTime;
+
+        // Small cooldown before next action
+        if (stateTimer >= 0.3f)
+        {
+            if (distanceToPlayer <= stoppingDistance)
+            {
+                currentState = State.PokeAttack;
+            }
+            else
+            {
+                currentState = State.Walking;
+            }
+            stateTimer = 0f;
+        }
+    }
+
+    void ApplyMovement()
+    {
         transform.Translate(currentVelocity * Time.deltaTime, Space.World);
-        
+
         if (currentVelocity.magnitude > 0.01f)
         {
             Quaternion targetRotation = Quaternion.LookRotation(currentVelocity);
@@ -107,54 +233,7 @@ public class BossAI : MonoBehaviour
         lastPosition = transform.position;
     }
 
-    void ExecuteAttack()
-    {
-        if (pokeCount >= 2)
-        {
-            PerformSlam();
-            pokeCount = 0;
-            nextAttackTime = Time.time + slamCooldown;
-        }
-        else
-        {
-            PerformPoke();
-            pokeCount++;
-            nextAttackTime = Time.time + pokeCooldown;
-        }
-    }
-
-    void PerformPoke()
-    {
-        if (attackTriggered)
-        {
-            animator.SetBool("isSlaming", false);
-            animator.SetBool("isPoking", true);
-            DealPokeDAamage();
-            attackTriggered = false;
-        }
-    }
-
-    void PerformSlam()
-    {
-        if (attackTriggered)
-        {
-            animator.SetBool("isPoking", false);
-            animator.SetBool("isSlaming", true);
-            
-            // Check if player is within slam range
-            if (player != null && tremorPrefab != null)
-            {
-                float distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
-                if (distanceToPlayer <= slamRange)
-                {
-                    Instantiate(tremorPrefab, player.transform.position, Quaternion.identity);
-                }
-            }
-            attackTriggered = false;
-        }
-    }
-
-    void DealPokeDAamage()
+    void DealPokeDamage()
     {
         if (player != null && playerLevel != null)
         {
