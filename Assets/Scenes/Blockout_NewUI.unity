@@ -656,6 +656,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4263959455818382162, guid: 062bca1f9b120474ca09db774f2e9497, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1734297973}
+    - target: {fileID: 4263959455818382162, guid: 062bca1f9b120474ca09db774f2e9497, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: callButtonThree
+      objectReference: {fileID: 0}
     - target: {fileID: 6069299527795318077, guid: 062bca1f9b120474ca09db774f2e9497, type: 3}
       propertyPath: m_Name
       value: Upgrade 3
@@ -663,7 +671,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6069299527795318077, guid: 062bca1f9b120474ca09db774f2e9497, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2000506435}
   m_SourcePrefab: {fileID: 100100000, guid: 062bca1f9b120474ca09db774f2e9497, type: 3}
 --- !u!1 &184612748
 GameObject:
@@ -1218,7 +1229,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &341227024
 RectTransform:
   m_ObjectHideFlags: 0
@@ -13066,6 +13077,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4263959455818382162, guid: 062bca1f9b120474ca09db774f2e9497, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1734297973}
     - target: {fileID: 6069299527795318077, guid: 062bca1f9b120474ca09db774f2e9497, type: 3}
       propertyPath: m_Name
       value: Upgrade 2
@@ -13073,7 +13088,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6069299527795318077, guid: 062bca1f9b120474ca09db774f2e9497, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1860130577}
   m_SourcePrefab: {fileID: 100100000, guid: 062bca1f9b120474ca09db774f2e9497, type: 3}
 --- !u!1001 &616411168
 PrefabInstance:
@@ -13259,6 +13277,17 @@ MonoBehaviour:
     RotationDamping: {x: 1, y: 1, z: 1}
     QuaternionDamping: 1
   FollowOffset: {x: 0, y: 16.1, z: -2.53}
+--- !u!114 &734488431 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8854909482965227225, guid: 062bca1f9b120474ca09db774f2e9497, type: 3}
+  m_PrefabInstance: {fileID: 152630660}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
 --- !u!1 &752212003
 GameObject:
   m_ObjectHideFlags: 0
@@ -13334,6 +13363,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 752212003}
   m_CullTransparentMesh: 1
+--- !u!114 &770620298 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8854909482965227225, guid: 062bca1f9b120474ca09db774f2e9497, type: 3}
+  m_PrefabInstance: {fileID: 7555799003773479559}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
 --- !u!1 &770752611
 GameObject:
   m_ObjectHideFlags: 0
@@ -14109,6 +14149,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 219319259}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1069452609 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6069299527795318077, guid: 062bca1f9b120474ca09db774f2e9497, type: 3}
+  m_PrefabInstance: {fileID: 7555799003773479559}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1093537983 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8339387712794553168, guid: 062bca1f9b120474ca09db774f2e9497, type: 3}
@@ -15011,6 +15056,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1197467556}
   m_CullTransparentMesh: 1
+--- !u!1 &1217040962
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1217040964}
+  - component: {fileID: 1217040963}
+  m_Layer: 0
+  m_Name: ButtonSizeManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1217040963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1217040962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7fc1a5a53643a842881f0bc07c40a6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ButtonExpandAndShrink
+  hoverScale: 1.2
+  speed: 10
+--- !u!4 &1217040964
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1217040962}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 553.1162, y: 246.71298, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1316736234
 GameObject:
   m_ObjectHideFlags: 0
@@ -15283,6 +15374,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bdb9e4e7a6a2adf4890791a0c91c8ce5, type: 3}
+--- !u!114 &1373223263 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4884391805915434569, guid: 44178b29f4c9975489f61b91d3d9e709, type: 3}
+  m_PrefabInstance: {fileID: 1022967805108618319}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
 --- !u!1 &1411488054
 GameObject:
   m_ObjectHideFlags: 0
@@ -15795,11 +15897,61 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a3050f50ed2cb774e987918a7fdbe10e, type: 3}
+--- !u!1 &1510458906 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6069299527795318077, guid: 062bca1f9b120474ca09db774f2e9497, type: 3}
+  m_PrefabInstance: {fileID: 596542725}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &1515053233 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2448043391993334740, guid: 062bca1f9b120474ca09db774f2e9497, type: 3}
   m_PrefabInstance: {fileID: 7555799003773479559}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1515053237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1069452609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.EventSystems.EventTrigger
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1217040963}
+          m_TargetAssemblyTypeName: ButtonExpandAndShrink, Assembly-CSharp
+          m_MethodName: Expand
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1217040963}
+          m_TargetAssemblyTypeName: ButtonExpandAndShrink, Assembly-CSharp
+          m_MethodName: Shrink
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1537519387
 GameObject:
   m_ObjectHideFlags: 0
@@ -16570,7 +16722,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7733e0239731b1d46b5177ce06e13e96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelUpBox
-  maxHealthIndicator: {fileID: 0}
+  maxHealthIndicator: {fileID: 1373223263}
   levelIndicator: {fileID: 1762505720}
   damageIndicator: {fileID: 1677721075}
   speedIndicator: {fileID: 1546237919}
@@ -16580,6 +16732,9 @@ MonoBehaviour:
   button1Image: {fileID: 2006167870}
   button2Image: {fileID: 1592597721}
   button3Image: {fileID: 1660532956}
+  button1Desc: {fileID: 770620298}
+  button2Desc: {fileID: 2045050270}
+  button3Desc: {fileID: 734488431}
   upgradeList:
   - {fileID: 11400000, guid: 221dcf6f92b5e184a9db9fa69cf44a44, type: 2}
   - {fileID: 11400000, guid: b3a924e1aff508648a5135b523b3b93a, type: 2}
@@ -16983,6 +17138,51 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2448043391993334740, guid: 062bca1f9b120474ca09db774f2e9497, type: 3}
   m_PrefabInstance: {fileID: 596542725}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1860130577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1510458906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.EventSystems.EventTrigger
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 0}
+          m_TargetAssemblyTypeName: ButtonExpandAndShrink, Assembly-CSharp
+          m_MethodName: Expand
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 0}
+          m_TargetAssemblyTypeName: ButtonExpandAndShrink, Assembly-CSharp
+          m_MethodName: Shrink
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!4 &1885330469 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 319730032684633129, guid: 3ed8074ada0ef3d40af142867955ee6e, type: 3}
@@ -17304,6 +17504,56 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_RenderingLayers: 1
   m_ShadowRenderingLayers: 1
+--- !u!1 &2000506431 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6069299527795318077, guid: 062bca1f9b120474ca09db774f2e9497, type: 3}
+  m_PrefabInstance: {fileID: 152630660}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2000506435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2000506431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.EventSystems.EventTrigger
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 0}
+          m_TargetAssemblyTypeName: ButtonExpandAndShrink, Assembly-CSharp
+          m_MethodName: Expand
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 0}
+          m_TargetAssemblyTypeName: ButtonExpandAndShrink, Assembly-CSharp
+          m_MethodName: Shrink
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!114 &2006167870 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3457748639972406294, guid: 062bca1f9b120474ca09db774f2e9497, type: 3}
@@ -17315,6 +17565,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+--- !u!114 &2045050270 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8854909482965227225, guid: 062bca1f9b120474ca09db774f2e9497, type: 3}
+  m_PrefabInstance: {fileID: 596542725}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
 --- !u!1 &2064537290
 GameObject:
   m_ObjectHideFlags: 0
@@ -18270,6 +18531,18 @@ PrefabInstance:
       value: 232.7838
       objectReference: {fileID: 0}
     - target: {fileID: 2448043391993334740, guid: 062bca1f9b120474ca09db774f2e9497, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2448043391993334740, guid: 062bca1f9b120474ca09db774f2e9497, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2448043391993334740, guid: 062bca1f9b120474ca09db774f2e9497, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2448043391993334740, guid: 062bca1f9b120474ca09db774f2e9497, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -18317,6 +18590,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4263959455818382162, guid: 062bca1f9b120474ca09db774f2e9497, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1734297973}
     - target: {fileID: 6069299527795318077, guid: 062bca1f9b120474ca09db774f2e9497, type: 3}
       propertyPath: m_Name
       value: Upgrade 1
@@ -18324,7 +18601,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6069299527795318077, guid: 062bca1f9b120474ca09db774f2e9497, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1515053237}
   m_SourcePrefab: {fileID: 100100000, guid: 062bca1f9b120474ca09db774f2e9497, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
@@ -18348,3 +18628,4 @@ SceneRoots:
   - {fileID: 431801991}
   - {fileID: 184612750}
   - {fileID: 1797095665}
+  - {fileID: 1217040964}

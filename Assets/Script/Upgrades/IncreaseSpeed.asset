@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeContainers
   id: 3
   upgradeName: Increase Speed
-  description: 
+  description: Increase movement speed of player
   icon: {fileID: 21300000, guid: a52fe81d85f046c48b148d086df98b1c, type: 3}

@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeContainers
   id: 2
   upgradeName: Activate Flamethrower
-  description: 
+  description: Fire a flamethrower that does continous damage over time
   icon: {fileID: 21300000, guid: ff9f92adef523d449abbd82dfadc2100, type: 3}

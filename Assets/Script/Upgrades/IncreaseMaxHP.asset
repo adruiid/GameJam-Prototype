@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeContainers
   id: 4
   upgradeName: Increase Max Health
-  description: 
+  description: Increase player maximum hp and restore current hp to new maximum
   icon: {fileID: 21300000, guid: a77f79ae48cbb2645ad403f64efe7868, type: 3}
