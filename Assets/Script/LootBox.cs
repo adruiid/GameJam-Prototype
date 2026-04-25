@@ -43,6 +43,9 @@ public class LootBox : MonoBehaviour
 
     public void lootBoxDoneSignal()
     {
+        upgradeText.gameObject.SetActive(false);
+        closedChest.SetActive(true);
+        openChest.SetActive(false);
         lootBoxMenu.SetActive(false);
         gameUI.SetActive(true);
         pauseMenu.setPauseStatus(false);
@@ -120,4 +123,5 @@ public class LootBox : MonoBehaviour
             playerLevel.temporaryDamageUpgrade();
         }
     }
+
 }

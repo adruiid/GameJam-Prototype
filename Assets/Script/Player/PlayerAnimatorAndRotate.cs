@@ -7,6 +7,8 @@ public class PlayerAnimatorAndRotate : MonoBehaviour
     private SwarmPlayerController playerController;
     public GameObject playerMesh;
     [SerializeField] float deadzoneRadius = 100f;
+    private PauseMenu pauseMenu;
+    private ExperienceManager experienceManager;
     
     private Quaternion lastValidRotation;
     
@@ -16,10 +18,17 @@ public class PlayerAnimatorAndRotate : MonoBehaviour
         playerController= GetComponent<SwarmPlayerController>();
         rb= GetComponent<Rigidbody>();
         lastValidRotation = playerMesh.transform.rotation;
+        pauseMenu = GameObject.Find("Game Manager").GetComponent<PauseMenu>();
+        experienceManager = GameObject.Find("Game Manager").GetComponent<ExperienceManager>();
     }
 
     void Update()
     {
+        if(experienceManager.levelUpBoxStatus() || pauseMenu.pauseStatus())
+        {
+            return;
+        }
+
         float vectorMovement = playerController.getVectorMovement();
         anim.SetBool("isMoving", vectorMovement > 0.1f);
 

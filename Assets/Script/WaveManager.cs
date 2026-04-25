@@ -39,31 +39,32 @@ public class WaveManager : MonoBehaviour
         }
         if (waveNumber == 2)
         {
-            enemySpawner.changeSpawnMaxLimit(45);
+            enemySpawner.changeSpawnIdxLimit(1);
+            enemySpawner.changeSpawnMaxLimit(80);
             enemySpawner.changeSpawnRate(1f);
         }
         else if (waveNumber == 3)
         {
-            enemySpawner.changeSpawnIdxLimit(1);
+            enemySpawner.changeSpawnIdxLimit(2);
         }
         else if (waveNumber == 4)
         {
-            enemySpawner.changeSpawnMaxLimit(60);
+            enemySpawner.changeSpawnIdxLimit(3);
+            enemySpawner.changeSpawnMaxLimit(120);
             enemySpawner.changeSpawnRate(2f);
         }
         else if (waveNumber == 5)
         {
-            enemySpawner.changeSpawnIdxLimit(2);
+            
         }
         else if (waveNumber == 6)
         {
-            enemySpawner.changeSpawnMaxLimit(60);
+            enemySpawner.changeSpawnMaxLimit(200);
             enemySpawner.changeSpawnRate(3f);
         }
         else if (waveNumber == 7)
         {
-            enemySpawner.changeSpawnMaxLimit(80);
-            enemySpawner.changeSpawnIdxLimit(3);
+            enemySpawner.changeSpawnMaxLimit(300);
         }
         else if (waveNumber == 8)
         {

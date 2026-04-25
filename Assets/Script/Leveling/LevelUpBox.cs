@@ -195,10 +195,11 @@ public class LevelUpBox : MonoBehaviour
     {
         if (flameThrowerLevel == 2)
         {
-
+            playerArmory.setFlameThrowerLevel(2);
         }
         else if (flameThrowerLevel == 3)
         {
+            playerArmory.setFlameThrowerLevel(3);
             upgradeList[2] = nullUpgrade;
         }
     }

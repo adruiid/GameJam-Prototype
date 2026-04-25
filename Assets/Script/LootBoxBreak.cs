@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class LootBoxBreak : MonoBehaviour
@@ -20,9 +21,9 @@ public class LootBoxBreak : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
-        {
-            Destroy(lootBoxMesh);
+        {    
             lootBoxManager.activateLootboxMenu();
+            Destroy(gameObject);
         }
     }
 

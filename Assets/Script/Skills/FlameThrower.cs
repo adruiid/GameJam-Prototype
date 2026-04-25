@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class FlameThrower : MonoBehaviour
 {
-    [SerializeField] private float damagePerTick = 2f;
+    private PlayerArmory playerStat;
+    [SerializeField] private float damagePerTick;
     [SerializeField] private float tickRate = 0.2f;
     [SerializeField] LayerMask enemyLayer;
     private BoxCollider boxCollider;
@@ -10,7 +11,9 @@ public class FlameThrower : MonoBehaviour
     private float timer;
     void Start()
     {
-        boxCollider=GetComponent<BoxCollider>();
+        playerStat=GameObject.Find("Player").GetComponent<PlayerArmory>();
+        damagePerTick = playerStat.getFlameThrowerDamagePerTick();
+        boxCollider =GetComponent<BoxCollider>();
     }
 
     void Update()
@@ -37,5 +40,10 @@ public class FlameThrower : MonoBehaviour
                 enemyStats.recieveDamage(damagePerTick);
             }
         }
+    }
+
+    public void setDamagePerTick(float damagePerTick)
+    {
+        this.damagePerTick = damagePerTick;
     }
 }

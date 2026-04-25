@@ -22,10 +22,10 @@ public class expOrb : MonoBehaviour
 
         if (vectorToPlayer.magnitude < 4f)
         {
-            transform.Translate(vectorToPlayer * moveSpeed * Time.deltaTime, Space.World);
+            transform.Translate(vectorToPlayer * moveSpeed * Time.deltaTime);
         }
 
-        transform.Translate(vectorToPlayer * moveSpeed * Time.deltaTime, Space.World);
+        transform.Translate(vectorToPlayer * moveSpeed * Time.deltaTime);
     }
 
     private void OnCollisionEnter(Collision collision)
