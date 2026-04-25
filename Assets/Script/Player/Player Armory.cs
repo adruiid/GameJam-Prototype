@@ -80,10 +80,7 @@ public class PlayerArmory : MonoBehaviour
     }
     private void FireHomingMissiles()
     {
-        // TransformDirection applies the gun's rotation to the offset, completely ignoring scale
         Vector3 rotatedOffset = gunTransform.TransformDirection(trackOffset);
-        
-        // Add the correctly rotated offset to the gun's current position
         Vector3 spawnPosition = gunTransform.position + rotatedOffset;
         
         Instantiate(homingMissiles, spawnPosition, homingMissiles.transform.rotation);

@@ -30,31 +30,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1f9c077fd5b19e74eb97b8aa35d13c80, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1167.4323
+      value: 1165.45
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1f9c077fd5b19e74eb97b8aa35d13c80, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.5199995
+      value: 2.52
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1f9c077fd5b19e74eb97b8aa35d13c80, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -852.2304
+      value: -854
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1f9c077fd5b19e74eb97b8aa35d13c80, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.681056
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1f9c077fd5b19e74eb97b8aa35d13c80, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.6810561
+      value: -0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1f9c077fd5b19e74eb97b8aa35d13c80, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.1901649
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1f9c077fd5b19e74eb97b8aa35d13c80, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.19016486
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1f9c077fd5b19e74eb97b8aa35d13c80, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -66,7 +66,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1f9c077fd5b19e74eb97b8aa35d13c80, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 31.202
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8568300645250634909, guid: 1f9c077fd5b19e74eb97b8aa35d13c80, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
@@ -134,6 +134,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 1f9c077fd5b19e74eb97b8aa35d13c80, type: 3}
       insertIndex: -1
       addedObject: {fileID: -386619702083933737}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 1f9c077fd5b19e74eb97b8aa35d13c80, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -3208056574551452912}
   m_SourcePrefab: {fileID: 100100000, guid: 1f9c077fd5b19e74eb97b8aa35d13c80, type: 3}
 --- !u!1 &3486981053791749534 stripped
 GameObject:
@@ -183,3 +186,29 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-3208056574551452912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3486981053791749534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb3ed999b9a6a8e499cf46006c07f1d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BossAI
+  moveSpeed: 3
+  stoppingDistance: 1.5
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  avoidanceRadius: 2
+  avoidanceWeight: 2
+  pokeDamage: 15
+  pokeRange: 1.5
+  pokeCooldown: 1
+  slamRange: 3
+  slamCooldown: 2
+  tremorPrefab: {fileID: 9197753352528933276, guid: 87b0cc5cfa3a15540bc70c1933c51709, type: 3}
+  velocitySmoothTime: 0.15
