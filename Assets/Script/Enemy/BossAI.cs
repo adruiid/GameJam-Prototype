@@ -15,11 +15,13 @@ public class BossAI : MonoBehaviour
     [SerializeField] float pokeDamage = 15f;
     [SerializeField] float pokeRange = 1.5f;
     [SerializeField] float pokeCooldown = 1f;
+    [SerializeField] float maxTimeBetweenPokes = 5f; // X seconds before forcing a slam
 
     [Header("Slam Attack Settings")]
     [SerializeField] float slamRange = 3f;
     [SerializeField] float slamCooldown = 2f;
     [SerializeField] GameObject tremorPrefab;
+    [SerializeField] float tremorSpawnDistance = 1.5f;
 
     [Header("Smoothing")]
     [SerializeField] float velocitySmoothTime = 0.15f;
@@ -29,6 +31,7 @@ public class BossAI : MonoBehaviour
 
     private int pokeCount = 0;
     private float stateTimer = 0f;
+    private float timeSinceLastPoke = 0f; // Tracks time between pokes
     private Vector3 currentVelocity = Vector3.zero;
     private Vector3 lastPosition;
     private float stuckTimer = 0f;
@@ -54,6 +57,12 @@ public class BossAI : MonoBehaviour
 
         Vector3 vectorToPlayer = player.transform.position - transform.position;
         float distanceToPlayer = vectorToPlayer.magnitude;
+
+        // Tick our poke desperation timer if we aren't currently attacking
+        if (!isAttacking)
+        {
+            timeSinceLastPoke += Time.deltaTime;
+        }
 
         // State machine for boss behavior
         switch (currentState)
@@ -83,10 +92,17 @@ public class BossAI : MonoBehaviour
         animator.SetBool("isPoking", false);
         animator.SetBool("isSlaming", false);
         
-        if (distanceToPlayer < stoppingDistance)
+        if (timeSinceLastPoke >= maxTimeBetweenPokes && distanceToPlayer <= slamRange)
+        {
+            currentState = State.SlamAttack;
+            stateTimer = 0f;
+            timeSinceLastPoke = 0f;
+        }
+        else if (distanceToPlayer < stoppingDistance)
         {
             currentState = State.PokeAttack;
             stateTimer = 0f;
+            timeSinceLastPoke = 0f;
         }
         else
         {
@@ -99,11 +115,22 @@ public class BossAI : MonoBehaviour
         animator.SetBool("isPoking", false);
         animator.SetBool("isSlaming", false);
 
+        // Check if we took too long to poke and are in range to slam instead
+        if (timeSinceLastPoke >= maxTimeBetweenPokes && distanceToPlayer <= slamRange)
+        {
+            currentState = State.SlamAttack;
+            stateTimer = 0f;
+            timeSinceLastPoke = 0f;
+            currentVelocity = Vector3.zero;
+            return;
+        }
+
         if (distanceToPlayer <= stoppingDistance)
         {
-            // Reached player, start attack
+            // Reached player normally, start poke attack
             currentState = State.PokeAttack;
             stateTimer = 0f;
+            timeSinceLastPoke = 0f;
             currentVelocity = Vector3.zero;
             return;
         }
@@ -152,11 +179,12 @@ public class BossAI : MonoBehaviour
         {
             pokeCount++;
             
-            // Check if we should do a slam next
-            if (pokeCount >= 2)
+            // Check if we should do a slam next (only if player is in slam range)
+            if (pokeCount >= 2 && distanceToPlayer <= slamRange)
             {
                 currentState = State.SlamAttack;
                 stateTimer = 0f;
+                timeSinceLastPoke = 0f; // Reset our timer since we are transitioning to slam
             }
             else
             {
@@ -176,12 +204,11 @@ public class BossAI : MonoBehaviour
         // Spawn tremor once when slam triggers
         if (stateTimer == 0f)
         {
-            if (player != null && tremorPrefab != null)
+            if (tremorPrefab != null)
             {
-                if (distanceToPlayer <= slamRange)
-                {
-                    Instantiate(tremorPrefab, player.transform.position, Quaternion.identity);
-                }
+                // Spawn tremor outside boss's hitbox in the direction boss is facing
+                Vector3 spawnPosition = transform.position + transform.forward * tremorSpawnDistance + transform.up * -4;
+                Instantiate(tremorPrefab, spawnPosition, transform.rotation);
             }
         }
 
@@ -190,7 +217,7 @@ public class BossAI : MonoBehaviour
         // Wait for slam animation to finish
         if (stateTimer >= slamCooldown)
         {
-            pokeCount = 0;
+            pokeCount = 0; // Slam resets the poke count as per original logic
             currentState = State.Cooldown;
             stateTimer = 0f;
         }
@@ -208,9 +235,15 @@ public class BossAI : MonoBehaviour
         // Small cooldown before next action
         if (stateTimer >= 0.3f)
         {
-            if (distanceToPlayer <= stoppingDistance)
+            if (timeSinceLastPoke >= maxTimeBetweenPokes && distanceToPlayer <= slamRange)
+            {
+                currentState = State.SlamAttack;
+                timeSinceLastPoke = 0f;
+            }
+            else if (distanceToPlayer <= stoppingDistance)
             {
                 currentState = State.PokeAttack;
+                timeSinceLastPoke = 0f;
             }
             else
             {

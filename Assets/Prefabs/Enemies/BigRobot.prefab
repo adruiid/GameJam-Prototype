@@ -137,7 +137,27 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 1f9c077fd5b19e74eb97b8aa35d13c80, type: 3}
       insertIndex: -1
       addedObject: {fileID: -3208056574551452912}
+    - targetCorrespondingSourceObject: {fileID: 2541585783379350917, guid: 1f9c077fd5b19e74eb97b8aa35d13c80, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1672080859446859260}
   m_SourcePrefab: {fileID: 100100000, guid: 1f9c077fd5b19e74eb97b8aa35d13c80, type: 3}
+--- !u!1 &2297066531664244042 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2541585783379350917, guid: 1f9c077fd5b19e74eb97b8aa35d13c80, type: 3}
+  m_PrefabInstance: {fileID: 4369994786066364623}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1672080859446859260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2297066531664244042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 426caf379fd76004884259257834e896, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
 --- !u!1 &3486981053791749534 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 1f9c077fd5b19e74eb97b8aa35d13c80, type: 3}
@@ -208,7 +228,9 @@ MonoBehaviour:
   pokeDamage: 15
   pokeRange: 1.5
   pokeCooldown: 1
+  maxTimeBetweenPokes: 5
   slamRange: 3
   slamCooldown: 2
   tremorPrefab: {fileID: 9197753352528933276, guid: 87b0cc5cfa3a15540bc70c1933c51709, type: 3}
+  tremorSpawnDistance: 1.5
   velocitySmoothTime: 0.15
