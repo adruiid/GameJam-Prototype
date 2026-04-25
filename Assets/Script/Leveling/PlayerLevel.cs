@@ -27,7 +27,7 @@ public class PlayerLevel : MonoBehaviour
         experienceManager = GameObject.Find("Game Manager").GetComponent<ExperienceManager>();
         currentLevel = 1;
         neededExp = 100;
-        playerMaxHealth = 500;
+        playerMaxHealth = 100;
         playerSpeed = playerController.getSpeed();
         currentHealth = playerMaxHealth;
     }

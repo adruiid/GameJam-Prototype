@@ -232,6 +232,7 @@ public class LevelUpBox : MonoBehaviour
     public void increaseMaxHealth()
     {
         playerLevel.setMaxHP(playerLevel.getMaxHp() + 10f);
+        playerLevel.setCurrentHp(playerLevel.getMaxHp());
     }
 
     public void activateMine()
