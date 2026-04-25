@@ -5,7 +5,7 @@ public class ExperienceManager : MonoBehaviour
 {
     [SerializeField] Image expBar;
     [SerializeField] Text levelText;
-    [SerializeField] Image levelUpBox;
+    [SerializeField] GameObject levelUpBox;
     [SerializeField] PauseMenu pauseMenu;
     LevelUpBox levelUpBoxScript;
     private PlayerLevel playerInfo;

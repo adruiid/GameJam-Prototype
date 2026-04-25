@@ -22,6 +22,10 @@ public class LevelUpBox : MonoBehaviour
     [SerializeField] Image button1Image;
     [SerializeField] Image button2Image;
     [SerializeField] Image button3Image;
+    [SerializeField] Text button1Desc;
+    [SerializeField] Text button2Desc;
+    [SerializeField] Text button3Desc;
+
 
     int idx1, idx2, idx3;
     string upgrade1;
