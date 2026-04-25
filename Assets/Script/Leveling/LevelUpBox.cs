@@ -2,7 +2,6 @@ using Unity.Burst;
 using UnityEditor.Rendering.Universal;
 using UnityEngine;
 using UnityEngine.UI;
-using System.Collections.Generic;
 
 public class LevelUpBox : MonoBehaviour
 {
@@ -22,13 +21,16 @@ public class LevelUpBox : MonoBehaviour
     [SerializeField] Image button1Image;
     [SerializeField] Image button2Image;
     [SerializeField] Image button3Image;
+    [SerializeField] Text button1Desc;
+    [SerializeField] Text button2Desc;
+    [SerializeField] Text button3Desc;
 
     int idx1, idx2, idx3;
     string upgrade1;
     string upgrade2;
     string upgrade3;
 
-    [SerializeField]UpgradeContainers[] upgradeList;
+    [SerializeField] UpgradeContainers[] upgradeList;
     [SerializeField] GameObject homingMissilePrefab;
     HomingProjectiles homingSpeed;
 
@@ -53,10 +55,10 @@ public class LevelUpBox : MonoBehaviour
         playerArmory = GameObject.Find("Player").GetComponent<PlayerArmory>();
         playerLevel = GameObject.Find("Player").GetComponent<PlayerLevel>();
         experienceManager = GameObject.Find("Game Manager").GetComponent<ExperienceManager>();
-        homingSpeed= homingMissilePrefab.GetComponent<HomingProjectiles>();
+        homingSpeed = homingMissilePrefab.GetComponent<HomingProjectiles>();
     }
 
-    
+
     void Update()
     {
         if (playerArmory.hasHomingMissiles)
@@ -74,7 +76,7 @@ public class LevelUpBox : MonoBehaviour
             upgradeList[6] = upgradeMine;
         }
 
-        if(playerArmory.hasFlameThrower)
+        if (playerArmory.hasFlameThrower)
         {
             upgradeList[2] = upgradeFlameThrower;
         }
@@ -82,87 +84,41 @@ public class LevelUpBox : MonoBehaviour
 
     public void assignNew()
     {
-        if (upgradeList == null || upgradeList.Length == 0)
+        while (true)
         {
-            Debug.LogError("LevelUpBox.assignNew: upgradeList is null or empty.");
-            ClearButtons();
-            return;
+            idx1 = Random.Range(0, upgradeList.Length);
+            if (!(upgradeList[idx1] == nullUpgrade)) break;
         }
 
-        List<int> valid = new List<int>();
-        for (int i = 0; i < upgradeList.Length; i++)
+        while (true)
         {
-            if (upgradeList[i] != null && upgradeList[i] != nullUpgrade) valid.Add(i);
+            idx2 = Random.Range(0, upgradeList.Length);
+            if (upgradeList[idx2] == nullUpgrade) continue;
+            if (idx2 != idx1) break;
+        }
+        while (true)
+        {
+            idx3 = Random.Range(0, upgradeList.Length);
+            if (upgradeList[idx3] == nullUpgrade) continue;
+            if (idx3 != idx1 && idx3 != idx2) break;
         }
 
-        if (valid.Count == 0)
-        {
-            Debug.LogWarning("LevelUpBox.assignNew: no valid upgrades available (all null or nullUpgrade).");
-            ClearButtons();
-            return;
-        }
 
-        idx1 = idx2 = idx3 = -1;
-        int picks = Mathf.Min(3, valid.Count);
-        for (int p = 0; p < picks; p++)
-        {
-            int r = Random.Range(0, valid.Count);
-            int chosen = valid[r];
-            valid.RemoveAt(r);
-            if (p == 0) idx1 = chosen;
-            else if (p == 1) idx2 = chosen;
-            else if (p == 2) idx3 = chosen;
-        }
+        button1Text.text = upgradeList[idx1].upgradeName;
+        button2Text.text = upgradeList[idx2].upgradeName;
+        button3Text.text = upgradeList[idx3].upgradeName;
+        button1Image.sprite = upgradeList[idx1].icon;
+        button2Image.sprite = upgradeList[idx2].icon;
+        button3Image.sprite = upgradeList[idx3].icon;
+        button1Desc.text = upgradeList[idx1].description;
+        button2Desc.text = upgradeList[idx2].description;
+        button3Desc.text = upgradeList[idx3].description;
+    
+        maxHealthIndicator.text = "Max Health: " + playerLevel.getMaxHp();
+        levelIndicator.text = "Level: " + playerLevel.getLevel();
+        damageIndicator.text = "Damage: " + playerArmory.getDamage();
+        speedIndicator.text = "Speed: " + playerLevel.getSpeed() / 100f;
 
-        SetButtonToUpgrade(button1Text, button1Image, idx1);
-        SetButtonToUpgrade(button2Text, button2Image, idx2);
-        SetButtonToUpgrade(button3Text, button3Image, idx3);
-
-        if (playerLevel != null)
-        {
-            if (maxHealthIndicator != null) maxHealthIndicator.text = "Max Health: " + playerLevel.getMaxHp();
-            if (levelIndicator != null) levelIndicator.text = "Level: " + playerLevel.getLevel();
-            if (speedIndicator != null) speedIndicator.text = "Speed: " + playerLevel.getSpeed() / 100f;
-        }
-        else
-        {
-            Debug.LogWarning("LevelUpBox.assignNew: playerLevel is null.");
-        }
-
-        if (playerArmory != null)
-        {
-            if (damageIndicator != null) damageIndicator.text = "Damage: " + playerArmory.getDamage();
-        }
-        else
-        {
-            Debug.LogWarning("LevelUpBox.assignNew: playerArmory is null.");
-        }
-    }
-
-    private void ClearButtons()
-    {
-        SetButtonToUpgrade(button1Text, button1Image, -1);
-        SetButtonToUpgrade(button2Text, button2Image, -1);
-        SetButtonToUpgrade(button3Text, button3Image, -1);
-    }
-
-    private void SetButtonToUpgrade(Text txt, Image img, int idx)
-    {
-        if (txt != null)
-        {
-            if (idx < 0 || upgradeList == null || idx >= upgradeList.Length || upgradeList[idx] == null || upgradeList[idx] == nullUpgrade)
-                txt.text = "None";
-            else
-                txt.text = string.IsNullOrEmpty(upgradeList[idx].upgradeName) ? "Unnamed Upgrade" : upgradeList[idx].upgradeName;
-        }
-
-        if (img != null)
-        {
-            if (idx < 0 || upgradeList == null || idx >= upgradeList.Length || upgradeList[idx] == null || upgradeList[idx] == nullUpgrade)
-                img.sprite = null;
-            else
-                img.sprite = upgradeList[idx].icon;
-        }
     }
 
     public void callButtonOne()
@@ -240,7 +196,8 @@ public class LevelUpBox : MonoBehaviour
         if (flameThrowerLevel == 2)
         {
 
-        } else if(flameThrowerLevel == 3)
+        }
+        else if (flameThrowerLevel == 3)
         {
             upgradeList[2] = nullUpgrade;
         }
@@ -279,7 +236,7 @@ public class LevelUpBox : MonoBehaviour
 
     public void activateMine()
     {
-        if(playerArmory.hasMines)
+        if (playerArmory.hasMines)
         {
             mineLevel++;
             UpgradeMine();

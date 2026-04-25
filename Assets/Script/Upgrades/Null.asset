@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeContainers
   id: 99
   upgradeName: NULL
-  description: 
+  description: NULL
   icon: {fileID: 0}
