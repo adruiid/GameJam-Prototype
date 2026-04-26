@@ -86,7 +86,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyDrops
   hpOrb: {fileID: 1255199619217298908, guid: 286bc201931f1f3418136f89f0043fd3, type: 3}
   expOrb: {fileID: 1429321509600261865, guid: c0f0a96f46bce68488f84bfddc6a0baf, type: 3}
-  hpOrbDropChance: 50
+  hpOrbDropChance: 30
   expOrbQuantity: 3
 --- !u!114 &-8370604442122128045
 MonoBehaviour:

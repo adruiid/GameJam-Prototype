@@ -17325,6 +17325,7 @@ GameObject:
   - component: {fileID: 1734297974}
   - component: {fileID: 1734297975}
   - component: {fileID: 1734297976}
+  - component: {fileID: 1734297977}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -17477,6 +17478,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PauseMenu
   gameUI: {fileID: 1459631364}
   pauseUI: {fileID: 1661011243}
+--- !u!114 &1734297977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1734297969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c0856792833c9d4596db89bd8828849, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UniversalStatMultiplier
+  damageMultiplier: 1
+  speedMultiplier: 1
+  healthMultiplier: 1
 --- !u!1 &1735093459
 GameObject:
   m_ObjectHideFlags: 0

@@ -18,12 +18,16 @@ public class EnemyProjectile : MonoBehaviour
     float projectileSpeed;
     [SerializeField] LayerMask playerLayer;
 
+    private UniversalStatMultiplier statMultiplier;
+
     void Start()
     {
         player = GameObject.Find("Player");
         playerLevel = player.GetComponent<PlayerLevel>();
         playerLayer = LayerMask.GetMask("Player");
         FindRelativeBounds();
+
+        statMultiplier = GameObject.Find("Game Manager").GetComponent<UniversalStatMultiplier>();
     }
 
     private void FindRelativeBounds()
@@ -36,6 +40,7 @@ public class EnemyProjectile : MonoBehaviour
 
     void Update()
     {
+        damage *= statMultiplier.getDamageMultiplier();
         transform.position += worldDirection * projectileSpeed * Time.deltaTime;
         
         if (transform.position.x > upperBoundX || transform.position.x < lowerBoundX || transform.position.z > upperBoundZ || transform.position.z < lowerBoundZ)

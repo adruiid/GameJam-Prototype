@@ -12,9 +12,12 @@ public class WaveManager : MonoBehaviour
 
 
     float timer;
+
+    private UniversalStatMultiplier statMultiplier;
     void Start()
     {
         enemySpawner= GetComponent<EnemySpawner>();
+        statMultiplier = GameObject.Find("Game Manager").GetComponent<UniversalStatMultiplier>();
     }
 
     
@@ -40,31 +43,34 @@ public class WaveManager : MonoBehaviour
         }
         if (waveNumber == 2)
         {
+            statMultiplier.setUniversalMultiplier(statMultiplier.getDamageMultiplier()*1.2f);
             enemySpawner.changeSpawnIdxLimit(1);
             enemySpawner.changeSpawnMaxLimit(80);
             enemySpawner.changeSpawnRate(1f);
         }
         else if (waveNumber == 3)
         {
-            enemySpawner.changeSpawnIdxLimit(2);
+            statMultiplier.setUniversalMultiplier(statMultiplier.getDamageMultiplier()*1.2f);
         }
         else if (waveNumber == 4)
         {
-            
+            enemySpawner.changeSpawnIdxLimit(2);
             enemySpawner.changeSpawnMaxLimit(120);
             enemySpawner.changeSpawnRate(2f);
         }
         else if (waveNumber == 5)
         {
-            enemySpawner.changeSpawnIdxLimit(3);
+            statMultiplier.setUniversalMultiplier(statMultiplier.getDamageMultiplier() * 1.2f);
         }
         else if (waveNumber == 6)
         {
+            enemySpawner.changeSpawnIdxLimit(3);
             enemySpawner.changeSpawnMaxLimit(200);
             
         }
         else if (waveNumber == 7)
         {
+            statMultiplier.setUniversalMultiplier(statMultiplier.getDamageMultiplier() * 1.4f);
             enemySpawner.changeSpawnRate(3f);
             enemySpawner.changeSpawnMaxLimit(300);
         }
@@ -74,6 +80,7 @@ public class WaveManager : MonoBehaviour
         }
         else if (waveNumber == 9)
         {
+            statMultiplier.setUniversalMultiplier(statMultiplier.getDamageMultiplier() * 1.5f);
             enemySpawner.changeSpawnMaxLimit(100);
             enemySpawner.changeSpawnRate(4f);
         }

@@ -44,6 +44,8 @@ public class DogEnemyAI : MonoBehaviour
     GameObject player;
     PlayerLevel playerLevel;
 
+    private UniversalStatMultiplier statMultiplier;
+
     void Start()
     {
         player = GameObject.Find("Player");
@@ -55,10 +57,15 @@ public class DogEnemyAI : MonoBehaviour
         transform.position = spawnPos;
         
         lastPosition = transform.position;
+
+        statMultiplier = GameObject.Find("Game Manager").GetComponent<UniversalStatMultiplier>();
     }
 
     void Update()
     {
+        moveSpeed *= statMultiplier.getSpeedMultiplier();
+        pounceDamage *= statMultiplier.getDamageMultiplier();
+
         if (player == null) return;
         if (!canMove) return;
 
