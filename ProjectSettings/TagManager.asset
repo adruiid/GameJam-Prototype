@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Metallic
   - Enemy
+  - FxTemporaire
+  - Boss
   layers:
   - Default
   - TransparentFX
@@ -17,7 +19,7 @@ TagManager:
   - Enemy
   - Player
   - Ground
-  - 
+  - Boss
   - 
   - 
   - 
@@ -52,3 +54,4 @@ TagManager:
   - Light Layer 5
   - Light Layer 6
   - Light Layer 7
+  m_MigratedRenderPipelines: []

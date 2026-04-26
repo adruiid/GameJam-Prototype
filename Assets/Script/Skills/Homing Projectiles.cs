@@ -7,7 +7,7 @@ public class HomingProjectiles : MonoBehaviour
     
     [Header("Movement Settings")]
     public float speed = 10f;
-    public float turnSpeed = 5f; // NEW: Controls how tight the missile can turn (radians per second)
+    public float turnSpeed = 5f;
     [SerializeField] float maxTargetingRange = 15f;
     [SerializeField] float upperBound = 50f;
     [SerializeField] float lowerBound = -50f;
@@ -37,7 +37,7 @@ public class HomingProjectiles : MonoBehaviour
         target = FindClosestEnemy();
         FindRelativeBounds();
         
-        // Get direction from player's mesh facing direction
+
         GameObject player = GameObject.Find("Player");
         if (player != null)
         {
@@ -62,7 +62,6 @@ public class HomingProjectiles : MonoBehaviour
     {
         timeAlive += Time.deltaTime;
 
-        // 1. Boundary Check
         if (transform.position.x > upperBoundX || transform.position.x < lowerBoundX || transform.position.z > upperBoundZ || transform.position.z < lowerBoundZ)
         {
             SpawnParticleEffect();
@@ -70,30 +69,20 @@ public class HomingProjectiles : MonoBehaviour
             return;
         }
         
-        // 2. Smooth Steering Logic
         if (target != null && timeAlive >= homingDelay)
         {
-            // Flatten the target's position so the missile only steers left/right (ignores up/down)
             Vector3 flatTargetPosition = new Vector3(target.position.x, transform.position.y, target.position.z);
-            
-            // Find the direction we WANT to go using the flattened position
             Vector3 desiredDirection = (flatTargetPosition - transform.position).normalized;
-            
-            // Smoothly rotate our current trajectory towards the desired direction
             moveDirection = Vector3.RotateTowards(moveDirection, desiredDirection, turnSpeed * Time.deltaTime, 0f).normalized;
         }
 
-        // 3. Apply Movement & Rotation
-        // The missile always moves along its moveDirection, whether it is homing or flying dumb
         transform.Translate(moveDirection * speed * Time.deltaTime, Space.World);
         
         if (moveDirection != Vector3.zero)
         {
-            // Point the model in the moveDirection, applying your -90 degree visual offset
             transform.rotation = Quaternion.LookRotation(moveDirection) * Quaternion.Euler(0, -90, 0);
         }
         
-        // 4. Hit Detection
         bool hitSomething = CheckForHit();
         if (hitSomething)
         {

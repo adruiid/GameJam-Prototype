@@ -38,19 +38,18 @@ public class RangedEnemyBehavior : MonoBehaviour
         Vector3 vectorToPlayer = player.transform.position - transform.position;
         float distanceToPlayer = vectorToPlayer.magnitude;
 
-        // If shooting, only move if player is out of range
         if (canShoot)
         {
 
-            if (distanceToPlayer <= stoppingDistance) // Match RangedEnemy's attackRange
+            if (distanceToPlayer <= stoppingDistance)
             {
                 anim.SetBool("shooting", true);
-                return; // Stop moving, just shoot
+                return;
             }
             else
             {
                 anim.SetBool("shooting", false);
-                canShoot = false; // Player moved out of range, resume normal behavior
+                canShoot = false;
             }
         }
 

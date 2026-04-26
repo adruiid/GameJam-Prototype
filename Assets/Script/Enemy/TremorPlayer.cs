@@ -8,8 +8,7 @@ public class TremorPlayer : MonoBehaviour
     [SerializeField] float stunSpeedMultiplier = 0.3f;
     
     [Header("Trigger Settings")]
-    [SerializeField] float requiredDelay = 1.0f; // How long player must stand inside to get hit
-
+    [SerializeField] float requiredDelay = 1.0f;
     private float timeInside = 0f;
     private bool hasHitPlayer = false;
 
@@ -25,12 +24,12 @@ public class TremorPlayer : MonoBehaviour
         }
     }
 
-    // 1. Triggered exactly when the player steps in
+
     void OnTriggerEnter(Collider collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            timeInside = 0f; // Start the clock at 0
+            timeInside = 0f;
         }
     }
 

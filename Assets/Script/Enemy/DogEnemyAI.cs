@@ -50,7 +50,6 @@ public class DogEnemyAI : MonoBehaviour
         if (player != null)
             playerLevel = player.GetComponent<PlayerLevel>();
         
-        // Lift dog above ground
         Vector3 spawnPos = transform.position;
         spawnPos.y += groundOffset;
         transform.position = spawnPos;
@@ -66,7 +65,6 @@ public class DogEnemyAI : MonoBehaviour
         Vector3 vectorToPlayer = player.transform.position - transform.position;
         float distanceToPlayer = vectorToPlayer.magnitude;
 
-        // State machine for dog behavior
         switch (currentState)
         {
             case State.Walking:
@@ -166,14 +164,12 @@ public class DogEnemyAI : MonoBehaviour
         directionToPounce.y = 0;
         currentVelocity = directionToPounce * pounceForce;
 
-        // Check for hit during pounce each frame with larger radius buffer
         if (!hasHitThisFrame && Vector3.Distance(transform.position, player.transform.position) <= pounceRadius + 0.5f)
         {
             DealDamage();
             hasHitThisFrame = true;
         }
 
-        // Check if we've traveled far enough or if pounce duration is over
         if (pounceTimer >= 0.3f || Vector3.Distance(transform.position, pounceTarget) < 1f)
         {
             currentState = State.Waiting;
@@ -193,14 +189,12 @@ public class DogEnemyAI : MonoBehaviour
         {
             if (distanceToPlayer <= pounceRange)
             {
-                // Player still in range, charge again
                 currentState = State.Charging;
                 chargeTimer = 0f;
                 pounceTarget = player.transform.position;
             }
             else
             {
-                // Player too far, go back to walking
                 currentState = State.Walking;
             }
         }

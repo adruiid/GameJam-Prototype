@@ -5,9 +5,9 @@ public class CogwheelSpinner : MonoBehaviour
 {
     [SerializeField] GameObject cogwheelPrefab;
     [SerializeField] float orbitRadius = 2.5f;
-    [SerializeField] float rotationSpeed = 360f; // degrees per second
-    [SerializeField] float heightOffset = 1.5f; // waist height
-    [SerializeField] int skillLevel = 1; // 1, 3, or 5 cogwheels
+    [SerializeField] float rotationSpeed = 360f;
+    [SerializeField] float heightOffset = 1.5f;
+    [SerializeField] int skillLevel = 1;
     [SerializeField] float damageAmount = 10f;
     [SerializeField] LayerMask enemyLayer;
     

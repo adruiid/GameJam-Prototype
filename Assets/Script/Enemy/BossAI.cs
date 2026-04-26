@@ -11,11 +11,15 @@ public class BossAI : MonoBehaviour
     [SerializeField] float avoidanceRadius = 2f;
     [SerializeField] float avoidanceWeight = 2f;
 
+    [Header("Boss Separation Settings")]
+    [SerializeField] float bossSeparationRadius = 3f;
+    [SerializeField] float bossSeparationWeight = 2f;
+
     [Header("Poke Attack Settings")]
     [SerializeField] float pokeDamage = 15f;
     [SerializeField] float pokeRange = 1.5f;
     [SerializeField] float pokeCooldown = 1f;
-    [SerializeField] float maxTimeBetweenPokes = 5f; // X seconds before forcing a slam
+    [SerializeField] float maxTimeBetweenPokes = 5f;
 
     [Header("Slam Attack Settings")]
     [SerializeField] float slamRange = 3f;
@@ -58,13 +62,13 @@ public class BossAI : MonoBehaviour
         Vector3 vectorToPlayer = player.transform.position - transform.position;
         float distanceToPlayer = vectorToPlayer.magnitude;
 
-        // Tick our poke desperation timer if we aren't currently attacking
+
         if (!isAttacking)
         {
             timeSinceLastPoke += Time.deltaTime;
         }
 
-        // State machine for boss behavior
+
         switch (currentState)
         {
             case State.Walking:
@@ -114,8 +118,6 @@ public class BossAI : MonoBehaviour
     {
         animator.SetBool("isPoking", false);
         animator.SetBool("isSlaming", false);
-
-        // Check if we took too long to poke and are in range to slam instead
         if (timeSinceLastPoke >= maxTimeBetweenPokes && distanceToPlayer <= slamRange)
         {
             currentState = State.SlamAttack;
@@ -127,7 +129,6 @@ public class BossAI : MonoBehaviour
 
         if (distanceToPlayer <= stoppingDistance)
         {
-            // Reached player normally, start poke attack
             currentState = State.PokeAttack;
             stateTimer = 0f;
             timeSinceLastPoke = 0f;
@@ -140,7 +141,8 @@ public class BossAI : MonoBehaviour
         targetDirection.y = 0;
 
         Vector3 obstacleAvoidance = GetObstacleAvoidanceVector();
-        Vector3 finalDirection = (targetDirection + obstacleAvoidance * avoidanceWeight).normalized;
+        Vector3 bossSeparation = GetBossSeparationVector();
+        Vector3 finalDirection = (targetDirection + obstacleAvoidance * avoidanceWeight + bossSeparation * bossSeparationWeight).normalized;
         Vector3 desiredVelocity = finalDirection * moveSpeed;
 
         float movedDistance = Vector3.Distance(transform.position, lastPosition);
@@ -165,8 +167,6 @@ public class BossAI : MonoBehaviour
         animator.SetBool("isPoking", true);
         currentVelocity = Vector3.zero;
         isAttacking = true;
-
-        // Deal damage once when attack triggers
         if (stateTimer == 0f)
         {
             DealPokeDamage();
@@ -174,17 +174,17 @@ public class BossAI : MonoBehaviour
 
         stateTimer += Time.deltaTime;
 
-        // Wait for attack animation to finish (adjust based on your animation length)
+
         if (stateTimer >= pokeCooldown)
         {
             pokeCount++;
             
-            // Check if we should do a slam next (only if player is in slam range)
+
             if (pokeCount >= 2 && distanceToPlayer <= slamRange)
             {
                 currentState = State.SlamAttack;
                 stateTimer = 0f;
-                timeSinceLastPoke = 0f; // Reset our timer since we are transitioning to slam
+                timeSinceLastPoke = 0f;
             }
             else
             {
@@ -201,23 +201,19 @@ public class BossAI : MonoBehaviour
         currentVelocity = Vector3.zero;
         isAttacking = true;
 
-        // Spawn tremor once when slam triggers
         if (stateTimer == 0f)
         {
             if (tremorPrefab != null)
             {
-                // Spawn tremor outside boss's hitbox in the direction boss is facing
                 Vector3 spawnPosition = transform.position + transform.forward * tremorSpawnDistance + transform.up * -4;
                 Instantiate(tremorPrefab, spawnPosition, transform.rotation);
             }
         }
 
         stateTimer += Time.deltaTime;
-
-        // Wait for slam animation to finish
         if (stateTimer >= slamCooldown)
         {
-            pokeCount = 0; // Slam resets the poke count as per original logic
+            pokeCount = 0;
             currentState = State.Cooldown;
             stateTimer = 0f;
         }
@@ -301,6 +297,38 @@ public class BossAI : MonoBehaviour
         avoidanceForce.y = 0;
         
         return avoidanceForce.normalized;
+    }
+
+    Vector3 GetBossSeparationVector()
+    {
+        Vector3 separationForce = Vector3.zero;
+        int neighborsCount = 0;
+        Collider[] neighbors = Physics.OverlapSphere(transform.position, bossSeparationRadius);
+
+        foreach (Collider neighbor in neighbors)
+        {
+            if (neighbor.gameObject == gameObject) continue;
+            if (!neighbor.CompareTag("Boss")) continue;
+            
+            Vector3 pushAway = transform.position - neighbor.transform.position;
+            float distance = pushAway.magnitude;
+
+            if (distance > 0)
+            {
+                float strength = 1f / (distance * distance);
+                separationForce += pushAway.normalized * strength;
+                neighborsCount++;
+            }
+        }
+
+        if (neighborsCount > 0)
+        {
+            separationForce /= neighborsCount;
+            separationForce = separationForce.normalized;
+        }
+
+        separationForce.y = 0;
+        return separationForce;
     }
 
     public bool IsAttacking()

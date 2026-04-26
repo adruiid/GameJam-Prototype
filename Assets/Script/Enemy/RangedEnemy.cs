@@ -46,15 +46,12 @@ public class RangedEnemy : MonoBehaviour
                 nextShotTime = Time.time + attackCooldown;
                 Vector3 spawnPos = transform.position + projectileSpawnOffset;
                 GameObject projectile = Instantiate(projectilePrefab, spawnPos, Quaternion.identity);
-                
-                // Pass the fire direction to the projectile
                 EnemyProjectile projectileScript = projectile.GetComponent<EnemyProjectile>();
                 if (projectileScript != null)
                 {
                     projectileScript.SetDirection(directionToPlayer.normalized, projectileSpeed);
                 }
             }
-            // Allow separation/obstacle avoidance to prevent pile-up
             enemyBehavior.SetCanShoot(true);
         }
         else

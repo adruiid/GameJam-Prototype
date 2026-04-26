@@ -68,7 +68,6 @@ public class BulletShooter : MonoBehaviour
     
     private void SetDirectionFromPlayer()
     {
-        // Get the direction the player mesh is looking (negate right due to rotation offset)
         Vector3 playerRight = player.GetComponent<PlayerAnimatorAndRotate>().playerMesh.transform.right;
         Vector3 directionOnPlane = new Vector3(-playerRight.z, 0f, playerRight.x).normalized;
         
