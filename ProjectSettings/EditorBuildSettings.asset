@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Prefabs/Scenes/RealMainMenu.unity
     guid: bf644a5a1431ee34cb5a0253f64487e5
   - enabled: 1
+    path: Assets/Prefabs/Scenes/Cutscene.unity
+    guid: 9c948054627f25947b6dcbab6d4bbbcd
+  - enabled: 1
     path: Assets/Prefabs/Scenes/Blockout_Scene.unity
     guid: 8aa09b6063668b84a983f81cacb375e0
   m_configObjects:
