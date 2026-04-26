@@ -127,8 +127,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BulletShooter
   projectileSpeed: 30
-  upperBound: 10
-  lowerBound: -10
+  upperBound: 25
+  lowerBound: -25
   hitBoxSize: {x: 3, y: 10, z: 4}
   enemyLayer:
     serializedVersion: 2
