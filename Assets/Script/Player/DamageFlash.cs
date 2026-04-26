@@ -11,6 +11,7 @@ public class DamageFlash : MonoBehaviour
 
     public void Flash()
     {
+        StopCoroutine(FlashRoutine());
         StartCoroutine(FlashRoutine());
     }
 
@@ -24,5 +25,6 @@ public class DamageFlash : MonoBehaviour
 
         // Turn off emission
         mat.SetColor("_EmissionColor", Color.black);
+        mat.DisableKeyword("_EMISSION");
     }
 }
