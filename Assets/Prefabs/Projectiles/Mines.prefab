@@ -125,11 +125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1eb8573c3e3a634c8a6aa8c4e7c49f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MinesHit
-  speed: 10
-  maxTargetingRange: 15
-  upperBound: 50
-  lowerBound: -50
-  hitBoxSize: {x: 5, y: 2, z: 5}
+  hitBoxSize: {x: 5, y: 7, z: 5}
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128
