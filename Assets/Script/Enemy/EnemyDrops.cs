@@ -4,6 +4,8 @@ public class EnemyDrops : MonoBehaviour
 {
     [SerializeField] GameObject hpOrb;
     [SerializeField] GameObject expOrb;
+    [SerializeField] private int hpOrbDropChance;
+    [SerializeField] private int expOrbQuantity;
     void Start()
     {
         
@@ -25,11 +27,15 @@ public class EnemyDrops : MonoBehaviour
         expOrbDropPosition.y += 2f;
 
 
-        if (Random.Range(0, 100) < 30)
+        if (Random.Range(0, 100) < hpOrbDropChance)
         {
             Instantiate(hpOrb, hpOrbDropPosition, hpOrb.transform.rotation);
         }
 
-        Instantiate(expOrb, expOrbDropPosition, hpOrb.transform.rotation);
+        for(int i=0;i<expOrbQuantity;i++)
+        {
+            Instantiate(expOrb, expOrbDropPosition, expOrb.transform.rotation);
+            expOrbDropPosition.x += 1f;
+        }
     }
 }
