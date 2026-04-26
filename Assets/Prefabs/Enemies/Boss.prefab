@@ -55,6 +55,8 @@ MonoBehaviour:
     m_Bits: 64
   avoidanceRadius: 2
   avoidanceWeight: 2
+  bossSeparationRadius: 3
+  bossSeparationWeight: 2
   pokeDamage: 15
   pokeRange: 8
   pokeCooldown: 1
