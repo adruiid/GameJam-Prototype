@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -9211170011657478144, guid: e53ffd3e13c15314699029521f7d3e80, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e53ffd3e13c15314699029521f7d3e80, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1163.9163
@@ -48,6 +52,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7813295464701298881, guid: e53ffd3e13c15314699029521f7d3e80, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -2376181315486216685, guid: e53ffd3e13c15314699029521f7d3e80, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -2127916135219896612, guid: e53ffd3e13c15314699029521f7d3e80, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -664469294639027337, guid: e53ffd3e13c15314699029521f7d3e80, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: e53ffd3e13c15314699029521f7d3e80, type: 3}
       propertyPath: m_Name
       value: RobotDog_Fixed
@@ -55,6 +75,30 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: e53ffd3e13c15314699029521f7d3e80, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 4696891044045635280, guid: e53ffd3e13c15314699029521f7d3e80, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7143796703480548786, guid: e53ffd3e13c15314699029521f7d3e80, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7434997025327629277, guid: e53ffd3e13c15314699029521f7d3e80, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8504709930479913242, guid: e53ffd3e13c15314699029521f7d3e80, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8639420499190958242, guid: e53ffd3e13c15314699029521f7d3e80, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9067151586092599915, guid: e53ffd3e13c15314699029521f7d3e80, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
