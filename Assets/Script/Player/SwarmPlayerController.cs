@@ -5,13 +5,14 @@ public class SwarmPlayerController : MonoBehaviour
 {
     float horizontalInput;
     float verticalInput;
-    [SerializeField] float speed = 10f;
-    //[SerializeField] GameObject projectilePrefab;
+    [SerializeField] float speed = 10f; // NOTE: You may need to tweak this value in the Inspector now!
     Rigidbody rb;
 
     private float vectorMovement;
     private float originalSpeed;
     private bool isStunned = false;
+    
+    private Vector3 moveDirection; // Store the normalized direction
 
     void Start()
     {
@@ -22,20 +23,23 @@ public class SwarmPlayerController : MonoBehaviour
     {
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
-        vectorMovement = Mathf.Sqrt(horizontalInput * horizontalInput + verticalInput * verticalInput);
+        
+        // 1. Create a single vector out of the inputs
+        Vector3 inputVector = new Vector3(horizontalInput, 0f, verticalInput);
+        
+        // 2. NORMALIZE IT! This stops the diagonal speed boost.
+        moveDirection = inputVector.normalized;
+        
+        // Update your vectorMovement using the newly normalized vector (useful if you use this for animations)
+        vectorMovement = moveDirection.magnitude; 
     }
 
     private void FixedUpdate()
     {
-        rb.linearVelocity= (Vector3.right * horizontalInput * Time.deltaTime * speed+ Vector3.forward * verticalInput * Time.deltaTime * speed);
+        // 3. Set velocity without Time.deltaTime. 
+        // Velocity is already "units per second", so no time conversion is needed here.
+        rb.linearVelocity = moveDirection * speed;
     }
-    // void OnClick()
-    // {
-    //     if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
-    //     {
-    //         Instantiate(projectilePrefab, transform.position, projectilePrefab.transform.rotation);
-    //     }
-    // }
 
     public float getSpeed()
     {
