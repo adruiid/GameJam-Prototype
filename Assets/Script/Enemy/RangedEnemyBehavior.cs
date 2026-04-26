@@ -23,15 +23,18 @@ public class RangedEnemyBehavior : MonoBehaviour
 
     Animator anim;
 
+    private UniversalStatMultiplier statMultiplier;
     void Start()
     {
         player = GameObject.Find("Player");
         anim=GetComponent<Animator>();
         playerLevel = player.GetComponent<PlayerLevel>();
+        statMultiplier = GameObject.Find("Game Manager").GetComponent<UniversalStatMultiplier>();
     }
 
     void Update()
     {
+        moveSpeed *= statMultiplier.getSpeedMultiplier();
         if (player == null) return;
         if (!canMove) return;
 
