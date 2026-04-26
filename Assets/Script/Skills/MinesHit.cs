@@ -13,7 +13,7 @@ public class MinesHit : MonoBehaviour
     void Start()
     {
         playerArmory = GameObject.Find("Player").GetComponent<PlayerArmory>();
-
+        Destroy(gameObject, 5f);
     }
 
     void Update()
