@@ -19267,7 +19267,7 @@ PrefabInstance:
       objectReference: {fileID: 9588217963440729, guid: d9c066fa825ba8d4889dd3fb45282013, type: 3}
     - target: {fileID: 6483113008536088094, guid: 22b93da4ffe97924fa1410ee5153d71c, type: 3}
       propertyPath: hasCogWheel
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6483113008536088094, guid: 22b93da4ffe97924fa1410ee5153d71c, type: 3}
       propertyPath: gunTransform
