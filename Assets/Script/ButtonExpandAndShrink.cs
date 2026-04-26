@@ -23,10 +23,12 @@ public class ButtonExpandAndShrink : MonoBehaviour, IPointerEnterHandler, IPoint
     public void OnPointerEnter(PointerEventData eventData)
     {
         targetScale = originalScale * hoverScale;
+        EventSystem.current.SetSelectedGameObject(null);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         targetScale = originalScale;
+        EventSystem.current.SetSelectedGameObject(null);
     }
 }

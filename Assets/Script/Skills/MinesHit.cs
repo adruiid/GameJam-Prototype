@@ -19,6 +19,8 @@ public class MinesHit : MonoBehaviour
     [SerializeField] LayerMask enemyLayer;
 
     PlayerArmory playerArmory;
+
+    [SerializeField] GameObject mineHitParticle;
     void Start()
     {
         playerArmory = GameObject.Find("Player").GetComponent<PlayerArmory>();
@@ -92,9 +94,24 @@ public class MinesHit : MonoBehaviour
         {
             EnemyStats enemyStats = hit.GetComponent<EnemyStats>();
             enemyStats.recieveDamage(playerArmory.getDamage());
+            SpawnParticleEffect();
             Destroy(gameObject);     
             return true; 
         }
         return false;
+    }
+
+    void SpawnParticleEffect()
+    {
+        if (mineHitParticle != null)
+        {
+            GameObject particle = Instantiate(mineHitParticle, transform.position + Vector3.up * 1.1f, Quaternion.identity);
+            ParticleSystem[] allParticles = particle.GetComponentsInChildren<ParticleSystem>();
+
+            foreach (var ps in allParticles)
+            {
+                ps.Play();
+            }
+        }
     }
 }

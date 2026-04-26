@@ -8,6 +8,8 @@ TagManager:
   - Enemy
   - FxTemporaire
   - Boss
+  - FxTemporaire
+  - LootBox
   layers:
   - Default
   - TransparentFX

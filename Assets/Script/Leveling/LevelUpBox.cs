@@ -195,10 +195,11 @@ public class LevelUpBox : MonoBehaviour
     {
         if (flameThrowerLevel == 2)
         {
-
+            playerArmory.setFlameThrowerLevel(2);
         }
         else if (flameThrowerLevel == 3)
         {
+            playerArmory.setFlameThrowerLevel(3);
             upgradeList[2] = nullUpgrade;
         }
     }
@@ -232,6 +233,7 @@ public class LevelUpBox : MonoBehaviour
     public void increaseMaxHealth()
     {
         playerLevel.setMaxHP(playerLevel.getMaxHp() + 10f);
+        playerLevel.setCurrentHp(playerLevel.getMaxHp());
     }
 
     public void activateMine()

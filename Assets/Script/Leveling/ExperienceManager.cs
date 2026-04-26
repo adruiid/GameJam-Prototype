@@ -36,6 +36,7 @@ public class ExperienceManager : MonoBehaviour
         playerInfo.updateExp(exp);
     }
 
+    [ContextMenu("Level Up")]
     public void recieveLevelUpSignal()
     {
         levelUpBox.gameObject.SetActive(true);

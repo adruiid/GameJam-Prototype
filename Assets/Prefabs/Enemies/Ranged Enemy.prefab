@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 1105158089076948707}
   m_Layer: 7
   m_Name: Ranged Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -129,8 +129,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RangedEnemy
   attackRange: 20
+  projectileSpawnOffset: {x: 0, y: 0.5, z: 0}
   projectilePrefab: {fileID: 5369210963190522482, guid: 1abba1d6fd4f8f6489c5ca51c8ec5a6f, type: 3}
   attackCooldown: 3
+  projectileSpeed: 15
 --- !u!114 &-3206373810225979109
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -150,8 +152,11 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   stoppingDistance: 15
-  damageAmount: 10
-  attackCooldown: 1
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  avoidanceRadius: 2
+  avoidanceWeight: 2
 --- !u!114 &9136667824710389015
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -166,6 +171,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyStats
   healthPoint: 10
   exp: 20
+  explosionParticle: {fileID: 0}
 --- !u!114 &1105158089076948707
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -16,8 +16,18 @@ public class EnemySpawner : MonoBehaviour
 
     private float nextSpawnTime;
 
+    private float currentEnemyCount;
+    private float currentEnemyLimit;
+
     void Update()
     {
+        currentEnemyCount=GameObject.FindGameObjectsWithTag("Enemy").Length;
+
+        if (currentEnemyCount >= currentEnemyLimit)
+        {
+            return;
+        }
+
         if (Time.time >= nextSpawnTime)
         {
             SpawnEnemy();
@@ -63,5 +73,11 @@ public class EnemySpawner : MonoBehaviour
     public void changeSpawnIdxLimit(int newSpawnIdxLimit)
     {
         spawnIdxLimit = newSpawnIdxLimit;
+    }
+
+    public void changeSpawnMaxLimit(int newMaxLimit)
+    {
+        currentEnemyLimit = newMaxLimit;
+
     }
 }
