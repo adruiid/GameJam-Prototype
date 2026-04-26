@@ -9,6 +9,8 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] GameObject gameUI;
     [SerializeField] GameObject pauseUI;
 
+    private bool scriptStatusChangable = true;
+
     void Start()
     {
 
@@ -16,8 +18,10 @@ public class PauseMenu : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.P) )
+        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.P))
         {
+            if (!scriptStatusChangable) return;
+
             PauseUnpause();
         }
     }
@@ -40,6 +44,11 @@ public class PauseMenu : MonoBehaviour
     public void setPauseStatus(bool status)
     {
         isPaused = status;
+    }
+
+    public void setScriptStatusChangable(bool status)
+    {
+        scriptStatusChangable = status;
     }
 
 }
