@@ -23,4 +23,11 @@ public class UniversalStatMultiplier : MonoBehaviour
     public void setHealthMultiplier(float value) { healthMultiplier = value; }
 
     public void setSpeedMultiplier(float value) { speedMultiplier = value; }
+
+    public void setUniversalMultiplier(float value)
+    {
+        healthMultiplier = value;
+        damageMultiplier = value;
+        speedMultiplier = value;
+    }
 }

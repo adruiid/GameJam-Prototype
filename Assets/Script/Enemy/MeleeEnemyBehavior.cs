@@ -34,16 +34,22 @@ public class MeleeEnemyBehavior : MonoBehaviour
     GameObject player;
     PlayerLevel playerLevel;
 
+    private UniversalStatMultiplier statMultiplier;
+
     void Start()
     {
         player = GameObject.Find("Player");
         playerLevel = player.GetComponent<PlayerLevel>();
         nextAttackTime = 0f;
         lastPosition = transform.position;
+        statMultiplier=GameObject.Find("Game Manager").GetComponent<UniversalStatMultiplier>();
     }
 
     void Update()
     {
+        meleeDamage *= statMultiplier.getDamageMultiplier();
+        moveSpeed *= statMultiplier.getSpeedMultiplier();
+
         if (player == null) return;
         if (!canMove) return;
 

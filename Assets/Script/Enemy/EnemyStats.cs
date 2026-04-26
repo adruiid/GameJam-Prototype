@@ -12,15 +12,20 @@ public class EnemyStats : MonoBehaviour
 
     [SerializeField] GameObject explosionParticle;
 
+    private UniversalStatMultiplier statMultiplier;
+
     void Start()
     {
         experienceManager = GameObject.Find("Game Manager").GetComponent<ExperienceManager>();
         gameGeneralManager = GameObject.Find("Game Manager").GetComponent<GameGeneralManager>();
         enemyDrops=GetComponent<EnemyDrops>();
         currentHealth = healthPoint;
+
+        statMultiplier = GameObject.Find("Game Manager").GetComponent<UniversalStatMultiplier>();
     }
     void Update()
     {
+        healthPoint = statMultiplier.getHealthMultiplier();
         if (currentHealth <= 0)
         {
             destroySelf();
