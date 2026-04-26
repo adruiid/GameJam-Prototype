@@ -1,6 +1,4 @@
 using System.Collections;
-using NUnit.Framework;
-using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 
 public class PlayerArmory : MonoBehaviour

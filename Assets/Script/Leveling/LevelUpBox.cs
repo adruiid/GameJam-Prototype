@@ -1,5 +1,3 @@
-using Unity.Burst;
-using UnityEditor.Rendering.Universal;
 using UnityEngine;
 using UnityEngine.UI;
 
