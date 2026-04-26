@@ -13,15 +13,21 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] LayerMask obstacleLayer;
     [SerializeField] float enemySpawnRadius = 1f; 
     [SerializeField] int maxSpawnAttempts = 15;
+    GameObject boss;
 
     private float nextSpawnTime;
 
     private float currentEnemyCount;
     private float currentEnemyLimit;
 
+    void Start()
+    {
+        boss=GameObject.FindGameObjectWithTag("Boss");
+    }
+
     void Update()
     {
-        currentEnemyCount=GameObject.FindGameObjectsWithTag("Enemy").Length;
+        
 
         if (currentEnemyCount >= currentEnemyLimit)
         {
@@ -35,8 +41,16 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
+    public void SpawnBoss()
+    {
+        if (boss != null)
+        {
+            boss.SetActive(true);
+        }
+    }
     void SpawnEnemy()
     {
+        currentEnemyCount=GameObject.FindGameObjectsWithTag("Enemy").Length;
         int randomIndex = Random.Range(0, spawnIdxLimit+1);
         GameObject enemyToSpawn = enemyPrefabs[randomIndex];
 
