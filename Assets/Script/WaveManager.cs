@@ -95,4 +95,8 @@ public class WaveManager : MonoBehaviour
         yield return new WaitForSeconds(0.7f);
         waveNumber++;
     }
+    public int getWaveNumber()
+    {
+        return waveNumber;
+    }
 }

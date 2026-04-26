@@ -10,6 +10,8 @@ public class BulletShooter : MonoBehaviour
     [SerializeField] Vector3 hitBoxSize = new Vector3(0.5f, 0.5f, 2f);
     [SerializeField] LayerMask enemyLayer;
     [SerializeField] GameObject bulletParticle;
+    [SerializeField] AudioClip shootSound;
+    [SerializeField][Tooltip("Volume of the shoot sound, 0 to 1")] float shootVolume = 1f;
     
     float upperBoundX;
     float lowerBoundX;
@@ -25,6 +27,8 @@ public class BulletShooter : MonoBehaviour
         playerArmory = player.GetComponent<PlayerArmory>();
         FindRelativeBounds();
         SetDirectionFromPlayer();
+        AudioSource.PlayClipAtPoint(shootSound, transform.position, shootVolume);
+
     }
 
     private void FindRelativeBounds()

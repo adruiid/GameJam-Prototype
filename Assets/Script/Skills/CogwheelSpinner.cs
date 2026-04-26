@@ -4,6 +4,7 @@ using System.Collections.Generic;
 public class CogwheelSpinner : MonoBehaviour
 {
     [SerializeField] GameObject cogwheelPrefab;
+    [SerializeField] GameObject evolvedCogwheelPrefab;
     [SerializeField] float orbitRadius = 2.5f;
     [SerializeField] float rotationSpeed = 360f;
     [SerializeField] float heightOffset = 1.5f;
@@ -32,13 +33,19 @@ public class CogwheelSpinner : MonoBehaviour
             1 => 1,
             2 => 3,
             3 => 5,
+            4 => 1,
+            5 => 3,
+            6 => 5,
             _ => 1
         };
+
+        GameObject prefabToUse = skillLevel >= 4 ? evolvedCogwheelPrefab : cogwheelPrefab;
+        float damageToUse = skillLevel >= 4 ? damageAmount * 2f : damageAmount;
 
         for (int i = 0; i < cogwheelCount; i++)
         {
             float angle = (360f / cogwheelCount) * i;
-            GameObject cogwheelObj = Instantiate(cogwheelPrefab, transform.position, Quaternion.identity);
+            GameObject cogwheelObj = Instantiate(prefabToUse, transform.position, Quaternion.identity);
             
             Cogwheel cogwheel = cogwheelObj.GetComponent<Cogwheel>();
             if (cogwheel == null)
@@ -46,7 +53,7 @@ public class CogwheelSpinner : MonoBehaviour
                 cogwheel = cogwheelObj.AddComponent<Cogwheel>();
             }
             
-            cogwheel.Initialize(this, angle, damageAmount, enemyLayer);
+            cogwheel.Initialize(this, angle, damageToUse, enemyLayer);
             cogwheels.Add(cogwheel);
         }
     }
@@ -66,10 +73,9 @@ public class CogwheelSpinner : MonoBehaviour
 
     public void SetSkillLevel(int level)
     {
-        if (level != skillLevel && (level == 1 || level == 2 || level == 3))
+        if (level != skillLevel && level >= 1 && level <= 6)
         {
             skillLevel = level;
-            // Clear old cogwheels
             foreach (Cogwheel cogwheel in cogwheels)
             {
                 Destroy(cogwheel.gameObject);

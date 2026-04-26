@@ -784,13 +784,13 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 14e7abc2157931643bab25e9024d2e44, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.4
+  m_Volume: 0.197
   m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 229
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -16823,7 +16823,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 383851e746be2cd43a57b07364bdc5bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CogwheelSpinner
-  cogwheelPrefab: {fileID: 660953532932524630, guid: e22062fdc9bad2241a78fca211cbf4e4, type: 3}
+  cogwheelPrefab: {fileID: 2553734997417222722, guid: 8ab4fc520395fa04382bb087244be42d, type: 3}
+  evolvedCogwheelPrefab: {fileID: 660953532932524630, guid: e22062fdc9bad2241a78fca211cbf4e4, type: 3}
   orbitRadius: 3.83
   rotationSpeed: 250
   heightOffset: 2
@@ -16845,7 +16846,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.3
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -19002,7 +19003,7 @@ PrefabInstance:
       objectReference: {fileID: 9588217963440729, guid: d9c066fa825ba8d4889dd3fb45282013, type: 3}
     - target: {fileID: 6483113008536088094, guid: 22b93da4ffe97924fa1410ee5153d71c, type: 3}
       propertyPath: hasCogWheel
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6483113008536088094, guid: 22b93da4ffe97924fa1410ee5153d71c, type: 3}
       propertyPath: gunTransform
@@ -19033,6 +19034,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6483113008536088094, guid: 22b93da4ffe97924fa1410ee5153d71c, type: 3}
+      propertyPath: projectilePrefab
+      value: 
+      objectReference: {fileID: 9197753352528933276, guid: 409666ea697f3c047bd3b346aeb0c882, type: 3}
+    - target: {fileID: 6483113008536088094, guid: 22b93da4ffe97924fa1410ee5153d71c, type: 3}
       propertyPath: hasHomingMissiles
       value: 0
       objectReference: {fileID: 0}
@@ -19046,7 +19051,7 @@ PrefabInstance:
       objectReference: {fileID: 7536454557696180000, guid: 5a00d419ee9f10347b3145c603308769, type: 3}
     - target: {fileID: 6483113008536088094, guid: 22b93da4ffe97924fa1410ee5153d71c, type: 3}
       propertyPath: projectileCooldown
-      value: 0.5
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 6483113008536088094, guid: 22b93da4ffe97924fa1410ee5153d71c, type: 3}
       propertyPath: homingMissileCooldown
