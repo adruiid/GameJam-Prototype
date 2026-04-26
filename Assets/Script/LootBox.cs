@@ -23,6 +23,7 @@ public class LootBox : MonoBehaviour
 
     private PlayerLevel playerLevel;
 
+
     private void Start()
     {
         lootBoxMenuActive = false;

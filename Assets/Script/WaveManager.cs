@@ -10,6 +10,7 @@ public class WaveManager : MonoBehaviour
     [SerializeField] Text waveText;
     [SerializeField] Animator waveTextAnimator;
 
+
     float timer;
     void Start()
     {
@@ -49,21 +50,22 @@ public class WaveManager : MonoBehaviour
         }
         else if (waveNumber == 4)
         {
-            enemySpawner.changeSpawnIdxLimit(3);
+            
             enemySpawner.changeSpawnMaxLimit(120);
             enemySpawner.changeSpawnRate(2f);
         }
         else if (waveNumber == 5)
         {
-            
+            enemySpawner.changeSpawnIdxLimit(3);
         }
         else if (waveNumber == 6)
         {
             enemySpawner.changeSpawnMaxLimit(200);
-            enemySpawner.changeSpawnRate(3f);
+            
         }
         else if (waveNumber == 7)
         {
+            enemySpawner.changeSpawnRate(3f);
             enemySpawner.changeSpawnMaxLimit(300);
         }
         else if (waveNumber == 8)
@@ -81,14 +83,7 @@ public class WaveManager : MonoBehaviour
         }
 
     }
-
-    [ContextMenu("Kaj kor")]
-    private void testFunction()
-    {
-        StartCoroutine(WaveNumberIncrease());
-    }
-
-    
+ 
     IEnumerator WaveNumberIncrease()
     {
         waveTextAnimator.SetTrigger("increase");

@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using Mono.Cecil.Cil;
+using UnityEngine.UI;
 
 public class PlayerLevel : MonoBehaviour
 {
@@ -20,9 +21,15 @@ public class PlayerLevel : MonoBehaviour
     private AudioSource audioSource;
     [SerializeField] AudioClip expPickUpClip;
 
+    [SerializeField] DamageFlash flash;
+
     private bool canTakeDamage = true;
 
-    
+    [SerializeField] Image speedIcon;
+    [SerializeField] Image healthIcon;
+    [SerializeField] Image damageIcon;
+
+
     void Start()
     {
         playerController = GetComponent<SwarmPlayerController>();
@@ -102,6 +109,8 @@ public class PlayerLevel : MonoBehaviour
     public void setCurrentHp(float newHp)
     {
         if (!canTakeDamage) return;
+
+        flash.Flash();
         currentHealth = newHp;
     }
 
@@ -126,7 +135,22 @@ public class PlayerLevel : MonoBehaviour
     {
         float originalSpeed = playerSpeed;
         playerSpeed = newSpeed;
-        yield return new WaitForSeconds(10f);
+        float duration = 10f;
+        float timer = 0f;
+
+        speedIcon.fillAmount = 1f; // start full
+
+        while (timer < duration)
+        {
+            timer += Time.deltaTime;
+
+            float t = timer / duration;          // 0 → 1
+            speedIcon.fillAmount = 1f - t;  
+
+            yield return null;
+        }
+
+        speedIcon.fillAmount = 0f;
         playerSpeed = originalSpeed;
     }
     public void temporaryDamageUpgrade()
@@ -138,7 +162,22 @@ public class PlayerLevel : MonoBehaviour
     {
         float originalDamage = armory.getDamage();
         armory.setDamage(newDamage);
-        yield return new WaitForSeconds(10f);
+        float duration = 10f;
+        float timer = 0f;
+
+        damageIcon.fillAmount = 1f; // start full
+
+        while (timer < duration)
+        {
+            timer += Time.deltaTime;
+
+            float t = timer / duration;          // 0 → 1
+            damageIcon.fillAmount = 1f - t;
+
+            yield return null;
+        }
+
+        damageIcon.fillAmount = 0f;
         armory.setDamage(originalDamage);
     }
 
@@ -150,7 +189,22 @@ public class PlayerLevel : MonoBehaviour
     IEnumerator Immunity()
     {
         canTakeDamage = false;
-        yield return new WaitForSeconds(10f);
+        float duration = 10f;
+        float timer = 0f;
+
+        healthIcon.fillAmount = 1f; // start full
+
+        while (timer < duration)
+        {
+            timer += Time.deltaTime;
+
+            float t = timer / duration;          // 0 → 1
+            healthIcon.fillAmount = 1f - t;
+
+            yield return null;
+        }
+
+        healthIcon.fillAmount = 0f;
         canTakeDamage = true;
     }
 }
