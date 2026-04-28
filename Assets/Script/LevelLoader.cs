@@ -12,9 +12,15 @@ public class LevelLoader : MonoBehaviour
 
     [SerializeField] AudioSource audioSource;
 
-    void Update()
+    public void QuitGame()
     {
+        Application.Quit();
+    }
 
+     public void LoadMainMenu()
+    {
+        Time.timeScale = 1f;
+        StartCoroutine(LoadLevel(0));
     }
 
     public void LoadLastLevel()
