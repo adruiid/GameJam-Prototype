@@ -16,6 +16,10 @@ public class CutsceneManager : MonoBehaviour
         videoPlayer.loopPointReached += OnVideoFinished;
     }
 
+    private void Start()
+    {
+        videoPlayer.Play(); // ensure it always plays
+    }
     private void Update()
     {
         if (allowSkip && Input.GetKeyDown(KeyCode.Space))

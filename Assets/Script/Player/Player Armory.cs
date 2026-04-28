@@ -111,6 +111,16 @@ public class PlayerArmory : MonoBehaviour
         damage = newDamage;
     }
 
+    public float getCD()
+    {
+        return projectileCooldown;
+    }
+
+    public void setCD(float newCD)
+    {
+        projectileCooldown = newCD;
+    }
+
     private void PlaceMine()
     {
         Vector3 spawnPosition = transform.position + Vector3.down * 0f;

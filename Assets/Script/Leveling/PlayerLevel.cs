@@ -16,6 +16,7 @@ public class PlayerLevel : MonoBehaviour
     private PlayerArmory armory;
     private ExperienceManager experienceManager;
     private SwarmPlayerController playerController;
+    [SerializeField] GameObject sheild;
 
     private AudioSource audioSource;
     [SerializeField] AudioClip expPickUpClip;
@@ -37,7 +38,7 @@ public class PlayerLevel : MonoBehaviour
         experienceManager = GameObject.Find("Game Manager").GetComponent<ExperienceManager>();
         currentLevel = 1;
         neededExp = 100;
-        playerMaxHealth = 100;
+        playerMaxHealth = 120;
         playerSpeed = playerController.getSpeed();
         currentHealth = playerMaxHealth;
     }
@@ -188,6 +189,7 @@ public class PlayerLevel : MonoBehaviour
     IEnumerator Immunity()
     {
         canTakeDamage = false;
+        sheild.SetActive(true);
         float duration = 10f;
         float timer = 0f;
 
@@ -204,6 +206,7 @@ public class PlayerLevel : MonoBehaviour
         }
 
         healthIcon.fillAmount = 0f;
+        sheild.SetActive(false);
         canTakeDamage = true;
     }
 }

@@ -143,6 +143,7 @@ public class LevelUpBox : MonoBehaviour
         else if (idxFunc == 4) increaseMaxHealth();
         else if (idxFunc == 5) activateCogWheel();
         else if (idxFunc == 6) activateMine();
+        else if (idxFunc == 7) increaseBulletSpeed();
 
         experienceManager.recieveLeveledUpSignal();
     }
@@ -175,6 +176,23 @@ public class LevelUpBox : MonoBehaviour
     {
         playerArmory.setDamage(playerArmory.getDamage() * 2);
     }
+
+
+    public void increaseBulletSpeed()
+    {
+        float newCD = playerArmory.getCD() - 0.1f;
+        if (newCD <= 0.1f)
+        {
+            playerArmory.setCD(0.1f); // hard clamp
+            upgradeList[7] = nullUpgrade;
+        }
+        else
+        {
+            playerArmory.setCD(newCD);
+        }
+
+    }
+
 
     public void activateFlameThrower()
     {
